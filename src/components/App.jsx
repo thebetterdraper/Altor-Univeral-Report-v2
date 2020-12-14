@@ -5,12 +5,13 @@ import Home from "./Home";
 import Navbar from "./Navbar";
 
 function App(){
+
     return (
-        <>
+        
             
-                <Route path="/altorrider" component={AltorRider} />
+                <AltorRider></AltorRider>
               
-        </>
+       
     );
 
 }
