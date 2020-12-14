@@ -50,6 +50,7 @@ function AltorRider(){
             const cookie_content=Cookie.getJSON("report_res");
             cookie_content["timestamp"]=retrieveTimestamp();
             cookie_content["days"]=retrieveDays();
+            console.log(cookie_content+"IS COOKIE CONTENT")
             // console.log("Cookie is"+ JSON.stringify(cookie_content));
             retrieveDays();
 
