@@ -301,7 +301,7 @@ function AltorRider(){
                     
                 },
                 image:HTMLOptionsCollection,
-                x:(left_offset*8),
+                x:(left_offset*3),
                 y:10,
         });
     }
