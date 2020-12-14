@@ -1,0 +1,43 @@
+" Author " : " Soumil Bose "
+" Email " : " soumil0507@gmail.com "
+" Github user-ID " : "Soumil007"
+" Github " : https://github.com/Soumil007
+
+# To surpass CORS policy
+
+Add headers to axios instance
+
+    headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
+
+To test the cookies
+    1> I have created two Routes  --> Home And AltorRiderReports
+    2> Response from cookies
+        {
+            client_id:" ",
+            user_id:" ",
+            timestamp: " ",
+            org_id: " ",
+            days: " "
+        }
+    3> Creating .env file
+        Adding .env to .gitignore
+            API_URL  = "https//api_url"
+        process.env.API_URL
+
+DATA FORMAT
+
+    riderDataNew.items = json
+
+
+My Data format 
+
+    {
+        "id" : 2,
+        "name":"Mayank Shrivastav",
+        "phone_no":8674515454,
+        "data":
+            {
+                "safety_score":[9,8,7,5,5,6,9,8,7,5,6,4,8,6],
+                "overspeeding":[7,5,9,6,5,9,7,5,7,8,5,6,5,9]
+            }
+    }

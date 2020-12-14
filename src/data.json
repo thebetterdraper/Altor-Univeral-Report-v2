@@ -1,0 +1,92 @@
+[
+     {
+        "id" : 1,
+        "name" : "Arvind Basu",
+        "phone_no" : 9822654359,
+        "data" : {
+            "safety_score":[9,8,7,5,8,6,4,9,5,8,7,5,4,7],
+            "overspeeding":[7,5,9,6,5,8,9,8,8,9,7,5,7,8]
+        }
+    }, 
+    {
+        "id" : 2,
+        "name":"Mayank Shrivastav",
+        "phone_no":8674515454,
+        "data":{
+            "safety_score":[9,8,7,5,5,6,9,8,7,5,6,4,8,6],
+            "overspeeding":[7,5,9,6,5,9,7,5,7,8,5,6,5,9]
+        }
+    },
+    {
+        "id" : 3,
+        "name":"Harry Houston",
+        "phone_no":9846318465,
+        "data":{
+            "safety_score":[9,5,4,8,6,2,5,9,5,8,7,5,4,7],
+            "overspeeding":[7,5,9,6,6,9,8,7,8,9,7,5,7,8]
+        }
+    },
+    {
+        "id" : 4,
+        "name" : "Soumil Bose",
+        "phone_no": 9841894564,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    },
+    {
+        "id" : 5,
+        "name" : "Soumil Bose",
+        "phone_no": 6841894564,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    },
+    {
+        "id" : 6,
+        "name" : "Soumil Bose",
+        "phone_no": 7841894564,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    },
+    {
+        "id" : 7,
+        "name" : "Soumil Bose",
+        "phone_no": 9841894764,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    },
+    {
+        "id" : 8,
+        "name" : "Soumil Bose",
+        "phone_no": 4841894564,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    },
+    {
+        "id" : 9,
+        "name" : "Soumil Bose",
+        "phone_no": 9847894564,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    },
+    {
+        "id" : 10,
+        "name" : "Soumil Bose",
+        "phone_no": 9871894564,
+        "data":{
+            "safety_score":[8,2,6,5,4,5,3,4,9,5,6,8,6,9],
+            "overspeeding":[9,5,5,6,5,6,2,6,3,5,9,5,5,6]
+        }
+    }
+]
