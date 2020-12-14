@@ -7,12 +7,9 @@ import Navbar from "./Navbar";
 function App(){
     return (
         <>
-            <Navbar />
-            <Switch>
-                <Route exact path="/" component={Home} />
+            
                 <Route path="/altorrider" component={AltorRider} />
-                <Route component="Error" />
-            </Switch>
+              
         </>
     );
 

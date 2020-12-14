@@ -333,7 +333,14 @@ function AltorRider(){
             var ErrorTimer = setTimeout(start,2000);
             return <Loading />
         }else{
-            return  <h1 style={{display:"flex", color:"red"}}>Error!! Problem loading page. Please try again after sometime.</h1>
+            return  (
+            
+                <div style={{display:"block",width:"50%",textAlign:"center",paddingLeft:"25%",paddingTop:"40vh"}}>
+                         <h1 style={{display:"flex", color:"#e86b6b",fontWeight:"normal"}}>There was a problem loading the page. Please try again after sometime.</h1>
+                </div>
+           
+            
+            )
                 
         }
         

@@ -4,7 +4,7 @@ import axios from "axios";
 console.log(process.env)
 
 const instance = axios.create({
-    // baseURL:process.env.REACT_APP_DOMAIN,
+    baseURL:process.env.REACT_APP_DOMAIN,
     headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
 })
 
