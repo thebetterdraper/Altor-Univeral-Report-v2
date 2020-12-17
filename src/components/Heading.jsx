@@ -2,6 +2,7 @@ import React from "react";
 import Cookie from "js-cookie";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import infoImg from './images/helperimage.PNG'
 
 
 
@@ -29,7 +30,7 @@ function Header(){
 
             <Popup trigger={<button style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"white",border:"1px solid lightgray",color:"gray",fontStyle:"italic",fontFamily:"cursive",marginTop:"28px",marginLeft:"18%",cursor:"pointer"}}>i</button>} position="right center">
                 <div style={{width:"210px",height:"200px",backgroundColor:"lightgrey"}}>
-                    <img style={{width:"200px",height:"150px",padding:"5px",borderRadius:"5px"}} src={require('./images/helperimage.PNG')}/>
+                    <img style={{width:"200px",height:"150px",padding:"5px",borderRadius:"5px"}} src={infoImg}/>
                     <br></br>
                     <font style={{fontFamily:"sans-serif",fontSize:"15px",color:"grey"}}>The number in the centre represents the corresponding score for the rider today. The number at the bottom right represents how different it is in percentage terms from the same score of the same rider, on the first of the same month.</font>
                     
