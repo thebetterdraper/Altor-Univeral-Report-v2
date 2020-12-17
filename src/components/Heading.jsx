@@ -1,8 +1,7 @@
 import React from "react";
 import Cookie from "js-cookie";
-import React from 'react';
 import Popup from 'reactjs-popup';
-// import 'reactjs-popup/dist/index.css';
+import 'reactjs-popup/dist/index.css';
 
 
 // import downloadImage from './images/download.svg';
