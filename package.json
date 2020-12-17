@@ -20,7 +20,8 @@
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
-    "react-to-pdf": "0.0.13"
+    "react-to-pdf": "0.0.13",
+    "reactjs-popup": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
