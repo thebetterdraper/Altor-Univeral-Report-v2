@@ -29,13 +29,12 @@ function Header(){
             <h2 className="storeName">{store_name}</h2>
 
             <Popup trigger={<button style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"white",border:"1px solid lightgray",color:"gray",fontStyle:"italic",fontFamily:"cursive",marginTop:"28px",marginLeft:"18%",cursor:"pointer"}}>i</button>} position="right center">
-                <div style={{width:"210px",height:"200px",backgroundColor:"lightgrey"}}>
-                    <img style={{width:"200px",height:"150px",padding:"5px",borderRadius:"5px"}} src={infoImg}/>
-                    <br></br>
-                    <font style={{fontFamily:"sans-serif",fontSize:"15px",color:"grey"}}>The number in the centre represents the corresponding score for the rider today. The number at the bottom right represents how different it is in percentage terms from the same score of the same rider, on the first of the same month.</font>
+                
+                 
+                    <font style={{fontFamily:"sans-serif",fontSize:"15px",color:"grey"}}>The number in the centre of the score holder represents the corresponding score for the rider today. The number at the bottom right represents how different it is in percentage terms from the same score of the same rider, on the first of the same month.</font>
                     
                     
-                </div>
+              
             </Popup>
         </div>
     );
