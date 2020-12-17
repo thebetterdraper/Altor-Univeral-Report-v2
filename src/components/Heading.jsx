@@ -29,7 +29,7 @@ function Header(){
 
             <Popup trigger={<button style={{width:"25px",height:"25px",borderRadius:"100%",backgroundColor:"white",border:"1px solid lightgray",color:"gray",fontStyle:"italic",fontFamily:"cursive",marginTop:"28px",marginLeft:"18%",cursor:"pointer"}}>i</button>} position="right center">
                 <div style={{width:"210px",height:"auto",backgroundColor:"grey"}}>
-                    <img style={{width:"200px",height:"auto",padding:"5px",borderRadius:"5px"}} src={require('./helperimage.png')}/>
+                    <img style={{width:"200px",height:"auto",padding:"5px",borderRadius:"5px"}} src={require('./images/helperimage.PNG')}/>
                     <br></br>
                     <font style={{fontFamily:"sans-serif",fontSize:"20px",color:"lightgray"}}>The number in the centre represents the corresponding score for the rider today. The number at the bottom right represents how different it is in percentage terms from the same score of the same rider, on the first of the same month.</font>
                     
