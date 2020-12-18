@@ -152,16 +152,21 @@ function RiderData(props){
 
     function getDirection(dir){
        if(dir==="ascending")
-            return "Asc";
+            return "Low to High";
 
-        return "Desc";
+        return "High to Low";
         
     }
 
     function changeCase(val){
-        if(val==="Safety_score")
-            return "SafetyScore";
-        return val;
+        if(val==="avg_wear")
+            return "Helmet Wear - ";
+        else if(val==="avg_safety_score")
+            return "Safety Score - ";
+        else if(val==="avg_pitstop")
+            return "Pitstops - ";
+        else 
+            return "Overspeeding - ";
     }
     
 
@@ -187,7 +192,7 @@ function RiderData(props){
                     </div>
 
 
-                    <div className="sortData">{changeCase(sortConfig.key)} ({getDirection(sortConfig.direction)})</div>
+                    <div className="sortData">Sorted By: {changeCase(sortConfig.key)}{getDirection(sortConfig.direction)}</div>
                         
                         {
                             sortedRiderData.map((rider, index) => {
