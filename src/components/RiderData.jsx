@@ -184,10 +184,10 @@ function RiderData(props){
 
 
                         <div className="riderInfoHeading">
-                            <button id="sortBtn" className={"sort_buttons leftmost_button "} onClick={sort} name="Safety_score">SafetyScore<div className={ getClassNameFor('Safety_score')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="Overspeeding">Overspeeding<div className={  getClassNameFor('Overspeeding')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="Pitstop">Pitstop<div className={  getClassNameFor('Pitstop')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="Wear">Wear<div className={getClassNameFor('Wear')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons leftmost_button "} onClick={sort} name="avg_safety_score">SafetyScore<div className={ getClassNameFor('Safety_score')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_overspeeding_score">Overspeeding<div className={  getClassNameFor('Overspeeding')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_pitstop">Pitstop<div className={  getClassNameFor('Pitstop')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_wear">Wear<div className={getClassNameFor('Wear')}></div></button>
                         </div>
                     </div>
 
@@ -230,10 +230,10 @@ function RiderData(props){
                      <div className="nav_holder">
                         <div className="current_date">{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
                         <div className="riderInfoHeading">
-                            <button className={"sort_buttons leftmost_button " + getClassNameFor('Safety_score')} onClick={sort} name="Safety_score">SafetyScore</button>
-                            <button className={"sort_buttons " +  getClassNameFor('Overspeeding')} onClick={sort} name="Overspeeding">Overspeeding</button>
-                            <button className={"sort_buttons " +  getClassNameFor('Pitstop')} onClick={sort} name="Pitstop">Pitstop</button>
-                            <button className={"sort_buttons " +  getClassNameFor('Wear')} onClick={sort} name="Wear">Wear</button>
+                            <button className={"sort_buttons leftmost_button " + getClassNameFor('Safety_score')} onClick={sort} name="avg_safety_score">SafetyScore</button>
+                            <button className={"sort_buttons " +  getClassNameFor('Overspeeding')} onClick={sort} name="avg_overspeeding_score">Overspeeding</button>
+                            <button className={"sort_buttons " +  getClassNameFor('Pitstop')} onClick={sort} name="avg_pitstop">Pitstop</button>
+                            <button className={"sort_buttons " +  getClassNameFor('Wear')} onClick={sort} name="avg_wear">Wear</button>
                         </div>
                     </div>  
                         {
