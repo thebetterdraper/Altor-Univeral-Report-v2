@@ -321,7 +321,7 @@ function AltorRider(){
         // else{
         //     return (mm/0.104583);
         // }
-        return (mm/0.184583);
+        return (mm/0.164583);
     }
     
     const convertDomToPDF=()=>{
