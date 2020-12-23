@@ -5,7 +5,7 @@ import RiderInfo from "./RiderInfo";
 function RiderData(props){
 
     const riderDataAPI = props.riderDataAPI;
-    // console.log(riderDataAPI);
+    console.log(riderDataAPI);
 
 
     const [newRiderData,setNewRiderData] = useState([]);
@@ -34,6 +34,10 @@ function RiderData(props){
             let overspeeding = score_cal(rider.data.overspeeding);
             let pitstop = score_cal(rider.data.pitstop);
             let wear = score_cal(rider.data.wear);
+            let store_to_store_time = score_cal(rider.data.store_to_store_time);
+            let total_distance_covered = score_cal(rider.data.total_distance_covered);
+            let total_on_ride_time = score_cal(rider.data.total_on_ride_time);
+
             let new_element =  {
                 "id":rider.id,
                 "name":rider.name,
@@ -45,10 +49,20 @@ function RiderData(props){
                 "avg_pitstop_change":pitstop[1],
                 "avg_wear":wear[0],
                 "avg_wear_change":wear[1],
+                "avg_store_to_store_time":store_to_store_time[0],
+                "avg_store_to_store_time_change":store_to_store_time[1],
+                "avg_total_distance_covered":total_distance_covered[0],
+                "avg_total_distance_covered_change":total_distance_covered[1],
+                "avg_total_on_ride_time":total_on_ride_time[0],
+                "avg_total_on_ride_time_change":total_on_ride_time[1],                
                 "safety_score":rider.data.safety_score,
                 "overspeeding":rider.data.overspeeding,
                 "pitstop":rider.data.pitstop,
-                "wear":rider.data.wear
+                "wear":rider.data.wear,
+                "store_to_store_time":rider.data.store_to_store_time,
+                "total_distance_covered":rider.data.total_distance_covered,
+                "total_on_ride_time":rider.data.total_on_ride_time
+
             }
             // console.log(new_element);
             dataArr.push(new_element);
@@ -65,9 +79,7 @@ function RiderData(props){
     // // let newAliasRiderData = newRiderData;
     // console.log(newRiderData);
 
-    if(props.riderDataAPI){
-        
-    }
+    //console.log(newRiderData);
 
     var newArr = [];
     newRiderData.map((ele,index)=>{
@@ -165,8 +177,14 @@ function RiderData(props){
             return "Safety Score - ";
         else if(val==="avg_pitstop")
             return "Pitstops - ";
-        else 
+        else if(val==="avg_overspeeding_score")
             return "Overspeeding - ";
+        else if(val==="avg_store_to_store_time")
+            return "Store To Store Time - ";
+        else if(val==="avg_total_distance_covered")
+            return "Total Distance Covered - ";
+        else    
+            return "Total On Ride Time - ";
     }
     
 
@@ -188,6 +206,10 @@ function RiderData(props){
                             <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_overspeeding_score">Overspeeding<div className={  getClassNameFor('Overspeeding')}></div></button>
                             <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_pitstop">Pitstop<div className={  getClassNameFor('Pitstop')}></div></button>
                             <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_wear">Wear<div className={getClassNameFor('Wear')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_store_to_store_time">Store To Store<div className={getClassNameFor('Store_to_store_time')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_distance_covered">Total Distance<div className={getClassNameFor('total_distance_covered')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_on_ride_time">Total On_Ride Time<div className={getClassNameFor('total_on_ride_time')}></div></button>
+
                         </div>
                     </div>
 
@@ -211,10 +233,19 @@ function RiderData(props){
                                             per_change_pitstop = {rider.avg_pitstop_change}
                                             avg_wear_score = {rider.avg_wear}
                                             per_change_wear = {rider.avg_wear_change}
+                                            avg_store_to_store_time = {rider.avg_store_to_store_time}
+                                            per_change_store_to_store_time = {rider.avg_store_to_store_time_change}
+                                            avg_total_distance_covered = {rider.avg_total_distance_covered}
+                                            per_change_total_distance_covered = {rider.avg_total_distance_covered_change}
+                                            avg_total_on_ride_time = {rider.avg_total_on_ride_time}
+                                            per_change_total_on_ride_time = {rider.avg_total_on_ride_time_change}
                                             safety_score = {rider.safety_score}
                                             overspeeding = {rider.overspeeding}
                                             pitstop = {rider.pitstop}
                                             wear = {rider.wear}
+                                            store_to_store_time = {rider.store_to_store_time}
+                                            total_distance_covered = {rider.total_distance_covered}
+                                            total_on_ride_time = {rider.total_on_ride_time}
                                         />     
                                 )
                             })
@@ -234,6 +265,9 @@ function RiderData(props){
                             <button className={"sort_buttons " +  getClassNameFor('Overspeeding')} onClick={sort} name="avg_overspeeding_score">Overspeeding</button>
                             <button className={"sort_buttons " +  getClassNameFor('Pitstop')} onClick={sort} name="avg_pitstop">Pitstop</button>
                             <button className={"sort_buttons " +  getClassNameFor('Wear')} onClick={sort} name="avg_wear">Wear</button>
+                            <button className={"sort_buttons "} onClick={sort} name="avg_store_to_store_time">Store To Store<div className={getClassNameFor('Store_to_store_time')}></div></button>
+                            <button className={"sort_buttons "} onClick={sort} name="avg_total_distance_covered">Total Distance<div className={getClassNameFor('total_distance_covered')}></div></button>
+                            <button className={"sort_buttons "} onClick={sort} name="avg_total_on_ride_time">Total On_Ride Time<div className={getClassNameFor('total_on_ride_time')}></div></button>
                         </div>
                     </div>  
                         {
@@ -253,10 +287,19 @@ function RiderData(props){
                                             per_change_pitstop = {rider.avg_pitstop_change}
                                             avg_wear_score = {rider.avg_wear}
                                             per_change_wear = {rider.avg_wear_change}
+                                            avg_store_to_store_time = {rider.avg_store_to_store_time}
+                                            per_change_store_to_store_time = {rider.avg_store_to_store_time_change}
+                                            avg_total_distance_covered = {rider.avg_total_distance_covered}
+                                            per_change_total_distance_covered = {rider.avg_total_distance_covered_change}
+                                            avg_total_on_ride_time = {rider.avg_total_on_ride_time}
+                                            per_change_total_on_ride_time = {rider.avg_total_on_ride_time_change}
                                             safety_score = {rider.safety_score}
                                             overspeeding = {rider.overspeeding}
                                             pitstop = {rider.pitstop}
                                             wear = {rider.wear}
+                                            store_to_store_time = {rider.store_to_store_time}
+                                            total_distance_covered = {rider.total_distance_covered}
+                                            total_on_ride_time = {rider.total_on_ride_time}
                                         />     
                                 )
                             })

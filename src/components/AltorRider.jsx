@@ -128,6 +128,21 @@ function AltorRider(){
                                 "date":dateIndex,
                                 "score":rider.wear_percentage,
                                 "validity":true
+                            }],
+                            "store_to_store_time":[{
+                                "date":dateIndex,
+                                "score":rider.average_ride_duration,
+                                "validity":true
+                            }],
+                            "total_distance_covered":[{
+                                "date":dateIndex,
+                                "score":rider.distance,
+                                "validity":true
+                            }],
+                            "total_on_ride_time":[{
+                                "date":dateIndex,
+                                "score":rider.total_time,
+                                "validity":true
                             }]
                         }
                     }
@@ -159,17 +174,32 @@ function AltorRider(){
                                 "date":dateIndex,
                                 "score":rider.overspeed_percentage,
                                 "validity":true
-                            })
+                            });
                             usableRiderData[i].data.pitstop.push({
                                 "date":dateIndex,
                                 "score":rider.pitstop_percentage,
                                 "validity":true
-                            })
+                            });
                             usableRiderData[i].data.wear.push({
                                 "date":dateIndex,
                                 "score":rider.wear_percentage,
                                 "validity":true
-                            })
+                            });
+                            usableRiderData[i].data.store_to_store_time.push({
+                                "date":dateIndex,
+                                "score":rider.average_ride_duration,
+                                "validity":true
+                            });
+                            usableRiderData[i].data.total_distance_covered.push({
+                                "date":dateIndex,
+                                "score":rider.distance,
+                                "validity":true
+                            });
+                            usableRiderData[i].data.total_on_ride_time.push({
+                                "date":dateIndex,
+                                "score":rider.total_time,
+                                "validity":true
+                            });
                             break;
 
                         }
@@ -206,7 +236,10 @@ function AltorRider(){
                 safety_score:[],
                 overspeeding:[],
                 pitstop:[],
-                wear:[]
+                wear:[],
+                store_to_store_time:[],
+                total_distance_covered:[],
+                total_on_ride_time:[]
             }
         }
 
@@ -405,6 +438,7 @@ function AltorRider(){
         
     }
     
+    // console.log(cleanedRiderData);
 
     if(cleanedRiderData.length!==0){
 
