@@ -56,7 +56,7 @@ function AltorRider(){
 
             const res = await axios.post("/ride/report/",cookie_content);
             setRiderData(res.data); 
-            console.log(res.status);
+            console.log(res.data);
 
     }
 
@@ -103,11 +103,11 @@ function AltorRider(){
             
             function makeMyData(rider,dateIndex){
 
-                function makeANewRiderElement(rider,dataIndex){
+                function makeANewRiderElement(rider,dateIndex){
 
                     let new_rider_element = {
                         "id":rider.id,
-                        "name":rider.name,
+                        "name":rider.name||rider.nickname,
                         "data":{
                             "safety_score":[{
                                 "date":dateIndex,
@@ -191,16 +191,6 @@ function AltorRider(){
             
         }
     }
-
-    /*****************RiderUsableData*****************/
-
-    if(usableRiderData.length!==0){
-        // console.log("printing usable rider Data");
-        // console.log(usableRiderData)
-        // console.log("\n");
-    }
-
-    /*****************RiderUsableData*****************/
 
     /*****************Cleaning Usable Rider Data********************/
 
@@ -321,7 +311,7 @@ function AltorRider(){
         // else{
         //     return (mm/0.104583);
         // }
-        return (mm/0.164583);
+        return (mm/0.184583);
     }
     
     const convertDomToPDF=()=>{
