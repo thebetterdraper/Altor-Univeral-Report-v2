@@ -15,7 +15,8 @@ function RiderInfo(props){
         <div className="riderInfoDiv">
             <span className="index_attribute"><font className="id_font">{props.id+1}
             </font></span>
-            <span className="name_attribute"> {props.name.length>20?props.name.substr(0,18)+"..":props.name}</span>
+            {/* props.name.length>20?props.name.substr(0,18)+"..":props.name */}
+            <span className="name_attribute"> {props.name}</span>
             {/* <span>{props.phone_no}</span> */}
             <span style={{color:"#f39233"}}>{props.avg_safety_score}<span className="subscript" style={props.per_change_safety>0?{color:"green"}:{color:"red"}}>{props.per_change_safety}</span></span>
             <span style={{color:"#f56a79"}}>{props.avg_overspeeding_score}<span className="subscript" style={props.per_change_overspeeding>0?{color:"green"}:{color:"red"}}>{props.per_change_overspeeding}</span></span>
