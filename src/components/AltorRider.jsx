@@ -344,13 +344,23 @@ function AltorRider(){
         // else{
         //     return (mm/0.104583);
         // }
-        return (mm/0.184583);
+
+        //this is the actual
+        // return (mm/0.144583);
+        return (mm/0.104583);
     }
     
     const convertDomToPDF=()=>{
        
-       
-        
+        // // const compWidth = document.getElementsByClassName('riderInfoDiv')[0].style.offsetWidth*1.2;
+        // console.log(document.getElementsByClassName('riderInfoDiv')[0].);
+        console.log("window Screen Width");
+        console.log(window.screen.width);
+        //1920
+        document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
+        //1366
+        // document.getElementById('divToPrint').style.width=window.screen.width*1.80+"px";
+        console.log(window.screen.width*1.25+"px");
         const input = document.getElementById('divToPrint');
         console.log(input.offsetWidth+" IS INPUT WIDTH")
     
@@ -359,7 +369,7 @@ function AltorRider(){
         var pdf=new jsPDF({
             orientation: 'p', 
             unit: 'mm', 
-            format: [210,297]
+            format: [275,297]
         });
     
         

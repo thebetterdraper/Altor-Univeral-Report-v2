@@ -28,7 +28,9 @@
         position: relative;
         background-color: cornflowerblue;
         box-shadow: 2px 1px 5px 2px #ccc;
-        width: 100%;
+        /* width: 100%; */
+        width: 168vw;
+        
         margin: 0 auto 0 auto;
         /* border-radius: 5px; */
         border: 1px solid lightgray;
@@ -97,6 +99,7 @@
         box-shadow:2px 1px 8px 2px rgba(0,0,0,0.1);
         border-radius: 10px;
         page-break-inside: avoid;
+        width: 165vw;
     }
     div.riderInfoDiv div.chart button.graphToggle{
         border-radius: 100%;
@@ -148,7 +151,7 @@
         border: 0.5px solid rgba(0,0,0,0.2);
         box-shadow: 2px 2px 6px 2px rgba(0,0,0,0.2);
         border-radius: 10px;
-        margin: 0 20px 0 20px;
+        margin: 0 20px 0 37px;
         font-size: 18px;
         font-family: sans-serif;
         font-weight: 300;
@@ -222,7 +225,7 @@
 
 
     div.riderInfoHeading{
-        width: 70vw;
+        width: 135vw;
         margin-top: 1.5vw;
         margin-left: 23vw;
         min-width:818px;
@@ -261,7 +264,7 @@
         min-width:210px;
         color:rgba(0,0,0,0.7);
         display: inline-block;
-        width: 13vw;
+        width: 19vw;
         text-align: center;
         padding: 25px;
         background: transparent;
@@ -317,6 +320,7 @@
         text-align: center;
         background-color: cornflowerblue;
         margin-bottom: -500px;
+        width: 168vw;
     }
     footer p{
         color: white;
@@ -353,7 +357,8 @@ body{
     position: relative;
     background-color: cornflowerblue;
     box-shadow: 2px 1px 5px 2px #ccc;
-    width: 100%;
+    min-width: 100%;
+    width: 115vw;
     margin: 0 auto 0 auto;
     /* border-radius: 5px; */
     border: 1px solid lightgray;
@@ -546,7 +551,7 @@ div.riderInfoDiv span.index_attribute{
 
 
 div.riderInfoHeading{
-    width: 100vw;
+    width: 95vw;
     margin-top: 1.5vw;
     margin-left: 13.7vw;
     min-width:818px;
@@ -635,6 +640,7 @@ footer{
     position: relative;
     bottom: 0px;
     min-width: 100%;
+    width :115vw;
     height: 2.5rem;
     padding-top: 1px;
     padding-bottom: 1px;
