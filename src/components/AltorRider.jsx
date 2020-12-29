@@ -346,20 +346,27 @@ function AltorRider(){
 
         //this is the actual
         // return (mm/0.144583);
+        // return (mm/0.94583);
         return (mm/0.104583);
     }
     
     const convertDomToPDF=()=>{
        
-        // // const compWidth = document.getElementsByClassName('riderInfoDiv')[0].style.offsetWidth*1.2;
-        // console.log(document.getElementsByClassName('riderInfoDiv')[0].);
-        console.log("window Screen Width");
-        console.log(window.screen.width);
+        
+        if(window.screen.width>=1900){
+            document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";    
+        }else{
+            document.getElementById('divToPrint').style.width=window.screen.width*1.75+"px";
+        }
+        
         //1920
-        document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
+        // document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
         //1366
-        // document.getElementById('divToPrint').style.width=window.screen.width*1.80+"px";
+        
+        // document.getElementById('divToPrint').style.width=window.screen.width*1.50+"px";
         // console.log(window.screen.width*1.25+"px");
+
+
         const input = document.getElementById('divToPrint');
         console.log(input.offsetWidth+" IS INPUT WIDTH")
     
@@ -371,6 +378,7 @@ function AltorRider(){
             format: [275,297]
         });
     
+        // 275,297
         
     
         html2canvas(input).then((canvas) => {
@@ -398,8 +406,14 @@ function AltorRider(){
     
         })
     
+        console.log("pdfInternalPageSizeWidht");
+        console.log(pdf.internal.pageSize.getWidth());
         pdf.save("download.pdf");
-      
+
+        //for resizing the screen to original after print
+    
+        document.getElementById('divToPrint').style.width=window.screen.width+"px";
+        
       });
     
     }
@@ -454,9 +468,10 @@ function AltorRider(){
          return (
              <>
                 <div>
-                    {
+                    {/* {
                         window.screen.width>=1900?<button className="downloadButton" onClick={convertDomToPDF}>Print</button>:<span></span>
-                    }
+                    } */}
+                    <button className="downloadButton" onClick={convertDomToPDF}>Print</button>
                     
                     <div id="divToPrint">
                         <Header />
