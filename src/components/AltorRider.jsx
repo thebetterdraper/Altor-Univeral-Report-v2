@@ -333,7 +333,6 @@ function AltorRider(){
     
         // let width = window.screen.width;
         // let height = window.screen.height;
-    
         // console.log("widht=>"+width+"height=>"+height);
         // if(width>=1900 ){
         //     return (mm/0.104583);
@@ -360,7 +359,7 @@ function AltorRider(){
         document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
         //1366
         // document.getElementById('divToPrint').style.width=window.screen.width*1.80+"px";
-        console.log(window.screen.width*1.25+"px");
+        // console.log(window.screen.width*1.25+"px");
         const input = document.getElementById('divToPrint');
         console.log(input.offsetWidth+" IS INPUT WIDTH")
     
@@ -448,14 +447,17 @@ function AltorRider(){
         
     }
     
-    // console.log(cleanedRiderData);
+
 
     if(cleanedRiderData.length!==0){
 
          return (
              <>
                 <div>
-                    <button className="downloadButton" onClick={convertDomToPDF}>Print</button>
+                    {
+                        window.screen.width>=1900?<button className="downloadButton" onClick={convertDomToPDF}>Print</button>:<span></span>
+                    }
+                    
                     <div id="divToPrint">
                         <Header />
                         <RiderData 
