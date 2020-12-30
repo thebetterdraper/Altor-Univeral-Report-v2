@@ -21,11 +21,17 @@ function RiderInfo(props){
             <span style={{color:"#f56a79"}}>{props.avg_overspeeding_score}<span className="subscript" style={props.per_change_overspeeding>0?{color:"green"}:{color:"red"}}>{props.per_change_overspeeding}</span></span>
             <span style={{color:"#8080ff"}}>{props.avg_pitstop_score}<span className="subscript" style={props.per_change_pitstop>0?{color:"green"}:{color:"red"}}>{props.per_change_pitstop}</span></span>
             <span style={{color:"#ffad33"}}>{props.avg_wear_score}<span className="subscript" style={props.per_change_wear>0?{color:"green"}:{color:"red"}}>{props.per_change_wear}</span></span>
+            <span style={{color:"#ffad33"}}>{props.avg_store_to_store_time}<span className="subscript" style={props.per_change_store_to_store_time>0?{color:"green"}:{color:"red"}}>{props.per_change_wear}</span></span>
+            <span style={{color:"#ffad33"}}>{props.avg_total_distance_covered}<span className="subscript" style={props.per_change_total_distance_covered>0?{color:"green"}:{color:"red"}}>{props.per_change_wear}</span></span>
+            <span style={{color:"#ffad33"}}>{props.avg_total_on_ride_time}<span className="subscript" style={props.per_change_total_on_ride_time>0?{color:"green"}:{color:"red"}}>{props.per_change_wear}</span></span>
             <ChartData 
                 safety_score = {props.safety_score}
                 overspeeding = {props.overspeeding}
                 pitstop = {props.pitstop}
                 wear = {props.wear}
+                store_to_store_time = {props.store_to_store_time}
+                total_distance_covered = {props.total_distance_covered}
+                total_on_ride_time = {props.total_on_ride_time}
             />
         </div>
 

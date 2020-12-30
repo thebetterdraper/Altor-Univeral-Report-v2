@@ -7,6 +7,10 @@ function ChartData(props){
     const [overspeedingChartData,setOverspeedingChartData] = useState({});
     const [pitstopChartData,setPitstopChartData] = useState({});
     const [wearChartData,setWearChartData] = useState({});
+    const [store2storeChartData,setStore2storeChartData] = useState({});
+    const [totDistChartData,setTotDistChartData] = useState({});
+    const [totOnRideTime,setTotOnRideTime] = useState({});
+
 
     const [toggleClicked,setToggleClicked] = useState(false);
     
@@ -35,6 +39,9 @@ function ChartData(props){
     let overspeeding = props.overspeeding
     let pitstop = props.pitstop
     let wear = props.wear
+    let store_to_store_time = props.store_to_store_time
+    let total_distance_covered = props.total_distance_covered
+    let total_on_ride_time = props.total_on_ride_time
     // console.log(safety_score);
     // console.log(getScoreData(safety_score));
     // console.log(getScoreData(overspeeding));
@@ -80,11 +87,40 @@ function ChartData(props){
                 borderWidht:1
             }]
         })
+        setStore2storeChartData({
+            labels:Array.from({length: 30}, (_, i) => i + 1),
+            datasets:[{
+                label:'Store To Store Time',
+                data:getScoreData(store_to_store_time),        //14 days worth rider safety_score
+                backgroundColor:getColorData(getScoreData(store_to_store_time)),
+                borderWidht:1
+            }]
+        })
+
+        setTotDistChartData({
+            labels:Array.from({length: 30}, (_, i) => i + 1),
+            datasets:[{
+                label:'Total Distance Covered',
+                data:getScoreData(total_distance_covered),        //14 days worth rider safety_score
+                backgroundColor:getColorData(getScoreData(total_distance_covered)),
+                borderWidht:1
+            }]
+        })
+
+        setTotOnRideTime({
+            labels:Array.from({length: 30}, (_, i) => i + 1),
+            datasets:[{
+                label:'Total On_Ride Time',
+                data:getScoreData(total_on_ride_time),        //14 days worth rider safety_score
+                backgroundColor:getColorData(getScoreData(total_on_ride_time)),
+                borderWidht:1
+            }]
+        })
     }
 
     useEffect(()=>{
         chart()
-    },[safety_score,overspeeding,pitstop,wear])
+    },[safety_score,overspeeding,pitstop,wear,store_to_store_time,total_distance_covered,total_on_ride_time])
 
     var height = "7px";
     var buttonText = "+"
@@ -119,6 +155,21 @@ function ChartData(props){
                 <div className="chartDisplay">
                     <Charts 
                         data = {wearChartData}
+                    />
+                </div>
+                <div className="chartDisplay">
+                    <Charts 
+                        data = {store2storeChartData}
+                    />
+                </div>
+                <div className="chartDisplay">
+                    <Charts 
+                        data = {totDistChartData}
+                    />
+                </div>
+                <div className="chartDisplay">
+                    <Charts 
+                        data = {totOnRideTime}
                     />
                 </div>
                 
