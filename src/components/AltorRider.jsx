@@ -15,7 +15,7 @@ function AltorRider(){
     //generates present timestamp in YYYY-MM-DD HH:MM:SS format
     function retrieveTimestamp(){
         var DT_obj=new Date();
-        var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(10)+1)+"-"+padSingleDigits(DT_obj.getDate());
+        var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(DT_obj.getDate()+1))+"-"+padSingleDigits(DT_obj.getDate());
         var time_string=padSingleDigits(DT_obj.getHours())+":"+padSingleDigits(DT_obj.getMinutes())+":"+padSingleDigits(DT_obj.getSeconds());
 
         var date_time_string=date_string+" "+time_string;
