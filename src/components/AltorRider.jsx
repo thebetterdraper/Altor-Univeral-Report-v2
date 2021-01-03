@@ -15,10 +15,13 @@ function AltorRider(){
     //generates present timestamp in YYYY-MM-DD HH:MM:SS format
     function retrieveTimestamp(){
         var DT_obj=new Date();
-        var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(10)+1)+"-"+padSingleDigits(DT_obj.getDate());
+        // var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(10)+1)+"-"+padSingleDigits(DT_obj.getDate());
+        var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(DT_obj.getMonth()+1))+"-"+padSingleDigits(DT_obj.getDate());
+        
         var time_string=padSingleDigits(DT_obj.getHours())+":"+padSingleDigits(DT_obj.getMinutes())+":"+padSingleDigits(DT_obj.getSeconds());
 
         var date_time_string=date_string+" "+time_string;
+        console.log(date_time_string);
 
         return date_time_string;
     }
@@ -53,10 +56,11 @@ function AltorRider(){
             cookie_content["days"]=retrieveDays();
             // console.log("Cookie is"+ JSON.stringify(cookie_content));
             retrieveDays();
+            console.log(cookie_content);
 
             const res = await axios.post("/ride/report/",cookie_content);
             setRiderData(res.data); 
-            console.log(res.data);
+            console.log(res);
 
     }
 
