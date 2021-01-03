@@ -35,7 +35,7 @@ function AltorRider(){
         var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
         console.log(firstDate, "to", secondDate, "\nDifference: " + diffDays + " day");
 
-        return diffDays;
+        return diffDays+1;
 
     }
 
