@@ -208,9 +208,9 @@ function RiderData(props){
                             <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_overspeeding_score">Overspeeding<div className={  getClassNameFor('Overspeeding')}></div></button>
                             <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_pitstop">Pitstop<div className={  getClassNameFor('Pitstop')}></div></button>
                             <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_wear">Wear<div className={getClassNameFor('Wear')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_store_to_store_time">Store To Store Time<div className={getClassNameFor('Store_to_store_time')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_distance_covered">Total Distance<div className={getClassNameFor('total_distance_covered')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_on_ride_time">Total Ride Time<div className={getClassNameFor('total_on_ride_time')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_store_to_store_time">Store To Store Time (s)<div className={getClassNameFor('Store_to_store_time')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_distance_covered">Total Distance (km)<div className={getClassNameFor('total_distance_covered')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_on_ride_time">Total Ride Time (s)<div className={getClassNameFor('total_on_ride_time')}></div></button>
                         </div>
                     </div>
 
