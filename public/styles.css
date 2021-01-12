@@ -456,10 +456,10 @@ div.riderInfoDiv div.chart .chartContainer{
 }
 
 .chartDisplay{
-    display:inline-block;
+    display:flex;
     height:310px;
     overflow:visible;
-    width:500px;
+    width:600px;
 
     margin-left:35px;
     margin-top:40px;

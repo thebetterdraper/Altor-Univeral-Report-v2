@@ -41,6 +41,9 @@ function RiderData(props){
             let new_element =  {
                 "id":rider.id,
                 "name":rider.name,
+                "phone":rider.phone,
+                "email":rider.email,
+                "image":rider.image,
                 "avg_safety_score":safety[0],
                 "avg_safety_score_change":safety[1],
                 "avg_overspeeding_score":overspeeding[0],
@@ -155,6 +158,8 @@ function RiderData(props){
 
     function handleChange(){
         let key= document.getElementById("SortBy").value;
+        console.log("key");
+        console.log(key);
         let direction = null;
         setSortConfig({key,direction});
     }
@@ -237,7 +242,9 @@ function RiderData(props){
                                             key = {index}
                                             id={index}
                                             name = {rider.name}
-                                            // phone_no = {rider.phone_no}
+                                            phone = {rider.phone}
+                                            email = {rider.email}
+                                            image = {rider.image}
                                             avg_safety_score = {rider.avg_safety_score}
                                             per_change_safety = {rider.avg_safety_score_change}
                                             avg_overspeeding_score = {rider.avg_overspeeding_score}
@@ -306,7 +313,9 @@ function RiderData(props){
                                             key = {index}
                                             id={index}
                                             name = {rider.name}
-                                            // phone_no = {rider.phone_no}
+                                            phone = {rider.phone}
+                                            email = {rider.email}
+                                            image = {rider.image}
                                             avg_safety_score = {rider.avg_safety_score}
                                             per_change_safety = {rider.avg_safety_score_change}
                                             avg_overspeeding_score = {rider.avg_overspeeding_score}

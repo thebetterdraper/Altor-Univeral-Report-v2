@@ -56,11 +56,8 @@ function AltorRider(){
             cookie_content["days"]=retrieveDays();
             // console.log("Cookie is"+ JSON.stringify(cookie_content));
             retrieveDays();
-            console.log(cookie_content);
-
             const res = await axios.post("/ride/report/",cookie_content);
             setRiderData(res.data); 
-            console.log(res);
 
     }
 
@@ -112,6 +109,9 @@ function AltorRider(){
                     let new_rider_element = {
                         "id":rider.id,
                         "name":rider.name||rider.nickname,
+                        "phone":rider.number,
+                        "email":rider.email,
+                        "image":rider.image,
                         "data":{
                             "safety_score":[{
                                 "date":dateIndex,
@@ -236,6 +236,9 @@ function AltorRider(){
         let newCleanedElement = {
             "id":oneRider.id,
             "name":oneRider.name,
+            "phone":oneRider.phone,
+            "email":oneRider.email,
+            "image":oneRider.image,
             "data":{
                 safety_score:[],
                 overspeeding:[],

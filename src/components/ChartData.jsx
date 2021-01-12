@@ -10,7 +10,9 @@ function ChartData(props){
     const [store2storeChartData,setStore2storeChartData] = useState({});
     const [totDistChartData,setTotDistChartData] = useState({});
     const [totOnRideTime,setTotOnRideTime] = useState({});
+    const [chartInd,setChartInd] = useState(0);
 
+    const chartArr = [safetyScoreChartData,overspeedingChartData,pitstopChartData,wearChartData,store2storeChartData,totDistChartData,totOnRideTime];
     const [toggleClicked,setToggleClicked] = useState(false);
     
 
@@ -119,7 +121,7 @@ function ChartData(props){
     }
 
     useEffect(()=>{
-        chart()
+        chart();
     },[safety_score,overspeeding,pitstop,wear,store_to_store_time,total_distance_covered,total_on_ride_time])
 
     var height = "7px";
@@ -131,49 +133,36 @@ function ChartData(props){
         height = "0.01px";
         buttonText = "+"
     }
+
+    function handleChange(){
+        let key = document.getElementById("sortBy").value;
+        setChartInd(parseInt(key));
+    }
+    console.log(chartInd);
        
-    return<div className="chart">
+    return (
+        <div className="chart">
             <button  className="graphToggle" onClick={()=>{setToggleClicked(!toggleClicked)}}>{buttonText}</button>
             
             <div  className="chartContainer" style={{height:height}}>
             <hr style={{marginTop:'16px'}} />
+                <select className="sortBy" id="sortBy" onChange={handleChange}>
+                    <option value="0" selected>Safety Score</option>
+                    <option value="1">Overspeeding Score</option>
+                    <option value="2">Pitstop</option>
+                    <option value="3">Wear</option>
+                    <option value="4">Store To Store Time</option>
+                    <option value="5">Total Distance</option>
+                    <option value="6">Total On Ride Time</option>
+                </select>
                 <div className="chartDisplay">
-                    <Charts 
-                        data = {safetyScoreChartData}
-                    />
-                </div>
-                <div className="chartDisplay">
-                    <Charts 
-                        data = {overspeedingChartData}
-                    />
-                </div>
-                <div className="chartDisplay">
-                    <Charts 
-                        data = {pitstopChartData}
-                    />
-                </div>
-                <div className="chartDisplay">
-                    <Charts 
-                        data = {wearChartData}
-                    />
-                </div>
-                <div className="chartDisplay">
-                    <Charts 
-                        data = {store2storeChartData}
-                    />
-                </div>
-                <div className="chartDisplay">
-                    <Charts 
-                        data = {totDistChartData}
-                    />
-                </div>
-                <div className="chartDisplay">
-                    <Charts 
-                        data = {totOnRideTime}
+                    <Charts
+                        data={chartArr[chartInd]}
                     />
                 </div>
             </div>
         </div>
+    );
 }
 
 export default ChartData;
