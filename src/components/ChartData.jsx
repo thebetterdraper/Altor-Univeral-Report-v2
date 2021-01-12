@@ -134,9 +134,11 @@ function ChartData(props){
         buttonText = "+"
     }
 
-    function handleChange(){
-        let key = document.getElementById("sortBy").value;
-        setChartInd(parseInt(key));
+    function handleChange(event){
+        let key1 = event.target.value;
+        console.log(key1);
+        // let key = document.getElementById("sortBy").value;
+        setChartInd(parseInt(key1));
     }
     console.log(chartInd);
        

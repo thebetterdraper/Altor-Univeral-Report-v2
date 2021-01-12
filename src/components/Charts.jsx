@@ -1,16 +1,21 @@
-import React, { useEffect} from "react";
+import React, { useEffect,useState} from "react";
 import Chart from "chart.js";
 
 function Charts(props){    
 
-
+    const [chartSetter,setChartSetter] = useState({});
+    const [chartBool,setChartBool] = useState(false);
+    
     const chartRef = React.createRef();
 
     useEffect(()=>{
 
-        const myChartRef = chartRef.current.getContext("2d");
+        var myChartRef = chartRef.current.getContext("2d");
+        myChartRef.clearRect(0, 0, 620,310);
+        myChartRef.beginPath();
+        // var myChartRef = chartRef.current.getContext("2d");
 
-        new Chart(myChartRef, {
+        var newChart = new Chart(myChartRef, {
             plugins:
                 {beforeDraw: function(myChartRef) {
                 var ctx = myChartRef;
@@ -31,7 +36,23 @@ function Charts(props){
             }
         });
 
+        setChartSetter(newChart);
+        setChartBool(true)
+
+    },[])
+
+    function updateChart(){
+        chartSetter.data = props.data; 
+        chartSetter.update(); 
+    }
+    
+    useEffect(()=>{
+        if(chartBool){
+            updateChart();
+        } 
     })
+
+    
  
     return <>
         <canvas 
@@ -39,6 +60,7 @@ function Charts(props){
             ref={chartRef}
         />  
     </>
+    
 }
 
 export default Charts;
