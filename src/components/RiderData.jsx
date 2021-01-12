@@ -134,8 +134,10 @@ function RiderData(props){
     //Sort function (invoked when attribute buttons are clicked)
 
     function sort(event){
-        const {name} = event.target;
-        let key=name;
+        var sortType = document.getElementById("SortBy").value;
+        console.log(sortType);
+        
+        let key=sortType;
         let direction = null;       
 
         if(sortConfig && sortConfig.key === key && sortConfig.direction === "ascending"){
@@ -144,22 +146,17 @@ function RiderData(props){
             direction = "ascending";
         }else{
             direction = "ascending";
-            // console.log("I am executing!!")
+            
         }
-        // console.log(key+' '+direction);
+        
         setSortConfig({key,direction}); 
 
     }
-    // console.log(sortConfig);
 
-    //function to get ascending or descending class name to add the arrow symbol
-
-    function getClassNameFor(name){
-        // if(!sortConfig){
-        //     return;
-        // }
-        // return sortConfig.key === name ? sortConfig.direction:null;
-        return null;
+    function handleChange(){
+        let key= document.getElementById("SortBy").value;
+        let direction = null;
+        setSortConfig({key,direction});
     }
 
     function getDirection(dir){
@@ -194,6 +191,22 @@ function RiderData(props){
 
         return ( 
             <>
+
+                    <div className="buttonHolder">
+                        <div className="sortingArrangement">
+                            <span>Sort By</span>
+                            <select className="sortBy" id="SortBy" onChange={handleChange}>
+                                <option value="avg_safety_score" selected>Safety Score</option>
+                                <option value="avg_overspeeding_score">Overspeeding Score</option>
+                                <option value="avg_pitstop">Pitstop</option>
+                                <option value="avg_wear">Wear</option>
+                                <option value="avg_store_to_store_time">Store To Store Time</option>
+                                <option value="avg_total_distance_covered">Total Distance</option>
+                                <option value="avg_total_on_ride_time">Total On Ride Time</option>
+                            </select>
+                            <button className="sortToggler" onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
+                        </div>
+                    </div>
                    
                     <div className="nav_holder">
                         <div className="current_date">{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
@@ -202,13 +215,13 @@ function RiderData(props){
 
 
                         <div className="riderInfoHeading">
-                            <button id="sortBtn" className={"sort_buttons leftmost_button "} onClick={sort} name="avg_safety_score">SafetyScore<div className={ getClassNameFor('Safety_score')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_overspeeding_score">Overspeeding<div className={  getClassNameFor('Overspeeding')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons " } onClick={sort} name="avg_pitstop">Pitstop<div className={  getClassNameFor('Pitstop')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_wear">Wear<div className={getClassNameFor('Wear')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_store_to_store_time">Store To Store<div className={getClassNameFor('Store_to_store_time')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_distance_covered">Total Distance<div className={getClassNameFor('total_distance_covered')}></div></button>
-                            <button id="sortBtn" className={"sort_buttons "} onClick={sort} name="avg_total_on_ride_time">Total On_Ride Time<div className={getClassNameFor('total_on_ride_time')}></div></button>
+                            <button id="sortBtn" className={"sort_buttons leftmost_button "}  name="avg_safety_score">SafetyScore</button>
+                            <button id="sortBtn" className={"sort_buttons " }  name="avg_overspeeding_score">Overspeeding</button>
+                            <button id="sortBtn" className={"sort_buttons " }  name="avg_pitstop">Pitstop</button>
+                            <button id="sortBtn" className={"sort_buttons "}  name="avg_wear">Wear</button>
+                            <button id="sortBtn" className={"sort_buttons "}  name="avg_store_to_store_time">Store To Store</button>
+                            <button id="sortBtn" className={"sort_buttons "}  name="avg_total_distance_covered">Total Distance</button>
+                            <button id="sortBtn" className={"sort_buttons "} name="avg_total_on_ride_time">Total On_Ride Time</button>
 
                         </div>
                     </div>
@@ -258,16 +271,31 @@ function RiderData(props){
         return ( 
             <>
                     {/* <div className="sortData">{sortConfig.key} {sortConfig.direction}</div> */} 
+                    <div className="buttonHolder">
+                        <div className="sortingArrangement">
+                            <span>Sort By</span>
+                            <select className="sortBy" id="SortBy" onChange={handleChange}>
+                                <option value="avg_safety_score" selected>Safety Score</option>
+                                <option value="avg_overspeeding_score">Overspeeding Score</option>
+                                <option value="avg_pitstop">Pitstop</option>
+                                <option value="avg_wear">Wear</option>
+                                <option value="avg_store_to_store_time">Store To Store Time</option>
+                                <option value="avg_total_distance_covered">Total Distance</option>
+                                <option value="avg_total_on_ride_time">Total On Ride Time</option>
+                            </select>
+                            <button className="sortToggler" onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
+                        </div>
+                    </div>
                      <div className="nav_holder">
                         <div className="current_date">{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
                         <div className="riderInfoHeading">
-                            <button className={"sort_buttons leftmost_button " + getClassNameFor('Safety_score')} onClick={sort} name="avg_safety_score">SafetyScore</button>
-                            <button className={"sort_buttons " +  getClassNameFor('Overspeeding')} onClick={sort} name="avg_overspeeding_score">Overspeeding</button>
-                            <button className={"sort_buttons " +  getClassNameFor('Pitstop')} onClick={sort} name="avg_pitstop">Pitstop</button>
-                            <button className={"sort_buttons " +  getClassNameFor('Wear')} onClick={sort} name="avg_wear">Wear</button>
-                            <button className={"sort_buttons "} onClick={sort} name="avg_store_to_store_time">Store To Store<div className={getClassNameFor('Store_to_store_time')}></div></button>
-                            <button className={"sort_buttons "} onClick={sort} name="avg_total_distance_covered">Total Distance<div className={getClassNameFor('total_distance_covered')}></div></button>
-                            <button className={"sort_buttons "} onClick={sort} name="avg_total_on_ride_time">Total On_Ride Time<div className={getClassNameFor('total_on_ride_time')}></div></button>
+                            <button className={"sort_buttons leftmost_button "}  name="avg_safety_score">SafetyScore</button>
+                            <button className={"sort_buttons "}  name="avg_overspeeding_score">Overspeeding</button>
+                            <button className={"sort_buttons "}  name="avg_pitstop">Pitstop</button>
+                            <button className={"sort_buttons "}  name="avg_wear">Wear</button>
+                            <button className={"sort_buttons "}  name="avg_store_to_store_time">Store To Store</button>
+                            <button className={"sort_buttons "}  name="avg_total_distance_covered">Total Distance</button>
+                            <button className={"sort_buttons "}  name="avg_total_on_ride_time">Total On_Ride Time</button>
                         </div>
                     </div>  
                         {
