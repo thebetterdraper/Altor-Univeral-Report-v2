@@ -1,7 +1,7 @@
 import axios from "axios";
 // import Cookie from "js-cookie";
 
-console.log(process.env.REACT_APP_DOMAIN)
+// console.log(process.env.REACT_APP_DOMAIN)
 
 const instance = axios.create({
     baseURL:process.env.REACT_APP_DOMAIN,
