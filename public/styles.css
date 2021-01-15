@@ -120,7 +120,7 @@
         cursor: pointer;
     
     }
-    div.riderInfoDiv div.chart .chartContainer{
+    div.riderInfoDiv div.chart .toggleContainer{
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         background-color:rgb(255, 255, 255);
@@ -358,7 +358,6 @@ body{
     background-color: cornflowerblue;
     box-shadow: 2px 1px 5px 2px #ccc;
     min-width: 100%;
-    width: 115vw;
     margin: 0 auto 0 auto;
     /* border-radius: 5px; */
     border: 1px solid lightgray;
@@ -446,7 +445,7 @@ div.riderInfoDiv div.chart button.graphToggle{
     cursor: pointer;
 
 }
-div.riderInfoDiv div.chart .chartContainer{
+div.riderInfoDiv div.chart .toggleContainer{
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color:rgb(255, 255, 255);
@@ -455,6 +454,61 @@ div.riderInfoDiv div.chart .chartContainer{
     display: block;
 }
 
+div.riderInfoDiv div.chart .riderDetails{
+    min-height: 50vh;
+    background-color: #b9a7a7;
+    display: block;
+    float: left;
+}
+div.riderInfoDiv div.chart .riderDetails{
+    display: block;
+    float: left;
+    min-width: 28vw;
+}
+div.riderInfoDiv div.chart .riderDetails img{ 
+    display: block;
+    float: left;
+    border-radius: 100px;
+    min-width: 10vw;
+    min-height: 10vh;
+    margin: 104px 11px 0 31px;
+}
+div.riderInfoDiv div.chart .riderDetails .riderInfoDetails{ 
+    display: block;
+    float: left;
+    margin: 32% 0% 0% 9%
+}
+div.riderInfoDiv div.chart .riderDetails span.contactDetails{
+    display: block;
+    
+}
+
+div.riderInfoDiv div.chart .chartContainer{
+    min-height: 50vh;
+    background-color: #727272;
+    display: block;
+    float: left;
+    padding: 0 20px 0 1px;
+}
+
+div.riderInfoDiv div.chart .chartContainer select.sortByChartName{
+    min-width: 35%;
+    min-height: 10%;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    margin-left: 36%;
+    margin-top: 1%;
+    border: 1px sold white;
+    box-shadow: 2px 2px 8px 4px rgba(0,0,0, 0.2);
+    font-size: 17.5px;
+    outline: none;
+    border: 1px solid white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+    background-position-x: 97%;
+}
 .chartDisplay{
     display:flex;
     height:310px;
@@ -468,7 +522,7 @@ div.riderInfoDiv div.chart .chartContainer{
     border-radius: 20px;
     background-color:transparent;    
 }
-div.riderInfoDiv span{
+div.riderInfoDiv .dataContent{
     position: relative;
     display: inline-block;
     width: 155px;
@@ -534,7 +588,73 @@ div.riderInfoDiv span.index_attribute{
     font-size: 16px;
     font-weight: 700;
 }
+.buttonHolder{
+    width: 100%;
+    min-height: 100px;
+    background-color: #5774a9;
+    margin-top: 20px;
+    padding-top: 10px;
+}
 
+div.sortingArrangement{
+    display: block;
+    float: left;
+    background-color: rgb(100 149 237);
+    min-width: 27vw;
+    font-size: 17.5px;
+    color: white;
+    padding: 10px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    box-shadow: 1.5px 7px 7px 1.5px rgba(0,0,0,0.3);
+    margin-left:1%;
+    margin-right:1%;
+}
+select.sortBy{
+    min-width: 47%;
+    min-height: 10%;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    border: 1px sold white;
+    box-shadow: 2px 2px 8px 4px rgba(0,0,0, 0.2);
+    font-size: 17.5px;
+    outline: none;
+    border: 1px solid white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+    background-position-x: 97%;
+}
+button.sortToggler{
+    font-size: 17.5px;
+    margin-left: 1%;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    outline:none;
+    display: inline-block; 
+}
+
+div.current_date{
+    position: relative;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+    min-width: 141px;
+    
+    margin-left: 40px;
+    float: left;
+    /* margin-top: 1.5vw; */
+    background-color: rgb(100 149 237);
+    width: 9vw;
+    font-size: 17.5px;
+    color: white;
+    padding: 20px;
+    font-family: sans-serif;
+    border-radius: 10px;
+    min-height: 22px;
+    box-shadow: 1.5px 7px 7px 1.5px rgba(0,0,0,0.3);
+}
 .nav_holder{
     display: block;
     width: 95%;
@@ -559,30 +679,12 @@ div.riderInfoHeading{
     border: 2px solid #d3c0c0;
     /* margin: 25px; */
     background: #f3f0f0;
-    color: white;
     border-radius: 10px;
     min-height: 56px;
     box-shadow: 1.5px 4px 7px 1.5px rgba(0,0,0,0.15);
 }
 
-div.current_date{
-    position: absolute;
-    text-align: center;
-    display: block;
-    min-width: 141px;
-    /* left: 6vw; */
-    /* float: left; */
-    /* margin-top: 1.5vw; */
-    background-color: rgb(100 149 237);
-    width: 9vw;
-    font-size: 17.5px;
-    color: white;
-    padding: 20px;
-    font-family: sans-serif;
-    border-radius: 10px;
-    min-height: 22px;
-    box-shadow: 1.5px 7px 7px 1.5px rgba(0,0,0,0.3);
-}
+
 
 button.sort_buttons{
     font-size: 19px;
@@ -640,7 +742,6 @@ footer{
     position: relative;
     bottom: 0px;
     min-width: 100%;
-    width :115vw;
     height: 2.5rem;
     padding-top: 1px;
     padding-bottom: 1px;

@@ -3,6 +3,79 @@ import Charts from "./Charts.jsx"
 
 
 function ChartData(props){
+
+    const styles = {
+        "toggleContainer":{
+            borderBottomLeftRadius: "10px",
+            borderBottomRightRadius: "10px",
+            backgroundColor: "rgb(255, 255, 255)",
+            overflow: "auto",
+            minWidth: "1250px",
+            display: "block",
+            height:"0px"
+        },
+        "riderDetails":{
+            minHeight: "50vh",
+            display: "block",
+            float: "left",
+            minWidth:"28vw"
+        },
+        "riderInfoDetails":{
+            display: "block",
+            float: "left",
+            margin: "32% 0% 0% 9%"
+        },
+        "contactDetails":{
+            display:   "block"
+        },
+        "riderImg":{
+            display: "block",
+            float: "left",
+            borderRadius: "100px",
+            minWidth: "10vw",
+            minHeight: "10vh",
+            margin: "104px 11px 0 31px"
+        },
+        "chartContainer":{
+            minHeight: "50vh",
+            backgroundColor: "white",
+            display: "block",
+            float: "left",
+            padding: "0 20px 0 1px",
+            borderLeft:"1px solid black",
+            borderRight:"1px solid black"
+        },
+        "sortByChartName":{
+            minWidth: "35%",
+            minHeight: "10%",
+            borderRadius: "10px",
+            padding: "10px",
+            marginLeft: "36%",
+            marginTop: "1%",
+            border: "1px sold white",
+            boxShadow: "3px 4px 4px 4px rgba(0,0,0, 0.2)",
+            fontSize: "17.5px",
+            outline: "none",
+            webkitAppearance: "none",
+            mozAppearance: "none",
+            background: "white url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right",
+            backgroundPositionX: "97%"
+        },
+        "chartDisplay":{
+            display:"flex",
+            height:"310px",
+            overflow:"visible",
+            width:"600px",
+            marginLeft:"35px",
+            marginTop:"40px",
+            marginBottom:"20px",
+            border:"2px solid rgba(0,0,0,0.1)",
+            borderRadius: "20px",
+            backgroundColor:"transparent"
+        }
+
+    }
+
     const [safetyScoreChartData,setSafetyScoreChartData] = useState({});
     const [overspeedingChartData,setOverspeedingChartData] = useState({});
     const [pitstopChartData,setPitstopChartData] = useState({});
@@ -143,25 +216,39 @@ function ChartData(props){
     console.log(chartInd);
        
     return (
-        <div className="chart">
+        <div>
+            {/* this needs to be fixed */}
             <button  className="graphToggle" onClick={()=>{setToggleClicked(!toggleClicked)}}>{buttonText}</button>
             
-            <div  className="chartContainer" style={{height:height}}>
-            <hr style={{marginTop:'16px'}} />
-                <select className="sortBy" id="sortBy" onChange={handleChange}>
-                    <option value="0" selected>Safety Score</option>
-                    <option value="1">Overspeeding Score</option>
-                    <option value="2">Pitstop</option>
-                    <option value="3">Wear</option>
-                    <option value="4">Store To Store Time</option>
-                    <option value="5">Total Distance</option>
-                    <option value="6">Total On Ride Time</option>
-                </select>
-                <div className="chartDisplay">
-                    <Charts
-                        data={chartArr[chartInd]}
-                    />
+            <div  style={styles.toggleContainer}>
+                <hr style={{marginTop:'16px'}} />
+
+                <div style={styles.riderDetails}>
+                    <img src={props.image} alt="riderimg" style={styles.riderImg}></img>
+                    <div style={styles.riderInfoDetails}>
+                        <span style={styles.contactDetails}>{props.name}</span>
+                        <span style={styles.contactDetails}>{props.email}</span>
+                        <span style={styles.contactDetails}>{props.phone}</span>
+                    </div>
                 </div>
+
+                <div style={styles.chartContainer}>
+                    <select style={styles.sortByChartName} id="sortBy" onChange={handleChange}>
+                        <option value="0" selected>Safety Score</option>
+                        <option value="1">Overspeeding Score</option>
+                        <option value="2">Pitstop</option>
+                        <option value="3">Wear</option>
+                        <option value="4">Store To Store Time</option>
+                        <option value="5">Total Distance</option>
+                        <option value="6">Total On Ride Time</option>
+                    </select>
+                    <div style={styles.chartDisplay}>
+                        <Charts
+                            data={chartArr[chartInd]}
+                        />
+                    </div>
+                </div>
+
             </div>
         </div>
     );
