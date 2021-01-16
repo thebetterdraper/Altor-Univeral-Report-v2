@@ -11,38 +11,34 @@ function RiderInfo(props){
 
             width:"90%",
             minWidth: "1300px",
-            margin:"10px 10px 0 25px",
-
-            // padding: "10px",
+            margin:"0 10px 0 25px",
             pageBreakInside: "avoid"
         },
         "dataContent":{
             display: "block",
             float: "left",
             width: "5vw",
+            maxWidth:"5vw",
             textAlign: "center",
-            padding: "25px",
-            border: "0.5px solid rgba(0,0,0,0.2)",
-            boxShadow: "2px 2px 6px 2px rgba(0,0,0,0.2)",
-            borderRadius: "10px",
+            // border:"1px solid black",
+            padding: "20px 25px 20px 25px",
             margin: "0 20px 0 20px",
             fontSize: "18px",
-            fontFamily: "sans-serif",
-            fontWeight: "300"
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            fontWeight: "400",
+            color:"#676767"
         },
         "nameAttribute":{
             width: "10vw",
             textAlign: "center",
-            padding: "25px",
-            border: "0.5px solid rgba(0,0,0,0.2)",
-            boxShadow: "2px 2px 6px 2px rgba(0,0,0,0.2)",
-            borderRadius: "10px",
+            padding: "20px 25px 20px 25px",
             margin: "0 20px 0 20px",
-            fontSize: "18px",
+            fontSize: "20px",
             display: "block",
             float: "left",
-            fontFamily: "sans-serif",
-            fontWeight: "400"
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            fontWeight: "500",
+            color:"cornflowerblue"
         },
         "indexAttribute":{
             textAlign: "center",
@@ -53,15 +49,17 @@ function RiderInfo(props){
             margin: "0",
             width: "30px",
             height: "30px",
-            borderRadius: "100%",
             left: "10px",
-            backgroundColor: "#a9afbb",
-            color: "white",
+            color: "black",
             fontFamily: "sans-serif",
             fontSize: "25px"
         },
         "percentageColor":{
+            minHeight:"15px",
+            minWidth:"15px",
             
+            display:"inline-block",
+            marginRight:"5px"
         }
 
     }
@@ -74,14 +72,57 @@ function RiderInfo(props){
         <div style={styles.riderInfoDiv}>
             <span style={styles.indexAttribute}><font className="id_font">{props.id+1}
             </font></span>
-            <span style={styles.nameAttribute}>{props.name}                     </span>
-            <span style={styles.dataContent}>{props.avg_safety_score}           </span>           
-            <span style={styles.dataContent}>{props.avg_overspeeding_score}     </span>    
-            <span style={styles.dataContent}>{props.avg_pitstop_score}          </span>
-            <span style={styles.dataContent}>{props.avg_wear_score}             </span>
-            <span style={styles.dataContent}>{props.avg_store_to_store_time}    </span>
-            <span style={styles.dataContent}>{props.avg_total_distance_covered} </span>
-            <span style={styles.dataContent}>{props.avg_total_on_ride_time}     </span>
+            <span style={styles.nameAttribute}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}                     </span>
+            <span style={styles.dataContent}>{props.avg_safety_score}<span 
+            style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_safety>0?"blue":"red"
+                }}></span></span>           
+            <span style={styles.dataContent}>{props.avg_overspeeding_score}<span style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_overspeeding>0?"blue":"red"
+                }}></span></span>    
+            <span style={styles.dataContent}>{props.avg_pitstop_score}<span style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_pitstop>0?"blue":"red"
+                }}></span></span>
+            <span style={styles.dataContent}>{props.avg_wear_score}<span style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_wear>0?"blue":"red"
+                }}></span></span>
+            <span style={styles.dataContent}>{props.avg_store_to_store_time}<span style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_store_to_store_time>0?"blue":"red"
+                }}></span></span>
+            <span style={styles.dataContent}>{props.avg_total_distance_covered}<span style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_total_distance_covered>0?"blue":"red"
+                }}></span> </span>
+            <span style={styles.dataContent}>{props.avg_total_on_ride_time}<span style={{
+                minHeight:"15px",
+                minWidth:"15px", 
+                display:"inline-block",
+                marginLeft:"5px",
+                backgroundColor:props.per_change_total_on_ride_time>0?"blue":"red"
+                }}></span></span>
 
             <ChartData 
                 name = {props.name}

@@ -478,7 +478,7 @@ function AltorRider(){
                     {/* {
                         window.screen.width>=1900?<button className="downloadButton" onClick={convertDomToPDF}>Print</button>:<span></span>
                     } */}
-                    <button className="downloadButton" onClick={convertDomToPDF}>Print</button>
+                    {/* <button className="downloadButton" onClick={convertDomToPDF}>Print</button> */}
                     
                     <div id="divToPrint">
                         <Header />

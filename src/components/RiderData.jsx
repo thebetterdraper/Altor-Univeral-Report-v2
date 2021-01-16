@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RiderInfo from "./RiderInfo";
-
+import Cookie from "js-cookie";
 
 function RiderData(props){
 
@@ -8,7 +8,6 @@ function RiderData(props){
         "buttonHolder":{
             width: "100%",
             minHeight: "100px",
-            backgroundColor: "#5774a9",
             marginTop: "20px",
             paddingTop: "10px",
         },
@@ -66,29 +65,60 @@ function RiderData(props){
             minHeight: "22px",
             boxShadow: "1.5px 7px 7px 1.5px rgba(0,0,0,0.3)"
         },
+        "storeName":{
+            position: "relative",
+            textAlign: "center",
+            display: "block",
+            paddingTop: "10px",
+            minWidth: "141px",
+            marginLeft: "40px",
+            float: "left",
+            backgroundColor: "rgb(100 149 237)",
+            width: "9vw",
+            fontSize: "17.5px",
+            color: "white",
+            padding: "20px",
+            fontFamily: "sans-serif",
+            borderRadius: "10px",
+            minHeight: "22px",
+            boxShadow: "1.5px 7px 7px 1.5px rgba(0,0,0,0.3)"
+        },
         "riderInfoHeading":{
             marginTop: "1.5vw",
             marginLeft: "2vw",
-            minWidth:   "50%",
-            // float: "left",
-            border: "2px solid #d3c0c0",
-            // margin: 25px;
-            background: "#f3f0f0",
-            borderRadius: "10px",
-            minHeight: "56px",
-            boxShadow: "1.5px 4px 7px 1.5px rgba(0,0,0,0.15)"
+            marginBottom:"137px"
         },
         "attributeTitle":{
             display: "block",
             float: "left",
-            width:"6vw",
-            border:"1px solid black",
+            width:"7vw",
+            padding:"15px",
             wordWrap:"breakWord",
-            margin: "0 20px 0 20px",
-            fontSize: "18px",
-            fontFamily: "sans-serif",
-            fontWeight: "300"
-
+            margin: "0 15px 0 10px",
+            fontSize: "20px",
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            fontWeight: "500",
+            textAlign:"center",
+            color:"#5a5a5a"
+        },
+        "nameAttribute":{
+            display: "block",
+            float: "left",
+            width:"10vw",
+            padding:"15px",
+            wordWrap:"breakWord",
+            margin: "0 20px 0 90px",
+            fontSize: "20px",
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            fontWeight: "500",
+            textAlign:"center",
+            color:"#5a5a5a"
+        },
+        "riderDiv":{
+            border:"1px solid black",
+            borderRadius:"20px",
+            margin:"16px",
+            minWidth:"1867px"
         }
     }
 
@@ -252,12 +282,17 @@ function RiderData(props){
         setSortConfig({key,direction});
     }    
 
+    var cookie_value=Cookie.getJSON("report_res");
+    var org_id=cookie_value.org_id;
+    var arr=org_id.split(".");
+    var store_name=arr[arr.length-1];
     // console.log(JSON.stringify(sortedRiderData)+" firstPrint")
     if(sortedRiderData.length!==0){
         // console.log(sortedRiderData);
 
         return ( 
             <>
+            
                 <div style={styles.buttonHolder}>
                     <div style={styles.sortingArrangement}>
                         <span style={{fontSize:"17.5px",borderRight:"2px solid black",marginRight:"13px",marginLeft:"28px",paddingRight:"8px"}}>Sort By</span>
@@ -273,9 +308,11 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
+                    <div style={styles.storeName}>{store_name}</div>
                 </div>
+                <div style={styles.riderDiv}>
                 <div style={styles.riderInfoHeading}>
-                    <span style={styles.attributeTitle}>Name</span>
+                    <span style={styles.nameAttribute}>Name</span>
                     <span style={styles.attributeTitle}>Safety Score</span>
                     <span style={styles.attributeTitle}>Overspeeding</span>
                     <span style={styles.attributeTitle}>Pitstops</span>
@@ -284,6 +321,7 @@ function RiderData(props){
                     <span style={styles.attributeTitle}>Total Distance (km)</span>
                     <span style={styles.attributeTitle}>Total Ride Time (min)</span>
                 </div>
+                <hr />
             
                 {
                     sortedRiderData.map((rider, index) => {
@@ -320,6 +358,7 @@ function RiderData(props){
                             )
                     })
                 }
+            </div>
             </>
         );
         
@@ -327,7 +366,7 @@ function RiderData(props){
 
         return ( 
             <>
-
+            
                 <div style={styles.buttonHolder}>
                     <div style={styles.sortingArrangement}>
                         <span style={{fontSize:"17.5px",borderRight:"2px solid black",marginRight:"13px",marginLeft:"28px",paddingRight:"8px"}}>Sort By</span>
@@ -343,10 +382,12 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
+                    <div style={styles.storeName}>{store_name}</div>
                 </div>
+                <div style={styles.riderDiv}>
                 
                 <div style={styles.riderInfoHeading}>
-                    <span style={styles.attributeTitle}>Name</span>
+                    <span style={styles.nameAttribute}>Name</span>
                     <span style={styles.attributeTitle}>Safety Score</span>
                     <span style={styles.attributeTitle}>Overspeeding</span>
                     <span style={styles.attributeTitle}>Pitstops</span>
@@ -355,6 +396,7 @@ function RiderData(props){
                     <span style={styles.attributeTitle}>Total Distance (km)</span>
                     <span style={styles.attributeTitle}>Total Ride Time (min)</span>
                 </div> 
+                <hr />
                 {
                     newRiderData.map((rider, index) => {
 
@@ -391,6 +433,7 @@ function RiderData(props){
                         )
                     })
                 }
+                </div>
             </>
         );
 
