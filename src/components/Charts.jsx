@@ -51,9 +51,6 @@ function Charts(props){
             updateChart();
         } 
     })
-
-    
- 
     return <>
         <canvas 
             id="myChart"

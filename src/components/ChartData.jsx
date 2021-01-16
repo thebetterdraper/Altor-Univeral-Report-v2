@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Charts from "./Charts.jsx"
+import Charts from "./Charts.jsx";
+import {Radar} from "react-chartjs-2";
 
 
 function ChartData(props){
@@ -12,10 +13,13 @@ function ChartData(props){
             overflow: "auto",
             minWidth: "1250px",
             display: "block",
-            height:"0px"
+            height:props.toggle===true?"auto":"0px",
+            border:props.toggle===true?"1px solid black":"0",
+            borderRadius:"20px",
+            width:"100%"
         },
         "riderDetails":{
-            minHeight: "50vh",
+            minHeight: "48vh",
             display: "block",
             float: "left",
             minWidth:"28vw"
@@ -26,18 +30,36 @@ function ChartData(props){
             margin: "32% 0% 0% 9%"
         },
         "contactDetails":{
-            display:   "block"
+            display:   "block",
+            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            color:"gray"
+        },
+        "nameDetails":{
+            display:"block",
+            fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            color:"gray",
+            fontSize:"30px"
         },
         "riderImg":{
             display: "block",
             float: "left",
             borderRadius: "100px",
-            minWidth: "10vw",
-            minHeight: "10vh",
-            margin: "104px 11px 0 31px"
+            minWidth: "9vw",
+            minHeight: "9vh",
+            margin: "131px -16px 0 30px"
         },
         "chartContainer":{
-            minHeight: "50vh",
+            minHeight: "48vh",
+            backgroundColor: "white",
+            display: "block",
+            float: "left",
+            padding: "0 20px 0 1px",
+            borderLeft:"1px solid black",
+            borderRight:"1px solid black"
+        },
+        "radarChartContainer":{
+            minHeight: "48vh",
+            minWidth:"300px",
             backgroundColor: "white",
             display: "block",
             float: "left",
@@ -83,6 +105,7 @@ function ChartData(props){
     const [store2storeChartData,setStore2storeChartData] = useState({});
     const [totDistChartData,setTotDistChartData] = useState({});
     const [totOnRideTime,setTotOnRideTime] = useState({});
+    const [radarChartData,setRadarChartData] = useState({});
     const [chartInd,setChartInd] = useState(0);
 
     const chartArr = [safetyScoreChartData,overspeedingChartData,pitstopChartData,wearChartData,store2storeChartData,totDistChartData,totOnRideTime];
@@ -191,47 +214,77 @@ function ChartData(props){
                 borderWidht:1
             }]
         })
+
+        setRadarChartData({
+            labels:["SafetyScore","Overspeeding","Pitstop","Wear"],
+            datasets:[{
+                label: "Radar",
+                backgroundColor: "rgba(220,220,220,0.2)",
+                pointBackgroundColor: "rgba(220,220,220,1)",
+               data:[getScoreData(safety_score)[1],getScoreData(overspeeding)[1],getScoreData(pitstop)[1],getScoreData(wear)[1]]
+            }]
+        })
     }
 
     useEffect(()=>{
         chart();
     },[safety_score,overspeeding,pitstop,wear,store_to_store_time,total_distance_covered,total_on_ride_time])
 
-    var height = "7px";
-    var buttonText = "+"
-    if(toggleClicked){
-        height = "auto";
-        buttonText = "-"
-    }else{
-        height = "0.01px";
-        buttonText = "+"
-    }
-
+    console.log("check");
+    console.log(getScoreData(safety_score)[1]);
+    console.log(parseInt(new Date().getDate()));
     function handleChange(event){
         let key1 = event.target.value;
         console.log(key1);
         // let key = document.getElementById("sortBy").value;
         setChartInd(parseInt(key1));
     }
-    console.log(chartInd);
-       
+      
+      const options = {
+        responsive:true,
+        maintainAspectRatio: true,
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: true,
+          text: 'Rider Radar Chart'
+        },
+        scale: {
+          reverse: false,
+          gridLines: {
+            color: [
+              'black',
+              'red',
+              'orange',
+              'yellow',
+              'green',
+              'blue',
+              'indigo',
+              'violet'
+            ]
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }
+      }
     return (
         <div>
-            {/* this needs to be fixed */}
-            <button  className="graphToggle" onClick={()=>{setToggleClicked(!toggleClicked)}}>{buttonText}</button>
             
             <div  style={styles.toggleContainer}>
-                <hr style={{marginTop:'16px'}} />
-
                 <div style={styles.riderDetails}>
                     <img src={props.image} alt="riderimg" style={styles.riderImg}></img>
                     <div style={styles.riderInfoDetails}>
-                        <span style={styles.contactDetails}>{props.name}</span>
+                        <span style={styles.nameDetails}>{props.name}</span>
                         <span style={styles.contactDetails}>{props.email}</span>
                         <span style={styles.contactDetails}>{props.phone}</span>
                     </div>
                 </div>
-
+                <div>
+                    <Radar data={radarChartData} options={options} width={300} height={150}/> 
+                </div>
+                
                 <div style={styles.chartContainer}>
                     <select style={styles.sortByChartName} id="sortBy" onChange={handleChange}>
                         <option value="0" selected>Safety Score</option>

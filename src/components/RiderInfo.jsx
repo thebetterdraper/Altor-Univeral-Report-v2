@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ChartData from "./ChartData"
 
 // const subscriptStyle = {
@@ -6,6 +6,7 @@ import ChartData from "./ChartData"
 // }
 
 function RiderInfo(props){
+
     const styles = {
         "riderInfoDiv":{
 
@@ -38,11 +39,14 @@ function RiderInfo(props){
             float: "left",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
-            color:"cornflowerblue"
+            color:"cornflowerblue",
+            outline:"none",
+            background:"none",
+            border:"3px solid white"
         },
         "indexAttribute":{
             textAlign: "center",
-            padding: "25px",
+            padding: "20px 25px 20px 25px",
             display: "block",
             float: "left",
             border: "none",
@@ -63,16 +67,24 @@ function RiderInfo(props){
         }
 
     }
+
+    const [toggleContainer,setToggleContainer]  = useState(false);
     // if(document.getElementsByClassName("subscript").innerHTML<0){
     //     document.getElementsByClassName("subscript").style.color = "red";
     // }else{
     //     document.getElementsByClassName("subscript").style.color="green";
     // }
+
+    function handleClick(){
+        console.log("clicked");
+        setToggleContainer((prev)=>!prev);
+    }
     return (
         <div style={styles.riderInfoDiv}>
             <span style={styles.indexAttribute}><font className="id_font">{props.id+1}
             </font></span>
-            <span style={styles.nameAttribute}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}                     </span>
+            {/* <span style={styles.nameAttribute}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</span> */}
+            <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
             <span style={styles.dataContent}>{props.avg_safety_score}<span 
             style={{
                 minHeight:"15px",
@@ -136,6 +148,7 @@ function RiderInfo(props){
                 store_to_store_time = {props.store_to_store_time}
                 total_distance_covered = {props.total_distance_covered}
                 total_on_ride_time = {props.total_on_ride_time}
+                toggle = {toggleContainer}
             />
         </div>
 
