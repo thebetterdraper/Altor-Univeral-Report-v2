@@ -21,7 +21,7 @@ function RiderData(props){
             padding: "10px",
             fontFamily: "sans-serif",
             borderRadius: "10px",
-            boxShadow: "1.5px 7px 7px 1.5px rgba(0,0,0,0.3)",
+            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px",
             marginLeft: "1%",
             marginRight: "1%"
         },
@@ -63,7 +63,7 @@ function RiderData(props){
             fontFamily: "sans-serif",
             borderRadius: "10px",
             minHeight: "22px",
-            boxShadow: "1.5px 7px 7px 1.5px rgba(0,0,0,0.3)"
+            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px"
         },
         "storeName":{
             position: "relative",
@@ -81,7 +81,7 @@ function RiderData(props){
             fontFamily: "sans-serif",
             borderRadius: "10px",
             minHeight: "22px",
-            boxShadow: "1.5px 7px 7px 1.5px rgba(0,0,0,0.3)"
+            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px"
         },
         "riderInfoHeading":{
             marginTop: "1.5vw",
@@ -115,10 +115,11 @@ function RiderData(props){
             color:"#5a5a5a"
         },
         "riderDiv":{
-            border:"1px solid black",
+            border:"1px solid white",
             borderRadius:"20px",
             margin:"16px",
-            minWidth:"1867px"
+            minWidth:"1867px",
+            boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)"
         }
     }
 
