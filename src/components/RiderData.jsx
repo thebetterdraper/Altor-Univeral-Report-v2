@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import RiderInfo from "./RiderInfo";
 import Cookie from "js-cookie";
+import { CSVLink,CSVDownload} from "react-csv";
 
 function RiderData(props){
 
@@ -56,7 +57,7 @@ function RiderData(props){
             marginLeft: "40px",
             float: "left",
             backgroundColor: "rgb(100 149 237)",
-            width: "9vw",
+            width: "auto",
             fontSize: "17.5px",
             color: "white",
             padding: "20px",
@@ -191,6 +192,7 @@ function RiderData(props){
             return 0;
         })
         setNewRiderData(dataArr)
+        
     },[])
 
     // if(newRiderData.length===0){
@@ -203,11 +205,11 @@ function RiderData(props){
 
     //console.log(newRiderData);
 
-    var newArr = [];
-    newRiderData.map((ele,index)=>{
-        newArr.push(ele)
-        return 0;
-    })
+    // var newArr = [];
+    // newRiderData.map((ele,index)=>{
+    //     newArr.push(ele)
+    //     return 0;
+    // })
 
     // console.log(newArr);
     // var Arr = [1,2,3]
@@ -246,10 +248,16 @@ function RiderData(props){
         // console.log(sortConfig.direction);
         // console.log(sortConfig.key+" Hi");
         
-        setSortedRiderData(sortArray(sortConfig.direction,newRiderData));   
+        setSortedRiderData(sortArray(sortConfig.direction,newRiderData));  
+        // generateCsvData(); 
         // throw new Error();
 
     },[sortConfig.direction,sortConfig.key])
+
+
+    useEffect(()=>{
+        generateCsvData(); 
+    },[newRiderData,sortedRiderData])
 
     // console.log(sortedRiderData);
 
@@ -288,8 +296,83 @@ function RiderData(props){
     var arr=org_id.split(".");
     var store_name=arr[arr.length-1];
     // console.log(JSON.stringify(sortedRiderData)+" firstPrint")
+
+    //csv printing
+    const [counter,setCounter] = useState(0);
+    
+    const [dataCsv,setDataCSv] = useState([]);
+    const [bDownloadReady,setDownloadReady] = useState(false);
+    const csvLink = useRef();
+    // const dataCsv = [];
+
+    // useEffect(()=>{
+    //     // console.log("Counter");
+    //     // console.log(counter);
+    //     console.log(dataCsv);
+    //     console.log("data",dataCsv.length);
+    //     if(dataCsv.length!==0){
+    //         console.log("working");
+    //         console.log(dataCsv);
+    //         if (csvLink && csvLink.current && bDownloadReady) {
+    //             csvLink.current.link.click();
+    //             setDownloadReady(false);
+    //         }
+    //     }
+    // },[bDownloadReady])
+
+    // // useEffect(()=>{
+    // //     setCounter((prev)=>prev+1)
+    // // },[bDownloadReady])
+
+    // function handleDownloadClick(){
+    //     setDataCSv([]);
+    //     newRiderData.map((rider)=>{
+    //         let newCsvRow = {
+    //             "Name":rider.name,
+    //             "SafetyScore":rider.avg_safety_score
+    //         }
+    //         // console.log(newCsvRow);
+    //         // dataCsv.push(newCsvRow);
+    //         setDataCSv((prev)=>[...prev,newCsvRow])
+    //     })
+    //     setDownloadReady(true);
+    //     return true;
+            
+    // }
+    function generateCsvData(){
+        setDataCSv([]);
+        if(sortedRiderData.length!==0){
+            setDataCSv((prev)=>[...prev,{"":"","Title":"Altor Rider Ranking"}])
+            setDataCSv((prev)=>[...prev,{"":""}])
+            sortedRiderData.map((rider)=>{
+                let newCsvRow = {
+                    "Name":rider.name,
+                    "SafetyScore":rider.avg_safety_score
+                }
+                // console.log(newCsvRow);
+                // dataCsv.push(newCsvRow);
+                setDataCSv((prev)=>[...prev,newCsvRow])
+            })
+
+        }else{
+            setDataCSv((prev)=>[...prev,{"":"","Title":"Altor Rider Ranking"}])
+            setDataCSv((prev)=>[...prev,{"":""}])
+            newRiderData.map((rider)=>{
+                let newCsvRow = {
+                    "Name":rider.name,
+                    "SafetyScore":rider.avg_safety_score
+                }
+                // console.log(newCsvRow);
+                // dataCsv.push(newCsvRow);
+                setDataCSv((prev)=>[...prev,newCsvRow])
+            })
+        }
+    }
+
+
+    // console.log(dataCsv);
+    
     if(sortedRiderData.length!==0){
-        // console.log(sortedRiderData);
 
         return ( 
             <>
@@ -308,7 +391,16 @@ function RiderData(props){
                         </select>
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
-                    <div style={styles.currentDate}>{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
+                    <div style={styles.currentDate}>
+                        {/* <button onClick={handleDownloadClick}>Download</button> */}
+                        <CSVLink
+                            data={dataCsv}
+                            target="_blank"
+                            // ref={csvLink}
+                            // onClick={handleDownloadClick}
+                        >ClickMe</CSVLink>
+                        {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}
+                    </div>
                     <div style={styles.storeName}>{store_name}</div>
                 </div>
                 <div style={styles.riderDiv}>
@@ -382,7 +474,15 @@ function RiderData(props){
                         </select>
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
-                    <div style={styles.currentDate}>{new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
+                    <div style={styles.currentDate}>
+                    {/* <button onClick={handleDownloadClick}>Download</button> */}
+                    <CSVLink
+                        data={dataCsv}
+                        target="_blank"
+                        // ref={csvLink}
+                        // onClick={handleDownloadClick}
+                    >ClickMe</CSVLink>
+                    {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
                     <div style={styles.storeName}>{store_name}</div>
                 </div>
                 <div style={styles.riderDiv}>

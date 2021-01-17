@@ -237,9 +237,6 @@ function ChartData(props){
         chart();
     },[safety_score,overspeeding,pitstop,wear,store_to_store_time,total_distance_covered,total_on_ride_time])
 
-    console.log("check");
-    console.log(getScoreData(safety_score)[1]);
-    console.log(parseInt(new Date().getDate()));
     function handleChange(event){
         let key1 = event.target.value;
         console.log(key1);
