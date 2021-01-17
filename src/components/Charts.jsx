@@ -7,11 +7,12 @@ function Charts(props){
     const [chartBool,setChartBool] = useState(false);
     
     const chartRef = React.createRef();
+    //620,310
 
     useEffect(()=>{
 
         var myChartRef = chartRef.current.getContext("2d");
-        myChartRef.clearRect(0, 0, 620,310);
+        myChartRef.clearRect(0, 0, 100,150);
         myChartRef.beginPath();
         // var myChartRef = chartRef.current.getContext("2d");
 
@@ -20,12 +21,13 @@ function Charts(props){
                 {beforeDraw: function(myChartRef) {
                 var ctx = myChartRef;
                 ctx.ctx.fillStyle = "white";
-                ctx.ctx.fillRect(0,0,620,310);
+                ctx.ctx.fillRect(0,0,100,150);
               }},
             type: "bar",
             data: props.data,
             options: {
                 responsive:true,
+                maintainAspectRatio:true,
                 scales: {
                     yAxes: [{
                         ticks: {

@@ -22,7 +22,8 @@ function ChartData(props){
             minHeight: "48vh",
             display: "block",
             float: "left",
-            minWidth:"28vw"
+            // minWidth:"28vw",
+            width:"32%"
         },
         "riderInfoDetails":{
             display: "block",
@@ -50,12 +51,15 @@ function ChartData(props){
         },
         "chartContainer":{
             minHeight: "48vh",
-            backgroundColor: "white",
+            // backgroundColor: "white",
             display: "block",
             float: "left",
             padding: "0 20px 0 1px",
             borderLeft:"1px solid black",
-            borderRight:"1px solid black"
+            // borderRight:"1px solid black",
+            width:"32%",
+            paddingTop:"1%",
+            paddingLeft:"1%"
         },
         "radarChartContainer":{
             minHeight: "48vh",
@@ -85,9 +89,9 @@ function ChartData(props){
         },
         "chartDisplay":{
             display:"flex",
-            height:"310px",
+            height:"auto",
             overflow:"visible",
-            width:"600px",
+            width:"90%",
             marginLeft:"35px",
             marginTop:"40px",
             marginBottom:"20px",
@@ -241,7 +245,7 @@ function ChartData(props){
     }
       
       const options = {
-        responsive:true,
+        responsive:false,
         maintainAspectRatio: true,
         legend: {
           position: 'top'
@@ -281,8 +285,10 @@ function ChartData(props){
                         <span style={styles.contactDetails}>{props.phone}</span>
                     </div>
                 </div>
-                <div>
-                    <Radar data={radarChartData} options={options} width={300} height={150}/> 
+                <div style={{width:"12%",height:"auto",display:"block",float:"left",textAlign:"center",alignContent:"center",alignItems:"center",paddingLeft: "8%",
+    paddingRight: "11%",
+    paddingTop: "1%"}}>
+                    <Radar data={radarChartData} options={options} width={300} height={300}/> 
                 </div>
                 
                 <div style={styles.chartContainer}>
