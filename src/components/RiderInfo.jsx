@@ -20,7 +20,7 @@ function RiderInfo(props){
             float: "left",
             width: "5vw",
             maxWidth:"5vw",
-            textAlign: "center",
+            textAlign: "right",
             // border:"1px solid black",
             padding: "20px 25px 20px 25px",
             margin: "0 20px 0 20px",
@@ -42,7 +42,8 @@ function RiderInfo(props){
             color:"cornflowerblue",
             outline:"none",
             background:"none",
-            border:"3px solid white"
+            border:"none",
+            cursor:"pointer"
         },
         "indexAttribute":{
             textAlign: "center",
@@ -91,49 +92,49 @@ function RiderInfo(props){
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_safety>0?"blue":"red"
+                backgroundColor:props.per_change_safety>0?"chartreuse":"red"
                 }}></span></span>           
             <span style={styles.dataContent}>{props.avg_overspeeding_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_overspeeding>0?"blue":"red"
+                backgroundColor:props.per_change_overspeeding<0?"chartreuse":"red"
                 }}></span></span>    
             <span style={styles.dataContent}>{props.avg_pitstop_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_pitstop>0?"blue":"red"
+                backgroundColor:props.per_change_pitstop<0?"chartreuse":"red"
                 }}></span></span>
             <span style={styles.dataContent}>{props.avg_wear_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_wear>0?"blue":"red"
+                backgroundColor:props.per_change_wear<0?"chartreuse":"red"
                 }}></span></span>
             <span style={styles.dataContent}>{props.avg_store_to_store_time}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_store_to_store_time>0?"blue":"red"
+                backgroundColor:props.per_change_store_to_store_time<0?"chartreuse":"red"
                 }}></span></span>
             <span style={styles.dataContent}>{props.avg_total_distance_covered}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_total_distance_covered>0?"blue":"red"
+                backgroundColor:props.per_change_total_distance_covered<0?"chartreuse":"red"
                 }}></span> </span>
             <span style={styles.dataContent}>{props.avg_total_on_ride_time}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_total_on_ride_time>0?"blue":"red"
+                backgroundColor:props.per_change_total_on_ride_time<0?"chartreuse":"red"
                 }}></span></span>
 
             <ChartData 

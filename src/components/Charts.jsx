@@ -21,7 +21,7 @@ function Charts(props){
                 {beforeDraw: function(myChartRef) {
                 var ctx = myChartRef;
                 ctx.ctx.fillStyle = "white";
-                ctx.ctx.fillRect(0,0,100,150);
+                ctx.ctx.fillRect(0,0,590,300);
               }},
             type: "bar",
             data: props.data,

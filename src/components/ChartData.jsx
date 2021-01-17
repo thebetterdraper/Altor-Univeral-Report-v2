@@ -9,21 +9,23 @@ function ChartData(props){
         "toggleContainer":{
             borderBottomLeftRadius: "10px",
             borderBottomRightRadius: "10px",
-            backgroundColor: "rgb(255, 255, 255)",
             overflow: "auto",
             minWidth: "1250px",
             display: "block",
             height:props.toggle===true?"auto":"0px",
-            border:props.toggle===true?"1px solid black":"0",
+            // border:props.toggle===true?"1px solid black":"0",
             borderRadius:"20px",
-            width:"100%"
+            width:"100%",
+            boxShadow:props.toggle===true?"2px 4px 3px 4px rgba(169, 175, 169, 0.3)":"none",
+            backgroundColor: "honeydew"
         },
         "riderDetails":{
-            minHeight: "48vh",
+            minHeight: "44vh",
             display: "block",
             float: "left",
             // minWidth:"28vw",
-            width:"32%"
+            width:"32%",
+            borderRight:"1px solid black",
         },
         "riderInfoDetails":{
             display: "block",
@@ -50,7 +52,7 @@ function ChartData(props){
             margin: "131px -16px 0 30px"
         },
         "chartContainer":{
-            minHeight: "48vh",
+            minHeight: "42vh",
             // backgroundColor: "white",
             display: "block",
             float: "left",
@@ -62,17 +64,18 @@ function ChartData(props){
             paddingLeft:"1%"
         },
         "radarChartContainer":{
-            minHeight: "48vh",
-            minWidth:"300px",
-            backgroundColor: "white",
-            display: "block",
-            float: "left",
-            padding: "0 20px 0 1px",
-            borderLeft:"1px solid black",
-            borderRight:"1px solid black"
+            width:"12%",
+            height:"auto",
+            display:"block",
+            float:"left",textAlign:"center",
+            alignContent:"center",
+            alignItems:"center",
+            paddingLeft: "6%",
+            paddingRight: "11%",
+            paddingTop: "1%"
         },
         "sortByChartName":{
-            minWidth: "35%",
+            minWidth: "38%",
             minHeight: "10%",
             borderRadius: "10px",
             padding: "10px",
@@ -92,7 +95,7 @@ function ChartData(props){
             height:"auto",
             overflow:"visible",
             width:"90%",
-            marginLeft:"35px",
+            marginLeft:"66px",
             marginTop:"40px",
             marginBottom:"20px",
             border:"2px solid rgba(0,0,0,0.1)",
@@ -285,9 +288,7 @@ function ChartData(props){
                         <span style={styles.contactDetails}>{props.phone}</span>
                     </div>
                 </div>
-                <div style={{width:"12%",height:"auto",display:"block",float:"left",textAlign:"center",alignContent:"center",alignItems:"center",paddingLeft: "8%",
-    paddingRight: "11%",
-    paddingTop: "1%"}}>
+                <div style={styles.radarChartContainer}>
                     <Radar data={radarChartData} options={options} width={300} height={300}/> 
                 </div>
                 

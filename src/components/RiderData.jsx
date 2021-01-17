@@ -144,7 +144,7 @@ function RiderData(props){
             let prevAvgScore = prevCumilitiveScore/length;
             let changePercentage = 0;
             prevAvgScore===0?changePercentage=100:changePercentage = ((currentScore-prevAvgScore)/(prevAvgScore)*100).toPrecision(4);
-            return [currentScore,changePercentage]
+            return [Math.round(currentScore),changePercentage]
         }
 
         riderDataAPI.map((rider,index)=>{
