@@ -256,7 +256,7 @@ function RiderData(props){
 
 
     useEffect(()=>{
-        generateCsvData(); 
+        // generateCsvData(); 
     },[newRiderData,sortedRiderData])
 
     // console.log(sortedRiderData);
@@ -298,79 +298,135 @@ function RiderData(props){
     // console.log(JSON.stringify(sortedRiderData)+" firstPrint")
 
     //csv printing
-    const [counter,setCounter] = useState(0);
+    // const [counter,setCounter] = useState(0);
     
-    const [dataCsv,setDataCSv] = useState([]);
+    // const [dataCsv,setDataCSv] = useState([]);
     const [bDownloadReady,setDownloadReady] = useState(false);
-    const csvLink = useRef();
-    // const dataCsv = [];
 
-    // useEffect(()=>{
-    //     // console.log("Counter");
-    //     // console.log(counter);
-    //     console.log(dataCsv);
-    //     console.log("data",dataCsv.length);
-    //     if(dataCsv.length!==0){
-    //         console.log("working");
-    //         console.log(dataCsv);
-    //         if (csvLink && csvLink.current && bDownloadReady) {
-    //             csvLink.current.link.click();
-    //             setDownloadReady(false);
-    //         }
-    //     }
-    // },[bDownloadReady])
-
-    // // useEffect(()=>{
-    // //     setCounter((prev)=>prev+1)
-    // // },[bDownloadReady])
-
-    // function handleDownloadClick(){
-    //     setDataCSv([]);
-    //     newRiderData.map((rider)=>{
-    //         let newCsvRow = {
-    //             "Name":rider.name,
-    //             "SafetyScore":rider.avg_safety_score
-    //         }
-    //         // console.log(newCsvRow);
-    //         // dataCsv.push(newCsvRow);
-    //         setDataCSv((prev)=>[...prev,newCsvRow])
-    //     })
-    //     setDownloadReady(true);
-    //     return true;
-            
-    // }
-    function generateCsvData(){
-        setDataCSv([]);
-        if(sortedRiderData.length!==0){
-            setDataCSv((prev)=>[...prev,{"":"","Title":"Altor Rider Ranking"}])
-            setDataCSv((prev)=>[...prev,{"":""}])
-            sortedRiderData.map((rider)=>{
-                let newCsvRow = {
-                    "Name":rider.name,
-                    "SafetyScore":rider.avg_safety_score
-                }
-                // console.log(newCsvRow);
-                // dataCsv.push(newCsvRow);
-                setDataCSv((prev)=>[...prev,newCsvRow])
-            })
-
-        }else{
-            setDataCSv((prev)=>[...prev,{"":"","Title":"Altor Rider Ranking"}])
-            setDataCSv((prev)=>[...prev,{"":""}])
-            newRiderData.map((rider)=>{
-                let newCsvRow = {
-                    "Name":rider.name,
-                    "SafetyScore":rider.avg_safety_score
-                }
-                // console.log(newCsvRow);
-                // dataCsv.push(newCsvRow);
-                setDataCSv((prev)=>[...prev,newCsvRow])
-            })
-        }
+    function handleDownloadClick(){
+        setDownloadReady(true);
     }
 
+    function downloadAsCSV(content, fileName, mimeType) {
+        console.log("content");
+        console.log(content);
+        var a = document.createElement('a');
+        mimeType = mimeType || 'application/octet-stream';
+        if (navigator.msSaveBlob) { // IE10
+          navigator.msSaveBlob(new Blob([content], {
+            type: mimeType
+          }), fileName);
+        } else if (URL && 'download' in a) { //html5 A[download]
+        //   a.href = URL.createObjectURL(new Blob([content], {
+        //     type: mimeType
+        //   }));
+        var blob  = new Blob([content]);
+        a.href = window.URL.createObjectURL(blob);
+          a.setAttribute('download', fileName);
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          window.location.href = 'data:application/octet-stream,' + encodeURIComponent(content); // only this mime type is supported
+        }
+        setDownloadReady(false)
+      }
 
-    // console.log(dataCsv);
+    function exportTableToCSV(filename) {
+        var csv = "";
+        var rows = document.querySelectorAll("table tr");
+        
+        for (var i = 0; i < rows.length; i++) {
+            var row = "", cols = rows[i].querySelectorAll("td, th");
+            
+            for (var j = 0; j < cols.length; j++) {
+                console.log("innerText");
+                console.log(cols[j].innerText);
+                row+=cols[j].innerText+";";
+            }
+                
+            row=row.substring(0,row.length+1)+"\n";
+            csv = csv+row;        
+        }
+    
+        // Download CSV file
+        console.log("Download CSV file");
+        console.log(csv);
+        var finalCsv = "sep=;\n"+csv;
+        downloadAsCSV(finalCsv, filename,"text/csv;encoding:utf-8");
+        csv="";
+    }
+
+        function replaceSpace(riderName){
+            var riderNameArr = riderName.split(" ");
+            var newRiderName = riderNameArr[0]+" "+riderNameArr[1];
+            return newRiderName;
+        }
+
+    useEffect(()=>{
+        var tablearea = document.getElementById('tablearea'),
+        table = document.createElement('table');
+        
+        
+
+            var tr = document.createElement('tr');
+            tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+
+            tr.cells[0].appendChild(document.createTextNode("Altor Rider Ranking"));
+            tr.cells[1].appendChild(document.createTextNode(""));
+            tr.cells[2].appendChild(document.createTextNode(""));
+            tr.cells[0].setAttribute("colspan",3);
+
+            table.appendChild(tr);
+
+            var tr2 = document.createElement('tr');
+            tr2.appendChild(document.createElement('td'));
+            tr2.appendChild(document.createElement('td'));
+            tr2.cells[0].appendChild(document.createTextNode(sortConfig.key));
+            tr2.cells[1].appendChild(document.createTextNode(sortConfig.direction));
+            table.appendChild(tr2);
+
+            var tr1 = document.createElement('tr');
+            tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
+            tr1.cells[0].appendChild(document.createTextNode("Name"))
+            tr1.cells[1].appendChild(document.createTextNode("SafetyScore"))
+            tr1.cells[2].appendChild(document.createTextNode("Overspeeding"))
+            table.appendChild(tr1);
+
+        newRiderData.map((rider)=>{
+            var tr = document.createElement('tr');
+            
+
+            tr.appendChild(document.createElement('td'));
+            tr.cells[0].appendChild(document.createTextNode(replaceSpace(rider.name)))
+        
+        
+            tr.appendChild(document.createElement('td'));
+            tr.cells[1].appendChild(document.createTextNode(rider.avg_safety_score))
+
+            tr.appendChild(document.createElement('td'));
+            tr.cells[2].appendChild(document.createTextNode(rider.avg_overspeeding_score))
+
+            table.appendChild(tr);
+            
+        })
+
+        
+
+        if(tablearea && bDownloadReady){
+            console.log("table Area");
+            console.log("present");
+            tablearea.appendChild(table);
+            exportTableToCSV("AltorDownload.csv");
+            tablearea.removeChild(table);
+        }
+        // setDownloadReady(false)
+        
+    },[bDownloadReady])
     
     if(sortedRiderData.length!==0){
 
@@ -392,17 +448,18 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>
-                        {/* <button onClick={handleDownloadClick}>Download</button> */}
-                        <CSVLink
+                        <button onClick={handleDownloadClick}>Download</button>
+                        {/* <CSVLink
                             data={dataCsv}
                             target="_blank"
                             // ref={csvLink}
                             // onClick={handleDownloadClick}
-                        >ClickMe</CSVLink>
+                        >ClickMe</CSVLink> */}
                         {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}
                     </div>
                     <div style={styles.storeName}>{store_name}</div>
                 </div>
+                <div id="tablearea"></div>
                 <div style={styles.riderDiv}>
                 <div style={styles.riderInfoHeading}>
                     <span style={styles.nameAttribute}>Name</span>
@@ -475,16 +532,17 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>
-                    {/* <button onClick={handleDownloadClick}>Download</button> */}
-                    <CSVLink
+                    <button onClick={handleDownloadClick}>Download</button>
+                    {/* <CSVLink
                         data={dataCsv}
                         target="_blank"
                         // ref={csvLink}
                         // onClick={handleDownloadClick}
-                    >ClickMe</CSVLink>
+                    >ClickMe</CSVLink> */}
                     {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
                     <div style={styles.storeName}>{store_name}</div>
                 </div>
+                <div id="tablearea"></div>
                 <div style={styles.riderDiv}>
                 
                 <div style={styles.riderInfoHeading}>
@@ -497,6 +555,7 @@ function RiderData(props){
                     <span style={styles.attributeTitle}>Total Distance (km)</span>
                     <span style={styles.attributeTitle}>Total Ride Time (min)</span>
                 </div> 
+                
                 <hr />
                 {
                     newRiderData.map((rider, index) => {
@@ -545,3 +604,22 @@ function RiderData(props){
 
 
 export default RiderData;
+
+
+
+// function exportTableToCSV(filename) {
+//     var csv = [];
+//     var rows = document.querySelectorAll("table tr");
+    
+//     for (var i = 0; i < rows.length; i++) {
+//         var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+//         for (var j = 0; j < cols.length; j++) 
+//             row.push(cols[j].innerText);
+        
+//         csv.push(row.join(","));        
+//     }
+
+//     // Download CSV file
+//     downloadCSV(csv.join("\n"), filename);
+// }
