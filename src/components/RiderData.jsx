@@ -1,7 +1,7 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState} from "react";
 import RiderInfo from "./RiderInfo";
 import Cookie from "js-cookie";
-import { CSVLink,CSVDownload} from "react-csv";
+
 
 function RiderData(props){
 
@@ -195,29 +195,9 @@ function RiderData(props){
         
     },[])
 
-    // if(newRiderData.length===0){
-    //     console.log("nothing");
-    // }
-    // console.log("newRiderData");
-    // // console.log(newRiderData);
-    // // let newAliasRiderData = newRiderData;
-    // console.log(newRiderData);
 
-    //console.log(newRiderData);
-
-    // var newArr = [];
-    // newRiderData.map((ele,index)=>{
-    //     newArr.push(ele)
-    //     return 0;
-    // })
-
-    // console.log(newArr);
-    // var Arr = [1,2,3]
     const [sortedRiderData,setSortedRiderData] = useState([]);
 
-    // console.log("sortedRiderData");
-    // console.log(sortedRiderData);
-    // console.log("\n");
     
 
     const [sortConfig,setSortConfig] = useState({
@@ -225,8 +205,7 @@ function RiderData(props){
         "direction":null
     });
     
-    // console.log("Sorted Rider Data");
-    // console.log(sortedRiderData);
+    
 
     function sortArray(sortingDirection,arr){
         let newSortedArray = [];
@@ -245,23 +224,18 @@ function RiderData(props){
 
     useEffect(()=>{
         
-        // console.log(sortConfig.direction);
-        // console.log(sortConfig.key+" Hi");
+        
         
         setSortedRiderData(sortArray(sortConfig.direction,newRiderData));  
-        // generateCsvData(); 
-        // throw new Error();
-
+      
     },[sortConfig.direction,sortConfig.key])
 
 
     useEffect(()=>{
-        // generateCsvData(); 
+        
     },[newRiderData,sortedRiderData])
 
-    // console.log(sortedRiderData);
-
-    //Sort function (invoked when attribute buttons are clicked)
+ 
 
     function sort(event){
         var sortType = document.getElementById("SortBy").value;
@@ -295,12 +269,7 @@ function RiderData(props){
     var org_id=cookie_value.org_id;
     var arr=org_id.split(".");
     var store_name=arr[arr.length-1];
-    // console.log(JSON.stringify(sortedRiderData)+" firstPrint")
-
-    //csv printing
-    // const [counter,setCounter] = useState(0);
     
-    // const [dataCsv,setDataCSv] = useState([]);
     const [bDownloadReady,setDownloadReady] = useState(false);
 
     function handleDownloadClick(){
@@ -317,9 +286,7 @@ function RiderData(props){
             type: mimeType
           }), fileName);
         } else if (URL && 'download' in a) { //html5 A[download]
-        //   a.href = URL.createObjectURL(new Blob([content], {
-        //     type: mimeType
-        //   }));
+        
         var blob  = new Blob([content]);
         a.href = window.URL.createObjectURL(blob);
           a.setAttribute('download', fileName);
@@ -373,11 +340,24 @@ function RiderData(props){
             tr.appendChild(document.createElement('td'));
             tr.appendChild(document.createElement('td'));
             tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+            tr.appendChild(document.createElement('td'));
+            
 
-            tr.cells[0].appendChild(document.createTextNode("Altor Rider Ranking"));
+            tr.cells[0].appendChild(document.createTextNode(""));
             tr.cells[1].appendChild(document.createTextNode(""));
             tr.cells[2].appendChild(document.createTextNode(""));
-            tr.cells[0].setAttribute("colspan",3);
+            tr.cells[3].appendChild(document.createTextNode("Altor Rider Ranking"));
+            tr.cells[4].appendChild(document.createTextNode(""));
+            tr.cells[5].appendChild(document.createTextNode(""));
+            tr.cells[6].appendChild(document.createTextNode(""));
+            tr.cells[7].appendChild(document.createTextNode(""));
+            
+            
+            // tr.cells[0].setAttribute("colspan",3);
 
             table.appendChild(tr);
 
@@ -392,28 +372,92 @@ function RiderData(props){
             tr1.appendChild(document.createElement('td'));
             tr1.appendChild(document.createElement('td'));
             tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
+            tr1.appendChild(document.createElement('td'));
             tr1.cells[0].appendChild(document.createTextNode("Name"))
             tr1.cells[1].appendChild(document.createTextNode("SafetyScore"))
             tr1.cells[2].appendChild(document.createTextNode("Overspeeding"))
+            tr1.cells[3].appendChild(document.createTextNode("Pitstop"))
+            tr1.cells[4].appendChild(document.createTextNode("Wear"))
+            tr1.cells[5].appendChild(document.createTextNode("Store_to_Store_TIme"))
+            tr1.cells[6].appendChild(document.createTextNode("Total_distance_Covered"))
+            tr1.cells[7].appendChild(document.createTextNode("Total_On_Ride_Time"))
             table.appendChild(tr1);
 
-        newRiderData.map((rider)=>{
-            var tr = document.createElement('tr');
+        if(sortedRiderData){
+            sortedRiderData.map((rider)=>{
+                var tr = document.createElement('tr');
+                
+    
+                tr.appendChild(document.createElement('td'));
+                tr.cells[0].appendChild(document.createTextNode(replaceSpace(rider.name)))
             
-
-            tr.appendChild(document.createElement('td'));
-            tr.cells[0].appendChild(document.createTextNode(replaceSpace(rider.name)))
-        
-        
-            tr.appendChild(document.createElement('td'));
-            tr.cells[1].appendChild(document.createTextNode(rider.avg_safety_score))
-
-            tr.appendChild(document.createElement('td'));
-            tr.cells[2].appendChild(document.createTextNode(rider.avg_overspeeding_score))
-
-            table.appendChild(tr);
             
-        })
+                tr.appendChild(document.createElement('td'));
+                tr.cells[1].appendChild(document.createTextNode(rider.avg_safety_score))
+    
+                tr.appendChild(document.createElement('td'));
+                tr.cells[2].appendChild(document.createTextNode(rider.avg_overspeeding_score))
+
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[3].appendChild(document.createTextNode(rider.avg_pitstop))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[4].appendChild(document.createTextNode(rider.avg_wear))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[5].appendChild(document.createTextNode(rider.avg_store_to_store_time))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[6].appendChild(document.createTextNode(rider.avg_total_distance_covered))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[8].appendChild(document.createTextNode(rider.avg_total_on_ride_time))
+
+    
+                table.appendChild(tr);
+                
+            })
+        }else{
+            newRiderData.map((rider)=>{
+                var tr = document.createElement('tr');
+                
+    
+                tr.appendChild(document.createElement('td'));
+                tr.cells[0].appendChild(document.createTextNode(replaceSpace(rider.name)))
+            
+            
+                tr.appendChild(document.createElement('td'));
+                tr.cells[1].appendChild(document.createTextNode(rider.avg_safety_score))
+    
+                tr.appendChild(document.createElement('td'));
+                tr.cells[2].appendChild(document.createTextNode(rider.avg_overspeeding_score))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[3].appendChild(document.createTextNode(rider.avg_pitstop))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[4].appendChild(document.createTextNode(rider.avg_wear))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[5].appendChild(document.createTextNode(rider.avg_store_to_store_time))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[6].appendChild(document.createTextNode(rider.avg_total_distance_covered))
+
+                tr.appendChild(document.createElement('td'));
+                tr.cells[8].appendChild(document.createTextNode(rider.avg_total_on_ride_time))
+    
+                table.appendChild(tr);
+                
+            })
+        }
+
+       
 
         
 
