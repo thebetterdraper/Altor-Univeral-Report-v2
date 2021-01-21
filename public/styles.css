@@ -1,6 +1,10 @@
 @charset "utf-8";
 
 
+body{
+    background-color: rgb(240, 247, 249);
+}
+
 .storeName{
     font-family: sans-serif;
 }
@@ -320,7 +324,7 @@
         text-align: center;
         background-color: cornflowerblue;
         margin-bottom: -500px;
-        width: 168vw;
+        width: 100vw;
     }
     footer p{
         color: white;

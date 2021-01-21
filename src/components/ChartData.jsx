@@ -15,9 +15,9 @@ function ChartData(props){
             height:props.toggle===true?"auto":"0px",
             // border:props.toggle===true?"1px solid black":"0",
             borderRadius:"20px",
-            width:"100%",
-            boxShadow:props.toggle===true?"2px 4px 3px 4px rgba(169, 175, 169, 0.3)":"none",
-            backgroundColor: "honeydew"
+            width:"97%",
+            boxShadow:props.toggle===true?"2px 4px 15px 4px rgba(169, 175, 169, 0.3)":"none",
+            backgroundColor: "white"
         },
         "riderDetails":{
             minHeight: "44vh",
@@ -25,30 +25,31 @@ function ChartData(props){
             float: "left",
             // minWidth:"28vw",
             width:"32%",
-            borderRight:"1px solid black",
+            borderRight:"0px solid black",
         },
         "riderInfoDetails":{
             display: "block",
             float: "left",
+            width:"50%",
             margin: "32% 0% 0% 9%"
         },
         "contactDetails":{
             display:   "block",
             fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-            color:"gray"
+            color:"gray",
+            fontSize:"19px"
         },
         "nameDetails":{
             display:"block",
+            fontWeigh:"bold",
             fontFamily:"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             color:"gray",
-            fontSize:"30px"
+            fontSize:"25px"
         },
         "riderImg":{
             display: "block",
             float: "left",
             borderRadius: "100px",
-            minWidth: "9vw",
-            minHeight: "9vh",
             margin: "131px -16px 0 30px"
         },
         "chartContainer":{
@@ -57,7 +58,7 @@ function ChartData(props){
             display: "block",
             float: "left",
             padding: "0 20px 0 1px",
-            borderLeft:"1px solid black",
+            borderLeft:"0px solid black",
             // borderRight:"1px solid black",
             width:"32%",
             paddingTop:"1%",
@@ -81,8 +82,9 @@ function ChartData(props){
             padding: "10px",
             marginLeft: "36%",
             marginTop: "1%",
-            border: "1px sold white",
-            boxShadow: "3px 4px 4px 4px rgba(0,0,0, 0.2)",
+            border: "0px solid lightgrey",
+            color:"grey",
+            boxShadow: "3px 2px 12px 4px rgba(0,0,0, 0.1)",
             fontSize: "17.5px",
             outline: "none",
             webkitAppearance: "none",

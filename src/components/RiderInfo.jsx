@@ -18,22 +18,22 @@ function RiderInfo(props){
         "dataContent":{
             display: "block",
             float: "left",
-            width: "5vw",
-            maxWidth:"5vw",
+            width: "7vw",
+            maxWidth:"7vw",
             textAlign: "right",
             // border:"1px solid black",
-            padding: "20px 25px 20px 25px",
-            margin: "0 20px 0 20px",
-            fontSize: "18px",
+            padding: "20px 30px 20px 25px",
+            margin: "0 5x",
+            fontSize: "14px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "400",
             color:"#676767"
         },
         "nameAttribute":{
-            width: "10vw",
+            width: "5vw",
             textAlign: "center",
             padding: "20px 25px 20px 25px",
-            margin: "0 20px 0 20px",
+            margin: "0px -1px 0px 4px",
             fontSize: "20px",
             display: "block",
             float: "left",
@@ -82,7 +82,7 @@ function RiderInfo(props){
     }
     return (
         <div style={styles.riderInfoDiv}>
-            <span style={styles.indexAttribute}><font className="id_font">{props.id+1}
+            <span style={styles.indexAttribute}><font style={{color:"#929292"}} className="id_font">{props.id+1}
             </font></span>
             {/* <span style={styles.nameAttribute}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</span> */}
             <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
@@ -92,49 +92,49 @@ function RiderInfo(props){
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_safety>0?"chartreuse":"red"
+                backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
                 }}></span></span>           
             <span style={styles.dataContent}>{props.avg_overspeeding_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_overspeeding<0?"chartreuse":"red"
+                backgroundColor:props.per_change_overspeeding<0?"#9acc68":"#ff5a5a"
                 }}></span></span>    
             <span style={styles.dataContent}>{props.avg_pitstop_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_pitstop<0?"chartreuse":"red"
+                backgroundColor:props.per_change_pitstop<0?"#9acc68":"#ff5a5a"
                 }}></span></span>
             <span style={styles.dataContent}>{props.avg_wear_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_wear<0?"chartreuse":"red"
+                backgroundColor:props.per_change_wear<0?"#9acc68":"#ff5a5a"
                 }}></span></span>
             <span style={styles.dataContent}>{props.avg_store_to_store_time}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_store_to_store_time<0?"chartreuse":"red"
+                backgroundColor:props.per_change_store_to_store_time<0?"#9acc68":"#ff5a5a"
                 }}></span></span>
             <span style={styles.dataContent}>{props.avg_total_distance_covered}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_total_distance_covered<0?"chartreuse":"red"
+                backgroundColor:props.per_change_total_distance_covered<0?"#9acc68":"#ff5a5a"
                 }}></span> </span>
             <span style={styles.dataContent}>{props.avg_total_on_ride_time}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
-                backgroundColor:props.per_change_total_on_ride_time<0?"chartreuse":"red"
+                backgroundColor:props.per_change_total_on_ride_time<0?"#9acc68":"#ff5a5a"
                 }}></span></span>
 
             <ChartData 

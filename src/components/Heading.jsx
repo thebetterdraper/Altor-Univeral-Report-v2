@@ -5,14 +5,14 @@ function Header(){
 
     const styles = {
         "altorLogo":{
-            width:"5vw",
-            height:"10vh",
+            width:"70px",
+            height:"70px",
             display:"block",
             float:"left",
-            margin:"0 20px 0 28px"
+            margin:"2px 20px 0 28px"
         },
         "AltorName":{
-            margin: "21px 0 0 10px",
+            margin: "18px 0 0 0px",
             fontSize: "25px",
             fontWeight: "700",
             color: "rgb(78, 65, 65)",
@@ -21,9 +21,9 @@ function Header(){
   
         },
         "altorHeading":{
-            width:"246px",
+            width:"212px",
             backgroundColor:"white",
-            minHeight:"75px",
+            minHeight:"63px",
             borderRadius:"50px",
             margin:"10px 0 10px 20px",
             padding:"1px",

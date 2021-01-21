@@ -23,7 +23,7 @@ function RiderData(props){
             padding: "10px",
             fontFamily: "sans-serif",
             borderRadius: "10px",
-            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px",
+            boxShadow: "rgb(0 0 225 / 40%) 4px 6px 12px 3px",
             marginLeft: "1%",
             marginRight: "1%"
         },
@@ -32,8 +32,8 @@ function RiderData(props){
             minHeight: "10%",
             borderRadius: "10px",
             padding: "10px",
-            border: "1px sold white",
-            boxShadow: " inset 0 0 10px #000000",
+            border: "0px",
+            boxShadow: "rgb(80 125 206) 1px 2px 7px inset",
             fontSize: "17.5px",
             outline: "none",
             webkitAppearance: "none",
@@ -44,10 +44,12 @@ function RiderData(props){
         "sortToggler":{
             fontSize: "17.5px",
             marginLeft: "1%",
-            padding: "5px 20px 5px 20px",
+            padding: "8px 20px 8px 20px",
             borderRadius: "10px",
+            border:"0px",
             outline:    "none",
-            display: "inlineBlock"
+            display: "inlineBlock",
+            cursor:"pointer"
         },
         "currentDate":{
             position: "relative",
@@ -65,7 +67,7 @@ function RiderData(props){
             fontFamily: "sans-serif",
             borderRadius: "10px",
             minHeight: "22px",
-            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px",
+            boxShadow: "rgb(0 0 225 / 40%) 4px 6px 12px 3px",
             height:"22px"
 
         },
@@ -85,7 +87,7 @@ function RiderData(props){
             fontFamily: "sans-serif",
             borderRadius: "10px",
             minHeight: "22px",
-            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px"
+            boxShadow: "rgb(0 0 225 / 40%) 4px 6px 12px 3px"
         },
         "riderInfoHeading":{
             marginTop: "1.5vw",
@@ -99,7 +101,7 @@ function RiderData(props){
             padding:"15px",
             wordWrap:"breakWord",
             margin: "0 15px 0 10px",
-            fontSize: "20px",
+            fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
             textAlign:"center",
@@ -108,11 +110,11 @@ function RiderData(props){
         "nameAttribute":{
             display: "block",
             float: "left",
-            width:"10vw",
+            width:"2vw",
             padding:"15px",
             wordWrap:"breakWord",
             margin: "0 20px 0 90px",
-            fontSize: "20px",
+            fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
             textAlign:"center",
@@ -122,8 +124,10 @@ function RiderData(props){
             border:"1px solid white",
             borderRadius:"20px",
             margin:"16px",
-            minWidth:"1867px",
-            boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)"
+            width:"90%",
+            minWidth:"1300px",
+            boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)",
+            backgroundColor:"white"
         },
         "downloadPdf":{
             display:"block",
@@ -131,8 +135,11 @@ function RiderData(props){
             backgroundColor:"ghostwhite",
             outline:"none",
             border:"1px solid cornflowerblue",
-            margin: "-8px 17px 0px 0px",
-            borderRadius:"100%"
+            margin: "-14px 17px 0px 0px",
+            borderRadius:"100%",
+            width:"50px",
+            height:"50px",
+            cursor:"pointer"
         },
         "donwloadPdfImg":{
             padding:"3px",
@@ -336,8 +343,8 @@ function RiderData(props){
         // Download CSV file
         console.log("Download CSV file");
         console.log(csv);
-        // var finalCsv = "sep=;\n"+csv;
-        var finalCsv = csv;
+        var finalCsv = "sep=;\n"+csv;
+        // var finalCsv = csv;
         downloadAsCSV(finalCsv, filename,"text/csv;encoding:utf-8");
         csv="";
     }
@@ -498,7 +505,7 @@ function RiderData(props){
             
                 <div style={styles.buttonHolder}>
                     <div style={styles.sortingArrangement}>
-                        <span style={{fontSize:"17.5px",borderRight:"2px solid black",marginRight:"13px",marginLeft:"28px",paddingRight:"8px"}}>Sort By</span>
+                        <span style={{fontSize:"17.5px",borderRight:"1.2px solid white",marginRight:"13px",marginLeft:"28px",paddingRight:"8px"}}>Sort By</span>
                         <select style={styles.sortBy} id="SortBy" onChange={handleChange}>
                             <option value="avg_safety_score" selected>Safety Score</option>
                             <option value="avg_overspeeding_score">Overspeeding Score</option>
@@ -511,7 +518,7 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>
-                        <button style={styles.downloadPdf} onClick={handleDownloadClick}><img src={downloadLogo} alt="donwloadLogo" style={styles.donwloadPdfImg}>></img></button>
+                        <button style={styles.downloadPdf} onClick={handleDownloadClick}><img src={downloadLogo} alt="donwloadLogo" style={styles.donwloadPdfImg}></img></button>
                         
                         {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}
                     </div>

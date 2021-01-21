@@ -10,13 +10,15 @@ function App(){
         
         <>
         <div id="toPrint">
-            {/* <button onClick={convertDomToPDF}>CLICK2PRINT</button> */}
+            {/* <button onClick={convertDomToPDF}>CLICK2PRINT</button>
             <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/altorrider" component={AltorRider} />
                 <Route component="Error" />
-            </Switch>
+            </Switch> */}
+
+            <AltorRider></AltorRider>
         </div>
         </>
     );

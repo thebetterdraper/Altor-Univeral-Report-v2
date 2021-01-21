@@ -480,7 +480,7 @@ function AltorRider(){
                     } */}
                     {/* <button className="downloadButton" onClick={convertDomToPDF}>Print</button> */}
                     
-                    <div id="divToPrint">
+                    <div id="divToPrint" style={{backgroundColor:"#f0f7f9"}}>
                         <Header />
                         <RiderData 
                             riderDataAPI={cleanedRiderData}
