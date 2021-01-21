@@ -1,8 +1,11 @@
 @charset "utf-8";
 
+html{
+    background-color: rgb(244 244 245);
+}
 
 body{
-    background-color: rgb(240, 247, 249);
+    background-color: rgb(244 244 245);
 }
 
 .storeName{
