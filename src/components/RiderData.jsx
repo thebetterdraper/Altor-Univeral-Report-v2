@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react";
 import RiderInfo from "./RiderInfo";
 import Cookie from "js-cookie";
+import downloadLogo from "./images/download_pdf.png";
 
 
 function RiderData(props){
@@ -64,7 +65,9 @@ function RiderData(props){
             fontFamily: "sans-serif",
             borderRadius: "10px",
             minHeight: "22px",
-            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px"
+            boxShadow: "rgba(0, 0, 225, 0.2) 4px 6px 4px 3px",
+            height:"22px"
+
         },
         "storeName":{
             position: "relative",
@@ -121,6 +124,20 @@ function RiderData(props){
             margin:"16px",
             minWidth:"1867px",
             boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)"
+        },
+        "downloadPdf":{
+            display:"block",
+            float:"left",
+            backgroundColor:"ghostwhite",
+            outline:"none",
+            border:"1px solid cornflowerblue",
+            margin: "-8px 17px 0px 0px",
+            borderRadius:"100%"
+        },
+        "donwloadPdfImg":{
+            padding:"3px",
+            width:"30px",
+            height:"30px"
         }
     }
 
@@ -319,7 +336,8 @@ function RiderData(props){
         // Download CSV file
         console.log("Download CSV file");
         console.log(csv);
-        var finalCsv = "sep=;\n"+csv;
+        // var finalCsv = "sep=;\n"+csv;
+        var finalCsv = csv;
         downloadAsCSV(finalCsv, filename,"text/csv;encoding:utf-8");
         csv="";
     }
@@ -387,8 +405,9 @@ function RiderData(props){
             tr1.cells[7].appendChild(document.createTextNode("Total_On_Ride_Time"))
             table.appendChild(tr1);
 
-        if(sortedRiderData){
+        if(sortedRiderData.length!==0){
             sortedRiderData.map((rider)=>{
+                console.log("inside SortedRiderData");
                 var tr = document.createElement('tr');
                 
     
@@ -416,7 +435,7 @@ function RiderData(props){
                 tr.cells[6].appendChild(document.createTextNode(rider.avg_total_distance_covered))
 
                 tr.appendChild(document.createElement('td'));
-                tr.cells[8].appendChild(document.createTextNode(rider.avg_total_on_ride_time))
+                tr.cells[7].appendChild(document.createTextNode(rider.avg_total_on_ride_time))
 
     
                 table.appendChild(tr);
@@ -424,12 +443,12 @@ function RiderData(props){
             })
         }else{
             newRiderData.map((rider)=>{
+                console.log("inside newRiderData");
                 var tr = document.createElement('tr');
                 
     
                 tr.appendChild(document.createElement('td'));
                 tr.cells[0].appendChild(document.createTextNode(replaceSpace(rider.name)))
-            
             
                 tr.appendChild(document.createElement('td'));
                 tr.cells[1].appendChild(document.createTextNode(rider.avg_safety_score))
@@ -450,7 +469,7 @@ function RiderData(props){
                 tr.cells[6].appendChild(document.createTextNode(rider.avg_total_distance_covered))
 
                 tr.appendChild(document.createElement('td'));
-                tr.cells[8].appendChild(document.createTextNode(rider.avg_total_on_ride_time))
+                tr.cells[7].appendChild(document.createTextNode(rider.avg_total_on_ride_time))
     
                 table.appendChild(tr);
                 
@@ -492,13 +511,8 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>
-                        <button onClick={handleDownloadClick}>Download</button>
-                        {/* <CSVLink
-                            data={dataCsv}
-                            target="_blank"
-                            // ref={csvLink}
-                            // onClick={handleDownloadClick}
-                        >ClickMe</CSVLink> */}
+                        <button style={styles.downloadPdf} onClick={handleDownloadClick}><img src={downloadLogo} alt="donwloadLogo" style={styles.donwloadPdfImg}>></img></button>
+                        
                         {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}
                     </div>
                     <div style={styles.storeName}>{store_name}</div>
@@ -576,13 +590,8 @@ function RiderData(props){
                         <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
                     </div>
                     <div style={styles.currentDate}>
-                    <button onClick={handleDownloadClick}>Download</button>
-                    {/* <CSVLink
-                        data={dataCsv}
-                        target="_blank"
-                        // ref={csvLink}
-                        // onClick={handleDownloadClick}
-                    >ClickMe</CSVLink> */}
+                    <button style={styles.downloadPdf} onClick={handleDownloadClick}><img src={downloadLogo} alt="donwloadLogo" style={styles.donwloadPdfImg}></img></button>
+                    
                     {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
                     <div style={styles.storeName}>{store_name}</div>
                 </div>
