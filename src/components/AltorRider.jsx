@@ -502,8 +502,11 @@ function AltorRider(){
             var ErrorTimer = setTimeout(start,5000);
             return <Loading />
         }else{
-            return  <h1 style={{display:"flex", color:"red"}}>Error!! Problem loading page. Please try again after sometime.</h1>
-                
+            return<div style={{backgroundColor:"rgb(240, 247, 249)",display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center",
+            textAlign:"center",paddingTop:"307px"}}>
+                <h1 style={{display:"flex", color:"#e84545",backgroundColor:"rgb(240, 247, 249)",minWidth:"30vw",
+                fontSize:"43px",maxWidth:"35vw"}}>Error!! Problem loading page. Please try again after sometime.</h1>
+            </div>
         }
         
     }

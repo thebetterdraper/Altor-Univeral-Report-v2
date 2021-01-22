@@ -100,7 +100,7 @@ function RiderData(props){
             width:"7vw",
             padding:"15px",
             wordWrap:"breakWord",
-            margin: "0 15px 0 10px",
+            margin: "0 15px 0 18px",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -124,7 +124,7 @@ function RiderData(props){
             border:"1px solid white",
             borderRadius:"20px",
             margin:"16px",
-            width:"90%",
+            width:"93%",
             minWidth:"1300px",
             boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)",
             backgroundColor:"white"
@@ -355,6 +355,24 @@ function RiderData(props){
             return newRiderName;
         }
 
+        function getKey(key){
+            if(key==="avg_safety_score"){
+                return "Safety_Score"
+            }else if(key==="avg_overspeeding_score"){
+                return "Overspeeding_Score"
+            }else if(key==="avg_pitstop"){
+                return "Pitstop"
+            }else if(key==="avg_wear"){
+                return "Wear"
+            }else if(key==="avg_store_to_store_time"){
+                return "Store_To_Store_Time(min)"
+            }else if(key==="avg_total_distance_covered"){
+                return "Avg_Total_Distance_Covered(km)"
+            }else{
+                return "On_Ride_Time(min)"
+            }
+        }
+
     useEffect(()=>{
         var tablearea = document.getElementById('tablearea'),
         table = document.createElement('table');
@@ -389,9 +407,15 @@ function RiderData(props){
             var tr2 = document.createElement('tr');
             tr2.appendChild(document.createElement('td'));
             tr2.appendChild(document.createElement('td'));
-            tr2.cells[0].appendChild(document.createTextNode(sortConfig.key));
-            tr2.cells[1].appendChild(document.createTextNode(sortConfig.direction));
+            tr2.appendChild(document.createElement('td'));
+            tr2.cells[0].appendChild(document.createTextNode(sortConfig.key===null?"":getKey(sortConfig.key)));
+            tr2.cells[1].appendChild(document.createTextNode(sortConfig.direction===null?"Unsorted":sortConfig.direction==="ascending"?"Low To High":"High To Low"));
             table.appendChild(tr2);
+
+            var tr3 = document.createElement('tr');
+            tr3.appendChild(document.createElement('td'));
+            tr2.cells[0].appendChild(document.createTextNode(""));
+            table.appendChild(tr3);
 
             var tr1 = document.createElement('tr');
             tr1.appendChild(document.createElement('td'));
@@ -515,7 +539,7 @@ function RiderData(props){
                             <option value="avg_total_distance_covered">Total Distance</option>
                             <option value="avg_total_on_ride_time">Total On Ride Time</option>
                         </select>
-                        <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction}</button>
+                        <button style={styles.sortToggler} onClick={sort}>{sortConfig.direction===null?"Sort":sortConfig.direction==="ascending"?"Low To High":"High To Low"}</button>
                     </div>
                     <div style={styles.currentDate}>
                         <button style={styles.downloadPdf} onClick={handleDownloadClick}><img src={downloadLogo} alt="donwloadLogo" style={styles.donwloadPdfImg}></img></button>
