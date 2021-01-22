@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import ChartData from "./ChartData"
 
-// const subscriptStyle = {
-//     color: "green"
-// }
-
 function RiderInfo(props){
 
     const styles = {
@@ -70,11 +66,6 @@ function RiderInfo(props){
     }
 
     const [toggleContainer,setToggleContainer]  = useState(false);
-    // if(document.getElementsByClassName("subscript").innerHTML<0){
-    //     document.getElementsByClassName("subscript").style.color = "red";
-    // }else{
-    //     document.getElementsByClassName("subscript").style.color="green";
-    // }
 
     function handleClick(){
         console.log("clicked");
@@ -84,7 +75,6 @@ function RiderInfo(props){
         <div style={styles.riderInfoDiv}>
             <span style={styles.indexAttribute}><font style={{color:"#929292"}} className="id_font">{props.id+1}
             </font></span>
-            {/* <span style={styles.nameAttribute}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</span> */}
             <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
             <span style={styles.dataContent}>{props.avg_safety_score}<span 
             style={{

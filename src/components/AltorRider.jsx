@@ -336,137 +336,137 @@ function AltorRider(){
     //     });
     // }
 
-    const convertMmToPx=(mm)=>{
+    // const convertMmToPx=(mm)=>{
     
-        // let width = window.screen.width;
-        // let height = window.screen.height;
-        // console.log("widht=>"+width+"height=>"+height);
-        // if(width>=1900 ){
-        //     return (mm/0.104583);
-        // }
-        // else if(width>=1300 && width<=1900){
-        //     return (mm/0.104583);
-        // }
-        // else{
-        //     return (mm/0.104583);
-        // }
+    //     // let width = window.screen.width;
+    //     // let height = window.screen.height;
+    //     // console.log("widht=>"+width+"height=>"+height);
+    //     // if(width>=1900 ){
+    //     //     return (mm/0.104583);
+    //     // }
+    //     // else if(width>=1300 && width<=1900){
+    //     //     return (mm/0.104583);
+    //     // }
+    //     // else{
+    //     //     return (mm/0.104583);
+    //     // }
 
-        //this is the actual
-        // return (mm/0.144583);
-        // return (mm/0.94583);
-        return (mm/0.104583);
-    }
+    //     //this is the actual
+    //     // return (mm/0.144583);
+    //     // return (mm/0.94583);
+    //     return (mm/0.104583);
+    // }
     
-    const convertDomToPDF=()=>{
+    // const convertDomToPDF=()=>{
        
         
-        if(window.screen.width>=1900){
-            document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";    
-        }else{
-            document.getElementById('divToPrint').style.width=window.screen.width*1.75+"px";
-        }
+    //     if(window.screen.width>=1900){
+    //         document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";    
+    //     }else{
+    //         document.getElementById('divToPrint').style.width=window.screen.width*1.75+"px";
+    //     }
         
-        //1920
-        // document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
-        //1366
+    //     //1920
+    //     // document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
+    //     //1366
         
-        // document.getElementById('divToPrint').style.width=window.screen.width*1.50+"px";
-        // console.log(window.screen.width*1.25+"px");
+    //     // document.getElementById('divToPrint').style.width=window.screen.width*1.50+"px";
+    //     // console.log(window.screen.width*1.25+"px");
 
 
-        const input = document.getElementById('divToPrint');
-        console.log(input.offsetWidth+" IS INPUT WIDTH")
+    //     const input = document.getElementById('divToPrint');
+    //     console.log(input.offsetWidth+" IS INPUT WIDTH")
     
        
     
-        var pdf=new jsPDF({
-            orientation: 'p', 
-            unit: 'mm', 
-            format: [275,297]
-        });
+    //     var pdf=new jsPDF({
+    //         orientation: 'p', 
+    //         unit: 'mm', 
+    //         format: [275,297]
+    //     });
     
-        // 275,297
+    //     // 275,297
         
     
-        html2canvas(input).then((canvas) => {
+    //     html2canvas(input).then((canvas) => {
     
         
     
     
-        // var numOfPages=Math.ceil(canvas.height/ convertMmToPx(pdf.internal.pageSize.getHeight()) );
+    //     // var numOfPages=Math.ceil(canvas.height/ convertMmToPx(pdf.internal.pageSize.getHeight()) );
        
         
     
-        var ratio=canvas.height/canvas.width;
+    //     var ratio=canvas.height/canvas.width;
     
-        // createResizedCanvas(canvas,ratio);
+    //     // createResizedCanvas(canvas,ratio);
         
     
-        var returnableValue=breakIntoChunks(canvas,ratio,pdf);
-        var imgArray=returnableValue.imgArray;
+    //     var returnableValue=breakIntoChunks(canvas,ratio,pdf);
+    //     var imgArray=returnableValue.imgArray;
     
-        imgArray.map((elem,i)=>{
+    //     imgArray.map((elem,i)=>{
     
-            pdf.addPage().addImage(elem,'PNG',0,0,pdf.internal.pageSize.getWidth(),(pdf.internal.pageSize.getHeight()));
-            // pdf.addImage(elem,'PNG',0,0,pdfWidth,(pdfWidth*ratio));
+    //         pdf.addPage().addImage(elem,'PNG',0,0,pdf.internal.pageSize.getWidth(),(pdf.internal.pageSize.getHeight()));
+    //         // pdf.addImage(elem,'PNG',0,0,pdfWidth,(pdfWidth*ratio));
             
     
-        })
+    //     })
     
-        console.log("pdfInternalPageSizeWidht");
-        console.log(pdf.internal.pageSize.getWidth());
-        pdf.save("download.pdf");
+    //     console.log("pdfInternalPageSizeWidht");
+    //     console.log(pdf.internal.pageSize.getWidth());
+    //     pdf.save("download.pdf");
 
-        //for resizing the screen to original after print
+    //     //for resizing the screen to original after print
     
-        document.getElementById('divToPrint').style.width=window.screen.width+"px";
+    //     document.getElementById('divToPrint').style.width=window.screen.width+"px";
         
-      });
+    //   });
     
-    }
-    
-    
-    const breakIntoChunks=(canvas,ratio,pdf)=>{
-    
-        var height=canvas.height;
-    
-        var numOfPages=Math.ceil(height / convertMmToPx(pdf.internal.pageSize.getHeight()) );
+    // }
     
     
+    // const breakIntoChunks=(canvas,ratio,pdf)=>{
     
-        var imgArray=[];
+    //     var height=canvas.height;
     
-        console.log("PDF dimensions are",convertMmToPx(pdf.internal.pageSize.getWidth()),convertMmToPx(pdf.internal.pageSize.getHeight()));
-        console.log("Canvas dimensions are ", canvas.width, canvas.height);
-    
-        for(var i=0;i<numOfPages;i++){
-    
-            var newCanvas=document.createElement('canvas');
-            newCanvas.width=convertMmToPx(pdf.internal.pageSize.getWidth());
-            newCanvas.height=convertMmToPx(pdf.internal.pageSize.getHeight());
+    //     var numOfPages=Math.ceil(height / convertMmToPx(pdf.internal.pageSize.getHeight()) );
     
     
-            var newContext=newCanvas.getContext('2d');
-            newContext.drawImage(canvas, 0, ((convertMmToPx(pdf.internal.pageSize.getHeight()))*i), (canvas.width), convertMmToPx(pdf.internal.pageSize.getHeight()), 0, 0,convertMmToPx(pdf.internal.pageSize.getWidth()),convertMmToPx(pdf.internal.pageSize.getHeight()));
     
-            var newImage = document.createElement('img');
-            newImage.src = newCanvas.toDataURL();
+    //     var imgArray=[];
     
-            console.log("IMAGE IS AT"+(( convertMmToPx(pdf.internal.pageSize.getHeight())/numOfPages)*i));
+    //     console.log("PDF dimensions are",convertMmToPx(pdf.internal.pageSize.getWidth()),convertMmToPx(pdf.internal.pageSize.getHeight()));
+    //     console.log("Canvas dimensions are ", canvas.width, canvas.height);
     
-            imgArray.push(newImage);
-        }
+    //     for(var i=0;i<numOfPages;i++){
     
-        const returnableValue={
-            pageSize:(canvas.height/numOfPages),
-            imgArray:imgArray
-        }
-        return returnableValue;
+    //         var newCanvas=document.createElement('canvas');
+    //         newCanvas.width=convertMmToPx(pdf.internal.pageSize.getWidth());
+    //         newCanvas.height=convertMmToPx(pdf.internal.pageSize.getHeight());
+    
+    
+    //         var newContext=newCanvas.getContext('2d');
+    //         newContext.drawImage(canvas, 0, ((convertMmToPx(pdf.internal.pageSize.getHeight()))*i), (canvas.width), convertMmToPx(pdf.internal.pageSize.getHeight()), 0, 0,convertMmToPx(pdf.internal.pageSize.getWidth()),convertMmToPx(pdf.internal.pageSize.getHeight()));
+    
+    //         var newImage = document.createElement('img');
+    //         newImage.src = newCanvas.toDataURL();
+    
+    //         console.log("IMAGE IS AT"+(( convertMmToPx(pdf.internal.pageSize.getHeight())/numOfPages)*i));
+    
+    //         imgArray.push(newImage);
+    //     }
+    
+    //     const returnableValue={
+    //         pageSize:(canvas.height/numOfPages),
+    //         imgArray:imgArray
+    //     }
+    //     return returnableValue;
     
         
         
         
-    }
+    // }
     
 
 
@@ -475,10 +475,6 @@ function AltorRider(){
          return (
              <>
                 <div>
-                    {/* {
-                        window.screen.width>=1900?<button className="downloadButton" onClick={convertDomToPDF}>Print</button>:<span></span>
-                    } */}
-                    {/* <button className="downloadButton" onClick={convertDomToPDF}>Print</button> */}
                     
                     <div id="divToPrint" style={{backgroundColor:"#f0f7f9"}}>
                         <Header />
@@ -499,7 +495,7 @@ function AltorRider(){
         
         // ErrorTimer();
         if(!timer){
-            var ErrorTimer = setTimeout(start,5000);
+            var ErrorTimer = setTimeout(start,7000);
             return <Loading />
         }else{
             return<div style={{backgroundColor:"rgb(240, 247, 249)",display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center",

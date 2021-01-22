@@ -13,7 +13,6 @@ function ChartData(props){
             minWidth: "1250px",
             display: "block",
             height:props.toggle===true?"auto":"0px",
-            // border:props.toggle===true?"1px solid black":"0",
             borderRadius:"20px",
             width:"97%",
             boxShadow:props.toggle===true?"2px 4px 15px 4px rgba(169, 175, 169, 0.3)":"none",

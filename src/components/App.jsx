@@ -10,7 +10,6 @@ function App(){
         
         <>
         <div id="toPrint">
-            {/* <button onClick={convertDomToPDF}>CLICK2PRINT</button> */}
              {/* <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
