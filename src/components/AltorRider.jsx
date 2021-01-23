@@ -1,14 +1,23 @@
 import React, { useEffect,useState } from "react";
-import jsPDF from "jspdf";
 import Header from "./Heading";
 import Footer from "./Footer";
 import RiderData from "./RiderData";
 import Cookie from "js-cookie";
 import axios from "./Axios";
 import Loading from "./Loading";
-import html2canvas from 'html2canvas';
+
 
 function AltorRider(){
+
+    const windowWidth = window.screen.width;
+    console.log(windowWidth);
+    const styles = {
+        "divToPrint":{
+            backgroundColor:"#f0f7f9",
+            paddingLeft:(windowWidth-1300)/2,
+            paddingRight:(windowWidth-1300)/2
+        }
+    }
     const [riderData,setRiderData] = useState(null);
     const [timer,setTimer] =  useState(false);
 
@@ -476,13 +485,13 @@ function AltorRider(){
              <>
                 <div>
                     
-                    <div id="divToPrint" style={{backgroundColor:"#f0f7f9"}}>
+                    <div id="divToPrint" style={styles.divToPrint}>
                         <Header />
                         <RiderData 
                             riderDataAPI={cleanedRiderData}
                         />
-                        <Footer />
                     </div>
+                    <Footer />
                 </div>
             </>
     )

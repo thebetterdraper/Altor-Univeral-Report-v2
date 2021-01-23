@@ -226,13 +226,15 @@ function ChartData(props){
         setRadarChartData({
             labels:["SafetyScore","Overspeeding","Pitstop","Wear"],
             datasets:[{
-                label: "Radar",
-                backgroundColor: "rgba(220,220,220,0.2)",
-                pointBackgroundColor: "rgba(220,220,220,1)",
+                // label: "Radar",
+                backgroundColor: "rgba(220,220,220,0.4)",
+                pointBackgroundColor: "#2e2a2a",
                data:[getScoreData(safety_score)[1],getScoreData(overspeeding)[1],getScoreData(pitstop)[1],getScoreData(wear)[1]]
             }]
         })
     }
+    //point #2e2a2a
+    //background rgba(220,220,220,0.4)
 
     useEffect(()=>{
         chart();
@@ -259,14 +261,14 @@ function ChartData(props){
           reverse: false,
           gridLines: {
             color: [
-              'black',
-              'red',
-              'orange',
-              'yellow',
-              'green',
-              'blue',
-              'indigo',
-              'violet'
+                'grey',
+                'red',
+                'gery',
+                'blue',
+                'grey',
+                'yellow',
+                'grey',
+                'green'
             ]
           },
           ticks: {

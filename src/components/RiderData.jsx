@@ -97,10 +97,10 @@ function RiderData(props){
         "attributeTitle":{
             display: "block",
             float: "left",
-            width:"7vw",
+            width:"4.5vw",
             padding:"15px",
             wordWrap:"breakWord",
-            margin: "0 15px 0 18px",
+            margin: "0 15px 0 15px",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -110,10 +110,10 @@ function RiderData(props){
         "nameAttribute":{
             display: "block",
             float: "left",
-            width:"2vw",
+            width:"4vw",
             padding:"15px",
             wordWrap:"breakWord",
-            margin: "0 20px 0 90px",
+            margin: "0 20px 0 70px",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -126,6 +126,7 @@ function RiderData(props){
             margin:"16px",
             width:"93%",
             minWidth:"1300px",
+            maxWidth:"1300px",
             boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)",
             backgroundColor:"white"
         },
@@ -550,54 +551,54 @@ function RiderData(props){
                 </div>
                 <div id="tablearea"></div>
                 <div style={styles.riderDiv}>
-                <div style={styles.riderInfoHeading}>
-                    <span style={styles.nameAttribute}>Name</span>
-                    <span style={styles.attributeTitle}>Safety Score</span>
-                    <span style={styles.attributeTitle}>Overspeeding</span>
-                    <span style={styles.attributeTitle}>Pitstops</span>
-                    <span style={styles.attributeTitle}>Wear</span>
-                    <span style={styles.attributeTitle}>Store-To-Store Time(min)</span>
-                    <span style={styles.attributeTitle}>Total Distance (km)</span>
-                    <span style={styles.attributeTitle}>Total Ride Time (min)</span>
-                </div>
-                <hr />
+                    <div style={styles.riderInfoHeading}>
+                        <span style={styles.nameAttribute}>Name</span>
+                        <span style={styles.attributeTitle}>Safety Score</span>
+                        <span style={styles.attributeTitle}>Overspeeding</span>
+                        <span style={styles.attributeTitle}>Pitstops</span>
+                        <span style={styles.attributeTitle}>Wear</span>
+                        <span style={styles.attributeTitle}>Store-To-Store Time(min)</span>
+                        <span style={styles.attributeTitle}>Total Distance (km)</span>
+                        <span style={styles.attributeTitle}>Total Ride Time (min)</span>
+                    </div>
+                    <hr />
             
-                {
-                    sortedRiderData.map((rider, index) => {
-                        return(
-                                <RiderInfo 
-                                    key = {index}
-                                    id={index}
-                                    name = {rider.name}
-                                    phone = {rider.phone}
-                                    email = {rider.email}
-                                    image = {rider.image}
-                                    avg_safety_score = {rider.avg_safety_score}
-                                    per_change_safety = {rider.avg_safety_score_change}
-                                    avg_overspeeding_score = {rider.avg_overspeeding_score}
-                                    per_change_overspeeding = {rider.avg_overspeeding_score_change}
-                                    avg_pitstop_score = {rider.avg_pitstop}
-                                    per_change_pitstop = {rider.avg_pitstop_change}
-                                    avg_wear_score = {rider.avg_wear}
-                                    per_change_wear = {rider.avg_wear_change}
-                                    avg_store_to_store_time = {rider.avg_store_to_store_time}
-                                    per_change_store_to_store_time = {rider.avg_store_to_store_time_change}
-                                    avg_total_distance_covered = {rider.avg_total_distance_covered}
-                                    per_change_total_distance_covered = {rider.avg_total_distance_covered_change}
-                                    avg_total_on_ride_time = {rider.avg_total_on_ride_time}
-                                    per_change_total_on_ride_time = {rider.avg_total_on_ride_time_change}
-                                    safety_score = {rider.safety_score}
-                                    overspeeding = {rider.overspeeding}
-                                    pitstop = {rider.pitstop}
-                                    wear = {rider.wear}
-                                    store_to_store_time = {rider.store_to_store_time}
-                                    total_distance_covered = {rider.total_distance_covered}
-                                    total_on_ride_time = {rider.total_on_ride_time}
-                                />     
-                            )
-                    })
-                }
-            </div>
+                    {
+                        sortedRiderData.map((rider, index) => {
+                            return(
+                                    <RiderInfo 
+                                        key = {index}
+                                        id={index}
+                                        name = {rider.name}
+                                        phone = {rider.phone}
+                                        email = {rider.email}
+                                        image = {rider.image}
+                                        avg_safety_score = {rider.avg_safety_score}
+                                        per_change_safety = {rider.avg_safety_score_change}
+                                        avg_overspeeding_score = {rider.avg_overspeeding_score}
+                                        per_change_overspeeding = {rider.avg_overspeeding_score_change}
+                                        avg_pitstop_score = {rider.avg_pitstop}
+                                        per_change_pitstop = {rider.avg_pitstop_change}
+                                        avg_wear_score = {rider.avg_wear}
+                                        per_change_wear = {rider.avg_wear_change}
+                                        avg_store_to_store_time = {rider.avg_store_to_store_time}
+                                        per_change_store_to_store_time = {rider.avg_store_to_store_time_change}
+                                        avg_total_distance_covered = {rider.avg_total_distance_covered}
+                                        per_change_total_distance_covered = {rider.avg_total_distance_covered_change}
+                                        avg_total_on_ride_time = {rider.avg_total_on_ride_time}
+                                        per_change_total_on_ride_time = {rider.avg_total_on_ride_time_change}
+                                        safety_score = {rider.safety_score}
+                                        overspeeding = {rider.overspeeding}
+                                        pitstop = {rider.pitstop}
+                                        wear = {rider.wear}
+                                        store_to_store_time = {rider.store_to_store_time}
+                                        total_distance_covered = {rider.total_distance_covered}
+                                        total_on_ride_time = {rider.total_on_ride_time}
+                                    />     
+                                )
+                        })
+                    }
+                </div>
             </>
         );
         
@@ -629,54 +630,54 @@ function RiderData(props){
                 <div id="tablearea"></div>
                 <div style={styles.riderDiv}>
                 
-                <div style={styles.riderInfoHeading}>
-                    <span style={styles.nameAttribute}>Name</span>
-                    <span style={styles.attributeTitle}>Safety Score</span>
-                    <span style={styles.attributeTitle}>Overspeeding</span>
-                    <span style={styles.attributeTitle}>Pitstops</span>
-                    <span style={styles.attributeTitle}>Wear</span>
-                    <span style={styles.attributeTitle}>Store-To-Store Time(min)</span>
-                    <span style={styles.attributeTitle}>Total Distance (km)</span>
-                    <span style={styles.attributeTitle}>Total Ride Time (min)</span>
-                </div> 
-                
-                <hr />
-                {
-                    newRiderData.map((rider, index) => {
+                    <div style={styles.riderInfoHeading}>
+                        <span style={styles.nameAttribute}>Name</span>
+                        <span style={styles.attributeTitle}>Safety Score</span>
+                        <span style={styles.attributeTitle}>Overspeeding</span>
+                        <span style={styles.attributeTitle}>Pitstops</span>
+                        <span style={styles.attributeTitle}>Wear</span>
+                        <span style={styles.attributeTitle}>Store-To-Store Time(min)</span>
+                        <span style={styles.attributeTitle}>Total Distance (km)</span>
+                        <span style={styles.attributeTitle}>Total Ride Time (min)</span>
+                    </div> 
+                    
+                    <hr />
+                    {
+                        newRiderData.map((rider, index) => {
 
-                        return(
-                                <RiderInfo 
-                                    key = {index}
-                                    id={index}
-                                    name = {rider.name}
-                                    phone = {rider.phone}
-                                    email = {rider.email}
-                                    image = {rider.image}
-                                    avg_safety_score = {rider.avg_safety_score}
-                                    per_change_safety = {rider.avg_safety_score_change}
-                                    avg_overspeeding_score = {rider.avg_overspeeding_score}
-                                    per_change_overspeeding = {rider.avg_overspeeding_score_change}
-                                    avg_pitstop_score = {rider.avg_pitstop}
-                                    per_change_pitstop = {rider.avg_pitstop_change}
-                                    avg_wear_score = {rider.avg_wear}
-                                    per_change_wear = {rider.avg_wear_change}
-                                    avg_store_to_store_time = {rider.avg_store_to_store_time}
-                                    per_change_store_to_store_time = {rider.avg_store_to_store_time_change}
-                                    avg_total_distance_covered = {rider.avg_total_distance_covered}
-                                    per_change_total_distance_covered = {rider.avg_total_distance_covered_change}
-                                    avg_total_on_ride_time = {rider.avg_total_on_ride_time}
-                                    per_change_total_on_ride_time = {rider.avg_total_on_ride_time_change}
-                                    safety_score = {rider.safety_score}
-                                    overspeeding = {rider.overspeeding}
-                                    pitstop = {rider.pitstop}
-                                    wear = {rider.wear}
-                                    store_to_store_time = {rider.store_to_store_time}
-                                    total_distance_covered = {rider.total_distance_covered}
-                                    total_on_ride_time = {rider.total_on_ride_time}
-                                />     
-                        )
-                    })
-                }
+                            return(
+                                    <RiderInfo 
+                                        key = {index}
+                                        id={index}
+                                        name = {rider.name}
+                                        phone = {rider.phone}
+                                        email = {rider.email}
+                                        image = {rider.image}
+                                        avg_safety_score = {rider.avg_safety_score}
+                                        per_change_safety = {rider.avg_safety_score_change}
+                                        avg_overspeeding_score = {rider.avg_overspeeding_score}
+                                        per_change_overspeeding = {rider.avg_overspeeding_score_change}
+                                        avg_pitstop_score = {rider.avg_pitstop}
+                                        per_change_pitstop = {rider.avg_pitstop_change}
+                                        avg_wear_score = {rider.avg_wear}
+                                        per_change_wear = {rider.avg_wear_change}
+                                        avg_store_to_store_time = {rider.avg_store_to_store_time}
+                                        per_change_store_to_store_time = {rider.avg_store_to_store_time_change}
+                                        avg_total_distance_covered = {rider.avg_total_distance_covered}
+                                        per_change_total_distance_covered = {rider.avg_total_distance_covered_change}
+                                        avg_total_on_ride_time = {rider.avg_total_on_ride_time}
+                                        per_change_total_on_ride_time = {rider.avg_total_on_ride_time_change}
+                                        safety_score = {rider.safety_score}
+                                        overspeeding = {rider.overspeeding}
+                                        pitstop = {rider.pitstop}
+                                        wear = {rider.wear}
+                                        store_to_store_time = {rider.store_to_store_time}
+                                        total_distance_covered = {rider.total_distance_covered}
+                                        total_on_ride_time = {rider.total_on_ride_time}
+                                    />     
+                            )
+                        })
+                    }
                 </div>
             </>
         );
