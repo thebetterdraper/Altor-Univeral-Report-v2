@@ -17,7 +17,8 @@ function RiderData(props){
             display: "block",
             float: "left",
             backgroundColor: "rgb(100 149 237)",
-            minWidth: "36%",
+            minWidth: "519px",
+            maxWidth:"519px",
             fontSize: "17.5px",
             color: "white",
             padding: "10px",
@@ -29,7 +30,7 @@ function RiderData(props){
         },
         "sortBy":{
             minWidth: "47%",
-            minHeight: "10%",
+            // minHeight: "10%",
             borderRadius: "10px",
             padding: "10px",
             border: "0px",

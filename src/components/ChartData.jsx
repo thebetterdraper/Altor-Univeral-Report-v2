@@ -75,7 +75,7 @@ function ChartData(props){
             paddingTop: "1%"
         },
         "sortByChartName":{
-            minWidth: "38%",
+            minWidth: "209px",
             minHeight: "10%",
             borderRadius: "10px",
             padding: "10px",
@@ -226,7 +226,7 @@ function ChartData(props){
         setRadarChartData({
             labels:["SafetyScore","Overspeeding","Pitstop","Wear"],
             datasets:[{
-                // label: "Radar",
+                label: "data",
                 backgroundColor: "rgba(220,220,220,0.4)",
                 pointBackgroundColor: "#2e2a2a",
                data:[getScoreData(safety_score)[1],getScoreData(overspeeding)[1],getScoreData(pitstop)[1],getScoreData(wear)[1]]
@@ -251,7 +251,7 @@ function ChartData(props){
         responsive:false,
         maintainAspectRatio: true,
         legend: {
-          position: 'top'
+          position: 'top',
         },
         title: {
           display: true,

@@ -26,6 +26,11 @@ function Charts(props){
             type: "bar",
             data: props.data,
             options: {
+                legend:{
+                    display:true,
+                    position:"bottom",
+                    align:"center",
+                },
                 responsive:true,
                 maintainAspectRatio:true,
                 scales: {
