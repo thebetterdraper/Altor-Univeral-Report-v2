@@ -483,7 +483,7 @@ function AltorRider(){
 
          return (
              <>
-                <div>
+                <div style={{backgroundColor:"#f0f7f9"}}>
                     
                     <div id="divToPrint" style={styles.divToPrint}>
                         <Header />

@@ -98,10 +98,10 @@ function RiderData(props){
         "attributeTitle":{
             display: "block",
             float: "left",
-            width:"4.5vw",
-            padding:"15px",
+            width:"10%",
+            padding:"1%",
             wordWrap:"breakWord",
-            margin: "0 0.8vw 0 0.8vw",
+            margin: "0 0% 0 0%",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -111,10 +111,10 @@ function RiderData(props){
         "nameAttribute":{
             display: "block",
             float: "left",
-            width:"4vw",
-            padding:"15px",
+            width:"10%",
+            padding:"1%",
             wordWrap:"breakWord",
-            margin: "0 1vw 0 4vw",
+            margin: "0 0% 0 0%",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -127,7 +127,7 @@ function RiderData(props){
             margin:"16px",
             width:"93%",
             minWidth:"1300px",
-            maxWidth:"1300px",
+            maxWidth:"1500px",
             boxShadow:"2px 2px 6px 4px rgba(0,0,0,0.2)",
             backgroundColor:"white"
         },
@@ -644,7 +644,9 @@ function RiderData(props){
                         <span style={styles.attributeTitle}>Total Ride Time (min)</span>
                     </div> 
                     
+                    <br />
                     <hr />
+                    <br />
                     {
                         newRiderData.map((rider, index) => {
 

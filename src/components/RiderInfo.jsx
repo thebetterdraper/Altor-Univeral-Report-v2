@@ -9,27 +9,40 @@ function RiderInfo(props){
             width:"90%",
             minWidth: "1300px",
             margin:"0 10px 0 25px",
-            pageBreakInside: "avoid"
+            pageBreakInside: "avoid",
+            minHeight:"65px"
         },
         "dataContent":{
             display: "block",
             float: "left",
-            width: "4.5vw",
-            maxWidth:"7vw",
+            width: "9%",
             textAlign: "right",
             // border:"1px solid black",
-            padding: "15px",
-            margin: "0px 0.8vw 0px 0.8vw",
+            padding: "1%",
+            margin: "0 0 0 0",
+            fontSize: "14px",
+            fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+            fontWeight: "400",
+            color:"#676767"
+        },
+        "dataContentFirstFour":{
+            display: "block",
+            float: "left",
+            width: "9%",
+            textAlign: "right",
+            // border:"1px solid black",
+            padding: "1%",
+            margin: "0 0 0 0%",
             fontSize: "14px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "400",
             color:"#676767"
         },
         "nameAttribute":{
-            width: "4vw",
-            textAlign: "center",
-            padding: "9px 17px 15px 15px",
-            margin: "0px 0.8vw 0px 0.8vw",
+            width: "10%",
+            textAlign: "left",
+            padding: "1%",
+            margin: "0 0 0 2%",
             fontSize: "20px",
             display: "block",
             float: "left",
@@ -42,18 +55,17 @@ function RiderInfo(props){
             cursor:"pointer"
         },
         "indexAttribute":{
-            textAlign: "center",
-            padding: "20px 25px 20px 25px",
+            textAlign: "right",
+            padding: "1% 0 1% 0",
+            margin:"3px 0",
             display: "block",
             float: "left",
             border: "none",
-            margin: "0",
-            width: "30px",
             height: "30px",
-            left: "10px",
             color: "black",
             fontFamily: "sans-serif",
-            fontSize: "25px"
+            fontSize: "25px",
+            width:"30px"
         },
         "percentageColor":{
             minHeight:"15px",
@@ -76,7 +88,7 @@ function RiderInfo(props){
             <span style={styles.indexAttribute}><font style={{color:"#929292"}} className="id_font">{props.id+1}
             </font></span>
             <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
-            <span style={styles.dataContent}>{props.avg_safety_score}<span 
+            <span style={styles.dataContentFirstFour}>{props.avg_safety_score}<span 
             style={{
                 minHeight:"15px",
                 minWidth:"15px", 
@@ -84,21 +96,21 @@ function RiderInfo(props){
                 marginLeft:"5px",
                 backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
                 }}></span></span>           
-            <span style={styles.dataContent}>{props.avg_overspeeding_score}<span style={{
+            <span style={styles.dataContentFirstFour}>{props.avg_overspeeding_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
                 backgroundColor:props.per_change_overspeeding<0?"#9acc68":"#ff5a5a"
                 }}></span></span>    
-            <span style={styles.dataContent}>{props.avg_pitstop_score}<span style={{
+            <span style={styles.dataContentFirstFour}>{props.avg_pitstop_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
                 marginLeft:"5px",
                 backgroundColor:props.per_change_pitstop<0?"#9acc68":"#ff5a5a"
                 }}></span></span>
-            <span style={styles.dataContent}>{props.avg_wear_score}<span style={{
+            <span style={styles.dataContentFirstFour}>{props.avg_wear_score}<span style={{
                 minHeight:"15px",
                 minWidth:"15px", 
                 display:"inline-block",
