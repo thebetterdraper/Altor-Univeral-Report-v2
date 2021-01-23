@@ -99,7 +99,9 @@ function ChartData(props){
             marginLeft:"66px",
             marginTop:"40px",
             marginBottom:"20px",
-            border:"2px solid rgba(0,0,0,0.1)",
+            // border:"2px solid rgba(0,0,0,0.1)",
+            boxShadow:"2px 2px 15px 2px rgba(0,0,0,0.2)",
+            padding:"5px",
             borderRadius: "20px",
             backgroundColor:"transparent"
         }

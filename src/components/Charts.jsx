@@ -34,6 +34,9 @@ function Charts(props){
                 responsive:true,
                 maintainAspectRatio:true,
                 scales: {
+                    xAxes:[{
+                        
+                    }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true

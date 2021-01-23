@@ -101,7 +101,7 @@ function RiderData(props){
             width:"4.5vw",
             padding:"15px",
             wordWrap:"breakWord",
-            margin: "0 15px 0 15px",
+            margin: "0 0.8vw 0 0.8vw",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -114,7 +114,7 @@ function RiderData(props){
             width:"4vw",
             padding:"15px",
             wordWrap:"breakWord",
-            margin: "0 20px 0 70px",
+            margin: "0 1vw 0 4vw",
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
@@ -562,7 +562,9 @@ function RiderData(props){
                         <span style={styles.attributeTitle}>Total Distance (km)</span>
                         <span style={styles.attributeTitle}>Total Ride Time (min)</span>
                     </div>
+                    <br />
                     <hr />
+                    <br />
             
                     {
                         sortedRiderData.map((rider, index) => {
