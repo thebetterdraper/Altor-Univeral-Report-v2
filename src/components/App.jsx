@@ -10,14 +10,14 @@ function App(){
         
         <>
         <div id="toPrint">
-             <Navbar />
+             {/* <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/altorrider" component={AltorRider} />
                 <Route component="Error" />
-            </Switch> 
+            </Switch>  */}
 
-            {/* <AltorRider></AltorRider> */}
+            <AltorRider></AltorRider>
         </div>
         </>
     );
