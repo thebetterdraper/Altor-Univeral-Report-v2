@@ -9,8 +9,8 @@ function Home(){
         user_id:"4EulioOrxqQLhj2n1XDOFlBv7fQ2",
         client_id:"example1",
         timestamp:"2020-12-20 23:59:59",
-        // org_id:"South 24 Parganas.8B.JU Hostel.Office",
-        org_id:"South 24 Parganas.8B.JU Hostel",
+        org_id:"South 24 Parganas.8B.JU Hostel.Office",
+        // org_id:"South 24 Parganas.8B.JU Hostel",
         days:30
     });
 

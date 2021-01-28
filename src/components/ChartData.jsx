@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Charts from "./Charts.jsx";
 import {Radar} from "react-chartjs-2";
+import orgLogo from "./images/company.png"
 
 
 function ChartData(props){
@@ -16,7 +17,8 @@ function ChartData(props){
             borderRadius:"20px",
             width:"97%",
             boxShadow:props.toggle===true?"2px 4px 15px 4px rgba(169, 175, 169, 0.3)":"none",
-            backgroundColor: "white"
+            backgroundColor: "white",
+            marginBottom:"5px"
         },
         "riderDetails":{
             minHeight: "44vh",
@@ -49,7 +51,9 @@ function ChartData(props){
             display: "block",
             float: "left",
             borderRadius: "100px",
-            margin: "131px -16px 0 30px"
+            margin: "131px -16px 0 30px",
+            width:"96px",
+            height:"96px"
         },
         "chartContainer":{
             minHeight: "42vh",
@@ -279,12 +283,20 @@ function ChartData(props){
           }
         }
       }
+      console.log(props.image);
+      function getImage(){
+          if(props.image===""||props.image===undefined){
+              return orgLogo
+          }else{
+              return props.image
+          }
+      }
     return (
         <div>
             
             <div  style={styles.toggleContainer}>
                 <div style={styles.riderDetails}>
-                    <img src={props.image} alt="riderimg" style={styles.riderImg}></img>
+                    <img src={getImage(props.image)} alt="riderimg" style={styles.riderImg}></img>
                     <div style={styles.riderInfoDetails}>
                         <span style={styles.nameDetails}>{props.name}</span>
                         <span style={styles.contactDetails}>{props.email}</span>

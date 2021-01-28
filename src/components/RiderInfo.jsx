@@ -5,12 +5,15 @@ function RiderInfo(props){
 
     const styles = {
         "riderInfoDiv":{
-
             width:"90%",
             minWidth: "1300px",
             margin:"0 10px 0 25px",
             pageBreakInside: "avoid",
             minHeight:"65px"
+        },
+        "riderInfoData":{
+            minHeight:"78px",
+            maxHeight:"83px"
         },
         "dataContent":{
             display: "block",
@@ -85,60 +88,61 @@ function RiderInfo(props){
     }
     return (
         <div style={styles.riderInfoDiv}>
-            <span style={styles.indexAttribute}><font style={{color:"#929292"}} className="id_font">{props.id+1}
-            </font></span>
-            <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
-            <span style={styles.dataContentFirstFour}>{props.avg_safety_score}<span 
-            style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
-                }}></span></span>           
-            <span style={styles.dataContentFirstFour}>{props.avg_overspeeding_score}<span style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_overspeeding<0?"#9acc68":"#ff5a5a"
-                }}></span></span>    
-            <span style={styles.dataContentFirstFour}>{props.avg_pitstop_score}<span style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_pitstop<0?"#9acc68":"#ff5a5a"
-                }}></span></span>
-            <span style={styles.dataContentFirstFour}>{props.avg_wear_score}<span style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_wear<0?"#9acc68":"#ff5a5a"
-                }}></span></span>
-            <span style={styles.dataContent}>{props.avg_store_to_store_time}<span style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_store_to_store_time<0?"#9acc68":"#ff5a5a"
-                }}></span></span>
-            <span style={styles.dataContent}>{props.avg_total_distance_covered}<span style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_total_distance_covered<0?"#9acc68":"#ff5a5a"
-                }}></span> </span>
-            <span style={styles.dataContent}>{props.avg_total_on_ride_time}<span style={{
-                minHeight:"15px",
-                minWidth:"15px", 
-                display:"inline-block",
-                marginLeft:"5px",
-                backgroundColor:props.per_change_total_on_ride_time<0?"#9acc68":"#ff5a5a"
-                }}></span></span>
-
+            <div style={styles.riderInfoData}>
+                <span style={styles.indexAttribute}><font style={{color:"#929292"}} className="id_font">{props.id+1}
+                </font></span>
+                <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
+                <span style={styles.dataContentFirstFour}>{props.avg_safety_score}<span 
+                style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
+                    }}></span></span>           
+                <span style={styles.dataContentFirstFour}>{props.avg_overspeeding_score}<span style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_overspeeding<0?"#9acc68":"#ff5a5a"
+                    }}></span></span>    
+                <span style={styles.dataContentFirstFour}>{props.avg_pitstop_score}<span style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_pitstop<0?"#9acc68":"#ff5a5a"
+                    }}></span></span>
+                <span style={styles.dataContentFirstFour}>{props.avg_wear_score}<span style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_wear<0?"#9acc68":"#ff5a5a"
+                    }}></span></span>
+                <span style={styles.dataContent}>{props.avg_store_to_store_time}<span style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_store_to_store_time<0?"#9acc68":"#ff5a5a"
+                    }}></span></span>
+                <span style={styles.dataContent}>{props.avg_total_distance_covered}<span style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_total_distance_covered<0?"#9acc68":"#ff5a5a"
+                    }}></span> </span>
+                <span style={styles.dataContent}>{props.avg_total_on_ride_time}<span style={{
+                    minHeight:"15px",
+                    minWidth:"15px", 
+                    display:"inline-block",
+                    marginLeft:"5px",
+                    backgroundColor:props.per_change_total_on_ride_time<0?"#9acc68":"#ff5a5a"
+                    }}></span></span>
+            </div>
             <ChartData 
                 name = {props.name}
                 phone = {props.phone}
