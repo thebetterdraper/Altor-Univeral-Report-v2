@@ -10,9 +10,9 @@ import Loading from "./Loading";
 function AltorRider(){
 
     const windowWidth = window.screen.width;
-    console.log(windowWidth);
+    // console.log(windowWidth);
     const windowHeight = window.screen.height;
-    console.log(windowHeight);
+    // console.log(windowHeight);
     const styles = {
         "divToPrint":{
             backgroundColor:"#f0f7f9",
@@ -33,7 +33,7 @@ function AltorRider(){
         var time_string=padSingleDigits(DT_obj.getHours())+":"+padSingleDigits(DT_obj.getMinutes())+":"+padSingleDigits(DT_obj.getSeconds());
 
         var date_time_string=date_string+" "+time_string;
-        console.log(date_time_string);
+        // console.log(date_time_string);
 
         return date_time_string;
     }
@@ -45,7 +45,7 @@ function AltorRider(){
         var secondDate = new Date(firstDate.getFullYear(), (firstDate.getMonth()), 1, 12, 0, 0, 0); // 2st of March at noon
 
         var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-        console.log(firstDate, "to", secondDate, "\nDifference: " + diffDays + " day");
+        // console.log(firstDate, "to", secondDate, "\nDifference: " + diffDays + " day");
 
         return diffDays+1;
 

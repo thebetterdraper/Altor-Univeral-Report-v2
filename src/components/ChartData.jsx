@@ -283,7 +283,7 @@ function ChartData(props){
           }
         }
       }
-      console.log(props.image);
+      
       function getImage(){
           if(props.image===""||props.image===undefined){
               return orgLogo
