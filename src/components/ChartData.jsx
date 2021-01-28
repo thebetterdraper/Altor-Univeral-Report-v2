@@ -228,9 +228,10 @@ function ChartData(props){
         setRadarChartData({
             labels:["SafetyScore","Overspeeding","Pitstop","Wear"],
             datasets:[{
-                label: "data",
-                backgroundColor: "rgba(220,220,220,0.4)",
+                label: props.name,
+                backgroundColor: "rgba(100, 149, 237,0.4)",
                 pointBackgroundColor: "#2e2a2a",
+                borderColor: 'rgb(100, 149, 237)',
                data:[getScoreData(safety_score)[1],getScoreData(overspeeding)[1],getScoreData(pitstop)[1],getScoreData(wear)[1]]
             }]
         })

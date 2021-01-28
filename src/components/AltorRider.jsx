@@ -11,11 +11,14 @@ function AltorRider(){
 
     const windowWidth = window.screen.width;
     console.log(windowWidth);
+    const windowHeight = window.screen.height;
+    console.log(windowHeight);
     const styles = {
         "divToPrint":{
             backgroundColor:"#f0f7f9",
             paddingLeft:(windowWidth-1300)/2,
-            paddingRight:(windowWidth-1300)/2
+            paddingRight:(windowWidth-1300)/2,
+            minHeight:windowHeight
         }
     }
     const [riderData,setRiderData] = useState(null);
