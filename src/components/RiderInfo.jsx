@@ -15,7 +15,7 @@ function RiderInfo(props){
         "dataContent":{
             display: "block",
             float: "left",
-            width: "9%",
+            width: "10%",
             textAlign: "right",
             // border:"1px solid black",
             padding: "1%",
@@ -28,7 +28,7 @@ function RiderInfo(props){
         "dataContentFirstFour":{
             display: "block",
             float: "left",
-            width: "9%",
+            width: "10%",
             textAlign: "right",
             // border:"1px solid black",
             padding: "1%",
@@ -39,10 +39,10 @@ function RiderInfo(props){
             color:"#676767"
         },
         "nameAttribute":{
-            width: "10%",
-            textAlign: "left",
-            padding: "1%",
-            margin: "0 0 0 2%",
+            width: "8%",
+            textAlign: "right",
+            padding: "0.5% 0% 1% 0%",
+            margin: "0 0 0 0%",
             fontSize: "20px",
             display: "block",
             float: "left",
@@ -55,8 +55,8 @@ function RiderInfo(props){
             cursor:"pointer"
         },
         "indexAttribute":{
-            textAlign: "right",
-            padding: "1% 0 1% 0",
+            textAlign: "left",
+            padding: "0.5% 0 1% 0",
             margin:"3px 0",
             display: "block",
             float: "left",

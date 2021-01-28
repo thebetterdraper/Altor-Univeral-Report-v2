@@ -105,7 +105,7 @@ function RiderData(props){
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
-            textAlign:"center",
+            textAlign:"right",
             color:"#5a5a5a"
         },
         "nameAttribute":{
@@ -118,7 +118,7 @@ function RiderData(props){
             fontSize: "17px",
             fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
             fontWeight: "500",
-            textAlign:"center",
+            textAlign:"right",
             color:"#5a5a5a"
         },
         "riderDiv":{
