@@ -1,5 +1,4 @@
 import React, { useEffect,useState } from "react";
-import jsPDF from "jspdf";
 import Header from "./Heading";
 import Footer from "./Footer";
 import RiderData from "./RiderData";
@@ -7,17 +6,34 @@ import Cookie from "js-cookie";
 import axios from "./Axios";
 import Loading from "./Loading";
 
+
 function AltorRider(){
+
+    const windowWidth = window.screen.width;
+    // console.log(windowWidth);
+    const windowHeight = window.screen.height;
+    // console.log(windowHeight);
+    const styles = {
+        "divToPrint":{
+            backgroundColor:"#f0f7f9",
+            paddingLeft:(windowWidth-1300)/2,
+            paddingRight:(windowWidth-1300)/2,
+            minHeight:windowHeight
+        }
+    }
     const [riderData,setRiderData] = useState(null);
     const [timer,setTimer] =  useState(false);
 
     //generates present timestamp in YYYY-MM-DD HH:MM:SS format
     function retrieveTimestamp(){
         var DT_obj=new Date();
-        var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(10)+1)+"-"+padSingleDigits(DT_obj.getDate());
+        // var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(10)+1)+"-"+padSingleDigits(DT_obj.getDate());
+        var date_string=DT_obj.getFullYear()+"-"+(padSingleDigits(DT_obj.getMonth()+1))+"-"+padSingleDigits(DT_obj.getDate());
+        
         var time_string=padSingleDigits(DT_obj.getHours())+":"+padSingleDigits(DT_obj.getMinutes())+":"+padSingleDigits(DT_obj.getSeconds());
 
         var date_time_string=date_string+" "+time_string;
+        // console.log(date_time_string);
 
         return date_time_string;
     }
@@ -29,9 +45,9 @@ function AltorRider(){
         var secondDate = new Date(firstDate.getFullYear(), (firstDate.getMonth()), 1, 12, 0, 0, 0); // 2st of March at noon
 
         var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-        console.log(firstDate, "to", secondDate, "\nDifference: " + diffDays + " day");
+        // console.log(firstDate, "to", secondDate, "\nDifference: " + diffDays + " day");
 
-        return diffDays;
+        return diffDays+1;
 
     }
 
@@ -52,10 +68,9 @@ function AltorRider(){
             cookie_content["days"]=retrieveDays();
             // console.log("Cookie is"+ JSON.stringify(cookie_content));
             retrieveDays();
-
             const res = await axios.post("/ride/report/",cookie_content);
+            console.log(res.data);
             setRiderData(res.data); 
-            console.log(res.status);
 
     }
 
@@ -81,8 +96,10 @@ function AltorRider(){
 
     /**************************************************/
 
-    let riderDataItems = {};
+    // let riderDataItems = {};
+    let riderDataItems = [];
     let currentDayData = [];
+    let overallData = [];
 
     //MY DATA
     let usableRiderData = [];
@@ -91,22 +108,26 @@ function AltorRider(){
         
         
         riderDataItems  = riderData.items;
-        // console.log(riderDataItems);
+        // console.log("riderDataItems",riderDataItems);
         for (const dateData in riderDataItems ){
             
 
             currentDayData = riderDataItems[dateData].items
+            // console.log(currentDayData);
 
             
             
             
             function makeMyData(rider,dateIndex){
 
-                function makeANewRiderElement(rider,dataIndex){
+                function makeANewRiderElement(rider,dateIndex){
 
                     let new_rider_element = {
                         "id":rider.id,
-                        "name":rider.name,
+                        "name":rider.name||rider.nickname,
+                        "phone":rider.number,
+                        "email":rider.email,
+                        "image":rider.image,
                         "data":{
                             "safety_score":[{
                                 "date":dateIndex,
@@ -126,6 +147,21 @@ function AltorRider(){
                             "wear":[{
                                 "date":dateIndex,
                                 "score":rider.wear_percentage,
+                                "validity":true
+                            }],
+                            "store_to_store_time":[{
+                                "date":dateIndex,
+                                "score":rider.average_ride_duration,
+                                "validity":true
+                            }],
+                            "total_distance_covered":[{
+                                "date":dateIndex,
+                                "score":rider.distance,
+                                "validity":true
+                            }],
+                            "total_on_ride_time":[{
+                                "date":dateIndex,
+                                "score":rider.total_time,
                                 "validity":true
                             }]
                         }
@@ -158,17 +194,32 @@ function AltorRider(){
                                 "date":dateIndex,
                                 "score":rider.overspeed_percentage,
                                 "validity":true
-                            })
+                            });
                             usableRiderData[i].data.pitstop.push({
                                 "date":dateIndex,
                                 "score":rider.pitstop_percentage,
                                 "validity":true
-                            })
+                            });
                             usableRiderData[i].data.wear.push({
                                 "date":dateIndex,
                                 "score":rider.wear_percentage,
                                 "validity":true
-                            })
+                            });
+                            usableRiderData[i].data.store_to_store_time.push({
+                                "date":dateIndex,
+                                "score":rider.average_ride_duration,
+                                "validity":true
+                            });
+                            usableRiderData[i].data.total_distance_covered.push({
+                                "date":dateIndex,
+                                "score":rider.distance,
+                                "validity":true
+                            });
+                            usableRiderData[i].data.total_on_ride_time.push({
+                                "date":dateIndex,
+                                "score":rider.total_time,
+                                "validity":true
+                            });
                             break;
 
                         }
@@ -191,16 +242,6 @@ function AltorRider(){
         }
     }
 
-    /*****************RiderUsableData*****************/
-
-    if(usableRiderData.length!==0){
-        // console.log("printing usable rider Data");
-        // console.log(usableRiderData)
-        // console.log("\n");
-    }
-
-    /*****************RiderUsableData*****************/
-
     /*****************Cleaning Usable Rider Data********************/
 
     let cleanedRiderData = [];
@@ -211,11 +252,17 @@ function AltorRider(){
         let newCleanedElement = {
             "id":oneRider.id,
             "name":oneRider.name,
+            "phone":oneRider.phone,
+            "email":oneRider.email,
+            "image":oneRider.image,
             "data":{
                 safety_score:[],
                 overspeeding:[],
                 pitstop:[],
-                wear:[]
+                wear:[],
+                store_to_store_time:[],
+                total_distance_covered:[],
+                total_on_ride_time:[],
             }
         }
 
@@ -276,48 +323,45 @@ function AltorRider(){
         return 0;
     })
 
-    // console.log(cleanedRiderData);
+    
 
+    /********Adding Overall data to the cleaned Rider Data*********** */
+    if(riderData){
+        overallData = riderData.overall.items
+        // console.log("overallData",overallData);
+        for(let i = 0 ;i<overallData.length;i++){
+            for(let j=0;j<cleanedRiderData.length;j++){
+                if(overallData[i].id===cleanedRiderData[j].id){
+                    cleanedRiderData[j].overall_safety_score = overallData[i].safety_score
+                    cleanedRiderData[j].overall_overspeeding = overallData[i].overspeed_percentage
+                    cleanedRiderData[j].overall_pitstop = overallData[i].pitstop_percentage
+                    cleanedRiderData[j].overall_wear = overallData[i].wear_percentage
+                    cleanedRiderData[j].overall_store_to_store_time = overallData[i].average_ride_duration
+                    cleanedRiderData[j].overall_total_distance_covered = overallData[i].distance
+                    cleanedRiderData[j].overall_total_on_ride_time = overallData[i].total_time
 
-
-
-    /*****************Cleaning Usable Rider Data********************/
-
-    function downloadAsPdf(){
-
-        const doc = document.getElementById("divToPrint");
-        var element_width=document.getElementById("divToPrint").getBoundingClientRect().width;
-        var page_width=window.screen.width;
-        var left_offset=(page_width-element_width)/2;
-        console.log(element_width+" and "+page_width)
-        // console.log(doc.offsetHeight);
-        // console.log(doc.offsetWidth);
-        // console.log(doc.getAttribute("height"));
-        var pdf = new jsPDF('l', 'pt', [1900,1980]);
-            pdf.html(doc, {
-                callback: function (pdf) {
-                    pdf.save('AltorRiderReport.pdf');
-                    
-                },
-                image:HTMLOptionsCollection,
-                x:(left_offset*40),
-                y:10,
-        });
+                }else{
+                    continue
+                }
+            }
+        }
     }
+    console.log("cleanedRiderData",cleanedRiderData); 
+   
 
     if(cleanedRiderData.length!==0){
 
          return (
              <>
-                <div>
-                    <button className="downloadButton" onClick={downloadAsPdf}>Print</button>
-                    <div id="divToPrint">
+                <div style={{backgroundColor:"#f0f7f9"}}>
+                    
+                    <div id="divToPrint" style={styles.divToPrint}>
                         <Header />
                         <RiderData 
                             riderDataAPI={cleanedRiderData}
                         />
-                        <Footer />
                     </div>
+                    <Footer />
                 </div>
             </>
     )
@@ -330,11 +374,14 @@ function AltorRider(){
         
         // ErrorTimer();
         if(!timer){
-            var ErrorTimer = setTimeout(start,2000);
+            var ErrorTimer = setTimeout(start,7000);
             return <Loading />
         }else{
-            return  <h1 style={{display:"flex", color:"red"}}>Error!! Problem loading page. Please try again after sometime.</h1>
-                
+            return<div style={{backgroundColor:"rgb(240, 247, 249)",display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center",
+            textAlign:"center",paddingTop:"307px"}}>
+                <h1 style={{display:"flex", color:"#e84545",backgroundColor:"rgb(240, 247, 249)",minWidth:"30vw",
+                fontSize:"43px",maxWidth:"35vw"}}>Error!! Problem loading page. Please try again after sometime.</h1>
+            </div>
         }
         
     }

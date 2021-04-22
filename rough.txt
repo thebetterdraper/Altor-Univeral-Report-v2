@@ -1,0 +1,44 @@
+Type = Rider
+
+
+average_ride_duration: 1665.682     //avg_store to store time
+average_speed: 3.012
+call_duration: 0
+calls: 0
+connect_percentage: 0
+distance: 3.118   //Total Distance Covered
+email: "rathinnaskar2582@gmail.com"
+id: "qnvaFp3LxaWJ1mqV9ENGTw7JJot2"
+image: "https://lh6.googleusercontent.com/-gVohRzKht5k/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucm3VNNpYcyJzASe6it_zKdvZo7FaA/s96-c/photo.jpg"
+name: "Rathin Naskar"
+number: "+919330772582"
+overspeed_percentage: 1.828
+pitstop_percentage: 83.576
+rides: 2
+safety_score: 49
+total_time: 6034    //Total on_ride Time
+user_id: "qnvaFp3LxaWJ1mqV9ENGTw7JJot2"
+wear_percentage: 0
+
+Type = organization
+
+average_ride_duration: 4817.5   //avg_store to store time
+average_speed: 2.742
+call_duration: 2581
+calls: 19
+connect_percentage: 99.776
+distance: 58.472    //Total Distance Covered
+nickname: "Ekdalia"
+org_id: "South 24 Parganas.8B.JU Hostel.Ekdalia"
+org_uuid: "example11603735680"
+overspeed_percentage: 2.742
+pitstop_percentage: 12.36
+rides: 8
+safety_score: 98.352
+total_time: 38540   //Total on_ride Time
+wear_percentage: 99.151
+
+
+store_to_store_time = average_ride_duration
+total_distance_covered = distance
+total_on_ride_time = total_time
