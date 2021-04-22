@@ -151,7 +151,7 @@ function RiderData(props){
     }
 
     const riderDataAPI = props.riderDataAPI;
-    console.log(riderDataAPI);
+    // console.log("riderDataAPI",riderDataAPI);
 
 
     const [newRiderData,setNewRiderData] = useState([]);
@@ -175,7 +175,7 @@ function RiderData(props){
         }
 
         riderDataAPI.map((rider,index)=>{
-
+            console.log(rider);
             let safety = score_cal(rider.data.safety_score);
             let overspeeding = score_cal(rider.data.overspeeding);
             let pitstop = score_cal(rider.data.pitstop);
@@ -190,19 +190,19 @@ function RiderData(props){
                 "phone":rider.phone,
                 "email":rider.email,
                 "image":rider.image,
-                "avg_safety_score":safety[0],
+                "avg_safety_score":rider.overall_safety_score,
                 "avg_safety_score_change":safety[1],
-                "avg_overspeeding_score":overspeeding[0],
+                "avg_overspeeding_score":rider.overall_overspeeding,
                 "avg_overspeeding_score_change":overspeeding[1],
-                "avg_pitstop":pitstop[0],
+                "avg_pitstop":rider.overall_pitstop,
                 "avg_pitstop_change":pitstop[1],
-                "avg_wear":wear[0],
+                "avg_wear":rider.overall_wear,
                 "avg_wear_change":wear[1],
-                "avg_store_to_store_time":store_to_store_time[0],
+                "avg_store_to_store_time":rider.overall_store_to_store_time,
                 "avg_store_to_store_time_change":store_to_store_time[1],
-                "avg_total_distance_covered":total_distance_covered[0],
+                "avg_total_distance_covered":rider.overall_total_distance_covered,
                 "avg_total_distance_covered_change":total_distance_covered[1],
-                "avg_total_on_ride_time":total_on_ride_time[0],
+                "avg_total_on_ride_time":rider.overall_total_on_ride_time,
                 "avg_total_on_ride_time_change":total_on_ride_time[1],                
                 "safety_score":rider.data.safety_score,
                 "overspeeding":rider.data.overspeeding,

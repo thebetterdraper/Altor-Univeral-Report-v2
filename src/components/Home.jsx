@@ -7,9 +7,9 @@ function Home(){
 
     // Cookie.set("report_res",{
     //     user_id:"4EulioOrxqQLhj2n1XDOFlBv7fQ2",
-    //     client_id:"example1",
-    //     timestamp:"2020-12-20 23:59:59",
-    //     org_id:"South 24 Parganas.8B.JU Hostel.Office",
+    //     client_id:"dominos",
+    //     timestamp:"2021-04-23 16:00:00",
+    //     org_id:"India.West Bengal.Kolkata.Ekdalia",
     //     // org_id:"South 24 Parganas.8B.JU Hostel",
     //     days:30
     // });

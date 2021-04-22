@@ -92,7 +92,7 @@ function RiderInfo(props){
                 <span style={styles.indexAttribute}><font style={{color:"#929292"}} className="id_font">{props.id+1}
                 </font></span>
                 <button style={styles.nameAttribute} onClick={handleClick}>{props.name.length>13?props.name.substr(0,13)+"...":props.name}</button>
-                <span style={styles.dataContentFirstFour}>{props.avg_safety_score}<span 
+                <span style={styles.dataContentFirstFour}>{Math.round(props.avg_safety_score)}<span 
                 style={{
                     minHeight:"15px",
                     minWidth:"15px", 
@@ -100,42 +100,42 @@ function RiderInfo(props){
                     marginLeft:"5px",
                     backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
                     }}></span></span>           
-                <span style={styles.dataContentFirstFour}>{props.avg_overspeeding_score}<span style={{
+                <span style={styles.dataContentFirstFour}>{Math.round(props.avg_overspeeding_score)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
                     backgroundColor:props.per_change_overspeeding<0?"#9acc68":"#ff5a5a"
                     }}></span></span>    
-                <span style={styles.dataContentFirstFour}>{props.avg_pitstop_score}<span style={{
+                <span style={styles.dataContentFirstFour}>{Math.round(props.avg_pitstop_score)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
                     backgroundColor:props.per_change_pitstop<0?"#9acc68":"#ff5a5a"
                     }}></span></span>
-                <span style={styles.dataContentFirstFour}>{props.avg_wear_score}<span style={{
+                <span style={styles.dataContentFirstFour}>{Math.round(props.avg_wear_score)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
                     backgroundColor:props.per_change_wear<0?"#9acc68":"#ff5a5a"
                     }}></span></span>
-                <span style={styles.dataContent}>{props.avg_store_to_store_time}<span style={{
+                <span style={styles.dataContent}>{Math.round(props.avg_store_to_store_time)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
                     backgroundColor:props.per_change_store_to_store_time<0?"#9acc68":"#ff5a5a"
                     }}></span></span>
-                <span style={styles.dataContent}>{props.avg_total_distance_covered}<span style={{
+                <span style={styles.dataContent}>{Math.round(props.avg_total_distance_covered)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
                     backgroundColor:props.per_change_total_distance_covered<0?"#9acc68":"#ff5a5a"
                     }}></span> </span>
-                <span style={styles.dataContent}>{props.avg_total_on_ride_time}<span style={{
+                <span style={styles.dataContent}>{Math.round(props.avg_total_on_ride_time)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",

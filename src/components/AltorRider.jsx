@@ -69,6 +69,7 @@ function AltorRider(){
             // console.log("Cookie is"+ JSON.stringify(cookie_content));
             retrieveDays();
             const res = await axios.post("/ride/report/",cookie_content);
+            console.log(res.data);
             setRiderData(res.data); 
 
     }
@@ -95,8 +96,10 @@ function AltorRider(){
 
     /**************************************************/
 
-    let riderDataItems = {};
+    // let riderDataItems = {};
+    let riderDataItems = [];
     let currentDayData = [];
+    let overallData = [];
 
     //MY DATA
     let usableRiderData = [];
@@ -105,11 +108,12 @@ function AltorRider(){
         
         
         riderDataItems  = riderData.items;
-        // console.log(riderDataItems);
+        // console.log("riderDataItems",riderDataItems);
         for (const dateData in riderDataItems ){
             
 
             currentDayData = riderDataItems[dateData].items
+            // console.log(currentDayData);
 
             
             
@@ -258,7 +262,7 @@ function AltorRider(){
                 wear:[],
                 store_to_store_time:[],
                 total_distance_covered:[],
-                total_on_ride_time:[]
+                total_on_ride_time:[],
             }
         }
 
@@ -319,168 +323,31 @@ function AltorRider(){
         return 0;
     })
 
-    // console.log(cleanedRiderData);
-
-
-
-
-    /*****************Cleaning Usable Rider Data********************/
-
-    // function downloadAsPdf(){
-
-    //     const doc = document.getElementById("divToPrint");
-    //     var element_width=document.getElementById("divToPrint").getBoundingClientRect().width;
-    //     var page_width=window.screen.width;
-    //     var left_offset=(page_width-element_width)/2;
-    //     console.log(element_width+" and "+page_width)
-    //     // console.log(doc.offsetHeight);
-    //     // console.log(doc.offsetWidth);
-    //     // console.log(doc.getAttribute("height"));
-    //     var pdf = new jsPDF('l', 'pt', [1900,1980]);
-    //         pdf.html(doc, {
-    //             callback: function (pdf) {
-    //                 pdf.save('AltorRiderReport.pdf');
-                    
-    //             },
-    //             image:HTMLOptionsCollection,
-    //             x:(left_offset*40),
-    //             y:10,
-    //     });
-    // }
-
-    // const convertMmToPx=(mm)=>{
-    
-    //     // let width = window.screen.width;
-    //     // let height = window.screen.height;
-    //     // console.log("widht=>"+width+"height=>"+height);
-    //     // if(width>=1900 ){
-    //     //     return (mm/0.104583);
-    //     // }
-    //     // else if(width>=1300 && width<=1900){
-    //     //     return (mm/0.104583);
-    //     // }
-    //     // else{
-    //     //     return (mm/0.104583);
-    //     // }
-
-    //     //this is the actual
-    //     // return (mm/0.144583);
-    //     // return (mm/0.94583);
-    //     return (mm/0.104583);
-    // }
-    
-    // const convertDomToPDF=()=>{
-       
-        
-    //     if(window.screen.width>=1900){
-    //         document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";    
-    //     }else{
-    //         document.getElementById('divToPrint').style.width=window.screen.width*1.75+"px";
-    //     }
-        
-    //     //1920
-    //     // document.getElementById('divToPrint').style.width=window.screen.width*1.25+"px";
-    //     //1366
-        
-    //     // document.getElementById('divToPrint').style.width=window.screen.width*1.50+"px";
-    //     // console.log(window.screen.width*1.25+"px");
-
-
-    //     const input = document.getElementById('divToPrint');
-    //     console.log(input.offsetWidth+" IS INPUT WIDTH")
-    
-       
-    
-    //     var pdf=new jsPDF({
-    //         orientation: 'p', 
-    //         unit: 'mm', 
-    //         format: [275,297]
-    //     });
-    
-    //     // 275,297
-        
-    
-    //     html2canvas(input).then((canvas) => {
-    
-        
-    
-    
-    //     // var numOfPages=Math.ceil(canvas.height/ convertMmToPx(pdf.internal.pageSize.getHeight()) );
-       
-        
-    
-    //     var ratio=canvas.height/canvas.width;
-    
-    //     // createResizedCanvas(canvas,ratio);
-        
-    
-    //     var returnableValue=breakIntoChunks(canvas,ratio,pdf);
-    //     var imgArray=returnableValue.imgArray;
-    
-    //     imgArray.map((elem,i)=>{
-    
-    //         pdf.addPage().addImage(elem,'PNG',0,0,pdf.internal.pageSize.getWidth(),(pdf.internal.pageSize.getHeight()));
-    //         // pdf.addImage(elem,'PNG',0,0,pdfWidth,(pdfWidth*ratio));
-            
-    
-    //     })
-    
-    //     console.log("pdfInternalPageSizeWidht");
-    //     console.log(pdf.internal.pageSize.getWidth());
-    //     pdf.save("download.pdf");
-
-    //     //for resizing the screen to original after print
-    
-    //     document.getElementById('divToPrint').style.width=window.screen.width+"px";
-        
-    //   });
-    
-    // }
-    
-    
-    // const breakIntoChunks=(canvas,ratio,pdf)=>{
-    
-    //     var height=canvas.height;
-    
-    //     var numOfPages=Math.ceil(height / convertMmToPx(pdf.internal.pageSize.getHeight()) );
-    
-    
-    
-    //     var imgArray=[];
-    
-    //     console.log("PDF dimensions are",convertMmToPx(pdf.internal.pageSize.getWidth()),convertMmToPx(pdf.internal.pageSize.getHeight()));
-    //     console.log("Canvas dimensions are ", canvas.width, canvas.height);
-    
-    //     for(var i=0;i<numOfPages;i++){
-    
-    //         var newCanvas=document.createElement('canvas');
-    //         newCanvas.width=convertMmToPx(pdf.internal.pageSize.getWidth());
-    //         newCanvas.height=convertMmToPx(pdf.internal.pageSize.getHeight());
-    
-    
-    //         var newContext=newCanvas.getContext('2d');
-    //         newContext.drawImage(canvas, 0, ((convertMmToPx(pdf.internal.pageSize.getHeight()))*i), (canvas.width), convertMmToPx(pdf.internal.pageSize.getHeight()), 0, 0,convertMmToPx(pdf.internal.pageSize.getWidth()),convertMmToPx(pdf.internal.pageSize.getHeight()));
-    
-    //         var newImage = document.createElement('img');
-    //         newImage.src = newCanvas.toDataURL();
-    
-    //         console.log("IMAGE IS AT"+(( convertMmToPx(pdf.internal.pageSize.getHeight())/numOfPages)*i));
-    
-    //         imgArray.push(newImage);
-    //     }
-    
-    //     const returnableValue={
-    //         pageSize:(canvas.height/numOfPages),
-    //         imgArray:imgArray
-    //     }
-    //     return returnableValue;
-    
-        
-        
-        
-    // }
     
 
+    /********Adding Overall data to the cleaned Rider Data*********** */
+    if(riderData){
+        overallData = riderData.overall.items
+        // console.log("overallData",overallData);
+        for(let i = 0 ;i<overallData.length;i++){
+            for(let j=0;j<cleanedRiderData.length;j++){
+                if(overallData[i].id===cleanedRiderData[j].id){
+                    cleanedRiderData[j].overall_safety_score = overallData[i].safety_score
+                    cleanedRiderData[j].overall_overspeeding = overallData[i].overspeed_percentage
+                    cleanedRiderData[j].overall_pitstop = overallData[i].pitstop_percentage
+                    cleanedRiderData[j].overall_wear = overallData[i].wear_percentage
+                    cleanedRiderData[j].overall_store_to_store_time = overallData[i].average_ride_duration
+                    cleanedRiderData[j].overall_total_distance_covered = overallData[i].distance
+                    cleanedRiderData[j].overall_total_on_ride_time = overallData[i].total_time
+
+                }else{
+                    continue
+                }
+            }
+        }
+    }
+    console.log("cleanedRiderData",cleanedRiderData); 
+   
 
     if(cleanedRiderData.length!==0){
 
