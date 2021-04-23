@@ -98,49 +98,54 @@ function RiderInfo(props){
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
+                    // backgroundColor:props.per_change_safety>0?"#9acc68":"#ff5a5a"
+                    backgroundColor:props.avg_safety_score>75?"#9acc68":"#ff5a5a"
                     }}></span></span>           
                 <span style={styles.dataContentFirstFour}>{Math.round(props.avg_overspeeding_score)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_overspeeding<0?"#9acc68":"#ff5a5a"
+                    // backgroundColor:props.avg_overspeeding_score<0?"#9acc68":"#ff5a5a"
+                    backgroundColor:"cornflowerblue"
                     }}></span></span>    
                 <span style={styles.dataContentFirstFour}>{Math.round(props.avg_pitstop_score)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_pitstop<0?"#9acc68":"#ff5a5a"
+                    backgroundColor:props.avg_pitstop_score<40?"#9acc68":"#ff5a5a"
                     }}></span></span>
                 <span style={styles.dataContentFirstFour}>{Math.round(props.avg_wear_score)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_wear<0?"#9acc68":"#ff5a5a"
+                    backgroundColor:props.avg_wear_score>80?"#9acc68":"#ff5a5a"
                     }}></span></span>
-                <span style={styles.dataContent}>{Math.round(props.avg_store_to_store_time)}<span style={{
+                <span style={styles.dataContent}>{Math.round(props.avg_store_to_store_time/60)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_store_to_store_time<0?"#9acc68":"#ff5a5a"
+                    // backgroundColor:props.per_change_store_to_store_time<0?"#9acc68":"#ff5a5a"
+                    backgroundColor:"cornflowerblue"
                     }}></span></span>
                 <span style={styles.dataContent}>{Math.round(props.avg_total_distance_covered)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_total_distance_covered<0?"#9acc68":"#ff5a5a"
+                    // backgroundColor:props.per_change_total_distance_covered<0?"#9acc68":"#ff5a5a"
+                    backgroundColor:"cornflowerblue"
                     }}></span> </span>
-                <span style={styles.dataContent}>{Math.round(props.avg_total_on_ride_time)}<span style={{
+                <span style={styles.dataContent}>{Math.round(props.avg_total_on_ride_time/60)}<span style={{
                     minHeight:"15px",
                     minWidth:"15px", 
                     display:"inline-block",
                     marginLeft:"5px",
-                    backgroundColor:props.per_change_total_on_ride_time<0?"#9acc68":"#ff5a5a"
+                    // backgroundColor:props.per_change_total_on_ride_time<0?"#9acc68":"#ff5a5a"
+                    backgroundColor:"cornflowerblue"
                     }}></span></span>
             </div>
             <ChartData 
