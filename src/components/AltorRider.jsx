@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useDebugValue, useEffect,useState } from "react";
 import Header from "./Heading";
 import Footer from "./Footer";
 import RiderData from "./RiderData";
@@ -23,6 +23,14 @@ function AltorRider(){
     }
     const [riderData,setRiderData] = useState(null);
     const [timer,setTimer] =  useState(false);
+    const [duration,setDuration] = useState(-1);
+
+
+    const handleDurationCallBack=(durationRecieved)=>{
+        setDuration(durationRecieved);
+    }
+
+    // console.log("Duration INT",duration);
 
     //generates present timestamp in YYYY-MM-DD HH:MM:SS format
     function retrieveTimestamp(){
@@ -59,25 +67,75 @@ function AltorRider(){
         return val;
     }
 
-
-    async function fetchData(){
-
-
-            const cookie_content=Cookie.getJSON("report_res");
-            cookie_content["timestamp"]=retrieveTimestamp();
-            cookie_content["days"]=retrieveDays();
-            // console.log("Cookie is"+ JSON.stringify(cookie_content));
-            retrieveDays();
-            const res = await axios.post("/ride/report/",cookie_content);
-            console.log(res.data);
-            setRiderData(res.data); 
-
-    }
-
+    // let DaysForCookie = retrieveDays();
+    const[DaysForCookie,setDaysForCookie] = useState(retrieveDays());
 
     useEffect(()=>{
+        if(duration === -1){
+            setDaysForCookie(retrieveDays());
+        }else{
+            setDaysForCookie(duration);
+        }
+
+    },[duration])
+    
+    console.log("days",DaysForCookie);
+    // async function fetchData(){
+
+    //         console.log("days",DaysForCookie);
+    //         const cookie_content=Cookie.getJSON("report_res");
+    //         cookie_content["timestamp"]=retrieveTimestamp();
+    //         // cookie_content["days"]=retrieveDays();
+    //         cookie_content["days"]=DaysForCookie;
+    //         // console.log("Cookie is"+ JSON.stringify(cookie_content));
+    //         // console.log("retrieveDays");
+    //         // retrieveDays();
+            
+    //         const res = await axios.post("/ride/report/",cookie_content);
+    //         // console.log(res.data);
+    //         setRiderData(res.data); 
+
+    // }
+
+
+    // useEffect(()=>{
+    //     fetchData();           
+    // },[])
+
+    useEffect(()=>{
+        async function fetchData(){
+
+            console.log("daysInUseEffect",DaysForCookie);
+            const cookie_content=Cookie.getJSON("report_res");
+            cookie_content["timestamp"]=retrieveTimestamp();
+            // cookie_content["days"]=retrieveDays();
+            cookie_content["days"]=DaysForCookie;
+            // console.log("Cookie is"+ JSON.stringify(cookie_content));
+            // console.log("retrieveDays");
+            // retrieveDays();
+            
+            const res = await axios.post("/ride/report/",cookie_content);
+            // console.log(res.data);
+            setRiderData(()=>res.data); 
+
+        }
         fetchData();           
-    },[])
+    },[DaysForCookie])
+
+    // useEffect(()=>{
+    //     console.log("days",DaysForCookie);
+    //         const cookie_content=Cookie.getJSON("report_res");
+    //         cookie_content["timestamp"]=retrieveTimestamp();
+    //         // cookie_content["days"]=retrieveDays();
+    //         cookie_content["days"]=DaysForCookie;
+    //         // console.log("Cookie is"+ JSON.stringify(cookie_content));
+    //         // console.log("retrieveDays");
+    //         // retrieveDays();
+            
+    //         const res = axios.post("/ride/report/",cookie_content);
+    //         // console.log(res.data);
+    //         setRiderData(res.data); 
+    // },[DaysForCookie])
 
     /**************************************************/    
     // TIME STRING TO BE USED LATER
@@ -106,7 +164,7 @@ function AltorRider(){
     //MY DATA
     if(riderData){
         
-        
+        console.log("riderData",riderData);
         riderDataItems  = riderData.items;
         // console.log("riderDataItems",riderDataItems);
         for (const dateData in riderDataItems ){
@@ -358,6 +416,7 @@ function AltorRider(){
                     <div id="divToPrint" style={styles.divToPrint}>
                         <Header />
                         <RiderData 
+                            parentDurationCallBack = {handleDurationCallBack}
                             riderDataAPI={cleanedRiderData}
                         />
                     </div>

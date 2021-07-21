@@ -81,7 +81,25 @@ function RiderData(props){
             marginLeft: "40px",
             float: "left",
             backgroundColor: "rgb(100 149 237)",
-            width: "9vw",
+            width: "6vw",
+            fontSize: "17.5px",
+            color: "white",
+            padding: "20px",
+            fontFamily: "sans-serif",
+            borderRadius: "10px",
+            minHeight: "22px",
+            boxShadow: "rgb(0 0 225 / 40%) 4px 6px 12px 3px"
+        },
+        "duration":{
+            position: "relative",
+            textAlign: "center",
+            display: "block",
+            paddingTop: "10px",
+            minWidth: "50px",
+            marginLeft: "40px",
+            float: "left",
+            backgroundColor: "rgb(100 149 237)",
+            width: "6vw",
             fontSize: "17.5px",
             color: "white",
             padding: "20px",
@@ -290,6 +308,16 @@ function RiderData(props){
         let direction = null;
         setSortConfig({key,direction});
     }    
+
+    //HandleChange for Duration
+    function handleDurationChange(){
+        let duration = document.getElementById("DurationBy").value;
+        // console.log("duration",duration);
+        let durationINT = parseInt(duration);
+
+        //A callback function to pass the duration to parent
+        props.parentDurationCallBack(durationINT);
+    }
 
     var cookie_value=Cookie.getJSON("report_res");
     var org_id=cookie_value.org_id;
@@ -549,6 +577,16 @@ function RiderData(props){
                         {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}
                     </div>
                     <div style={styles.storeName}>{store_name}</div>
+                    <div style={styles.duration}>
+                        <select style={styles.durationby} id="DurationBy" onChange={handleDurationChange}>
+                            <option value="Duration" disabled >Duration</option>
+                            <option value="1">Last Day</option>
+                            <option value="7">Last Week</option>
+                            <option value="30">Last Month</option>
+                            <option value="90">Last 3 Months</option>
+                            <option value="-1" selected="true">Month-To-Date</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="tablearea"></div>
                 <div style={styles.riderDiv}>
@@ -629,6 +667,16 @@ function RiderData(props){
                     
                     {new Date().toString().substring(4,7)} 1 - {new Date().toString().slice(4,16)}</div>
                     <div style={styles.storeName}>{store_name}</div>
+                    <div style={styles.duration}>
+                        <select style={styles.durationby} id="DurationBy" onChange={handleDurationChange}>
+                            <option value="Duration" disabled >Duration</option>
+                            <option value="1">Last Day</option>
+                            <option value="7">Last Week</option>
+                            <option value="30">Last Month</option>
+                            <option value="90">Last 3 Months</option>
+                            <option value="-1" selected="true">Month-To-Date</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="tablearea"></div>
                 <div style={styles.riderDiv}>
