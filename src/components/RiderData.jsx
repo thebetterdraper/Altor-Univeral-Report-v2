@@ -99,7 +99,6 @@ function RiderData(props){
             marginLeft: "40px",
             float: "left",
             backgroundColor: "rgb(100 149 237)",
-            width: "6vw",
             fontSize: "17.5px",
             color: "white",
             padding: "20px",
@@ -169,13 +168,16 @@ function RiderData(props){
     }
 
     const riderDataAPI = props.riderDataAPI;
-    // console.log("riderDataAPI",riderDataAPI);
+    console.log("riderDataAPI",riderDataAPI);
+  
 
 
     const [newRiderData,setNewRiderData] = useState([]);
     
 
     useEffect(()=>{
+
+    
 
         let dataArr = [];
 
@@ -237,7 +239,7 @@ function RiderData(props){
         })
         setNewRiderData(dataArr)
         
-    },[])
+    },[props.riderDataAPI])
 
 
     const [sortedRiderData,setSortedRiderData] = useState([]);

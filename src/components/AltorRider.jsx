@@ -9,6 +9,10 @@ import Loading from "./Loading";
 
 function AltorRider(){
 
+
+    const [counterForHackyReRenderStoppage,setCounterForHackyReRenderStoppage]=useState(1);
+    
+
     const windowWidth = window.screen.width;
     // console.log(windowWidth);
     const windowHeight = window.screen.height;
@@ -27,6 +31,7 @@ function AltorRider(){
 
 
     const handleDurationCallBack=(durationRecieved)=>{
+        console.log("Duration Received",durationRecieved);
         setDuration(durationRecieved);
     }
 
@@ -68,12 +73,14 @@ function AltorRider(){
     }
 
     // let DaysForCookie = retrieveDays();
-    const[DaysForCookie,setDaysForCookie] = useState(retrieveDays());
+    var inititalValueForDays=retrieveDays();
+    const[DaysForCookie,setDaysForCookie] = useState(inititalValueForDays);
 
     useEffect(()=>{
-        if(duration === -1){
+        if(duration == -1){
             setDaysForCookie(retrieveDays());
         }else{
+            console.log("Setting duration in cookie as",duration)
             setDaysForCookie(duration);
         }
 
@@ -116,41 +123,16 @@ function AltorRider(){
             
             const res = await axios.post("/ride/report/",cookie_content);
             // console.log(res.data);
-            setRiderData(()=>res.data); 
+            console.log("The value of res.data is",res.data);
+            
+          
+            setRiderData(res.data); 
 
         }
         fetchData();           
     },[DaysForCookie])
 
-    // useEffect(()=>{
-    //     console.log("days",DaysForCookie);
-    //         const cookie_content=Cookie.getJSON("report_res");
-    //         cookie_content["timestamp"]=retrieveTimestamp();
-    //         // cookie_content["days"]=retrieveDays();
-    //         cookie_content["days"]=DaysForCookie;
-    //         // console.log("Cookie is"+ JSON.stringify(cookie_content));
-    //         // console.log("retrieveDays");
-    //         // retrieveDays();
-            
-    //         const res = axios.post("/ride/report/",cookie_content);
-    //         // console.log(res.data);
-    //         setRiderData(res.data); 
-    // },[DaysForCookie])
-
-    /**************************************************/    
-    // TIME STRING TO BE USED LATER
-
-    // const fullDate = new Date(2020,10,10);
-    // const date = fullDate.getDate();
-    // let dateString = "";
-    // if(date<10){
-    //     dateString = "0"+date.toString();
-    // }else{
-    //     dateString = date.toString();
-    // }
-    // // console.log(dateString);
-    // const timeString = dateString+" "+fullDate.toString().slice(4,7);
-    // console.log(timeString);
+    
 
     /**************************************************/
 
@@ -158,10 +140,18 @@ function AltorRider(){
     let riderDataItems = [];
     let currentDayData = [];
     let overallData = [];
+    const [cleanDataProp,setCleanDataProp]=useState([]);
 
     //MY DATA
     let usableRiderData = [];
-    //MY DATA
+
+
+    useEffect(()=>{
+
+        console.log("THIS IS RIGHT AFTER NEW DATA ARRIVES");
+       
+
+   
     if(riderData){
         
         console.log("riderData",riderData);
@@ -290,7 +280,7 @@ function AltorRider(){
                         usableRiderData.push(makeANewRiderElement(rider,dateIndex))
 
                     }
-
+                    
                 }
                 return 0;
             }
@@ -336,7 +326,7 @@ function AltorRider(){
         
 
         for(const scoreType in oneRider.data){
-            let dataArr = new Array(30);
+            let dataArr = new Array();
             scoreCat = scoreType;
             // console.log(scoreCat);
             // console.log(oneRider.data[scoreType]);
@@ -404,46 +394,94 @@ function AltorRider(){
             }
         }
     }
-    console.log("cleanedRiderData",cleanedRiderData); 
+
+    
+    setCleanDataProp(()=>cleanedRiderData)
+
+    },[riderData])
+    // console.log("cleanedRiderData",cleanedRiderData); 
    
+    useEffect(()=>{
+        setCounterForHackyReRenderStoppage(()=>(counterForHackyReRenderStoppage+1));
+    },[riderData,duration,cleanDataProp]);
 
-    if(cleanedRiderData.length!==0){
+    
 
-         return (
-             <>
-                <div style={{backgroundColor:"#f0f7f9"}}>
+    
+        if((cleanDataProp.length>0)){
+
+        
+
+                //hacky checking for 5+3x render pattern to avoid excessive re-renders
+             
+                var hackyFlag=false;
+                for(var i=0;i<20;i++){
+                    if(counterForHackyReRenderStoppage==(5+(3*i))||(counterForHackyReRenderStoppage<5)){
+                        console.log("WOOOAH");
+                        hackyFlag=true;
+                        break;
+                    }
+
                     
-                    <div id="divToPrint" style={styles.divToPrint}>
-                        <Header />
-                        <RiderData 
-                            parentDurationCallBack = {handleDurationCallBack}
-                            riderDataAPI={cleanedRiderData}
-                        />
-                    </div>
-                    <Footer />
-                </div>
-            </>
-    )
+                }
 
-    }else{
-        function start(){
-            setTimer(prevValue=>!prevValue);
-            window.clearTimeout(ErrorTimer);
-        }
+            
+
+            console.log("COUNTER IS ",counterForHackyReRenderStoppage)
         
-        // ErrorTimer();
-        if(!timer){
-            var ErrorTimer = setTimeout(start,7000);
-            return <Loading />
+    
+            // console.log("THE CLEANED RIDER DATA IS",cleanDataProp)
+    
+            if(hackyFlag){
+                return (
+                    <>
+                    <div style={{backgroundColor:"#f0f7f9"}}>
+                        
+                        <div id="divToPrint" style={styles.divToPrint}>
+                            <Header />
+                            <RiderData 
+                                parentDurationCallBack = {handleDurationCallBack}
+                                riderDataAPI={cleanDataProp}
+                            />
+                        </div>
+                        <Footer />
+                    </div>
+                </>
+        )
+
+            }else{
+                return<div style={{backgroundColor:"rgb(240, 247, 249)",display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center",
+                textAlign:"center",paddingTop:"307px"}}>
+                    <h1 style={{display:"flex", color:"gray",backgroundColor:"rgb(240, 247, 249)",minWidth:"30vw",
+                    fontSize:"43px",maxWidth:"35vw"}}>Loading...</h1>
+                </div>
+            }
+            
+        
+    
         }else{
-            return<div style={{backgroundColor:"rgb(240, 247, 249)",display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center",
-            textAlign:"center",paddingTop:"307px"}}>
-                <h1 style={{display:"flex", color:"#e84545",backgroundColor:"rgb(240, 247, 249)",minWidth:"30vw",
-                fontSize:"43px",maxWidth:"35vw"}}>Error!! Problem loading page. Please try again after sometime.</h1>
-            </div>
+            function start(){
+                setTimer(prevValue=>!prevValue);
+                window.clearTimeout(ErrorTimer);
+            }
+            
+            // ErrorTimer();
+            if(!timer){
+                var ErrorTimer = setTimeout(start,7000);
+                return <Loading />
+            }else{
+                return<div style={{backgroundColor:"rgb(240, 247, 249)",display:"flex",justifyContent:"center",alignContent:"center",alignItems:"center",
+                textAlign:"center",paddingTop:"307px"}}>
+                    <h1 style={{display:"flex", color:"#e84545",backgroundColor:"rgb(240, 247, 249)",minWidth:"30vw",
+                    fontSize:"43px",maxWidth:"35vw"}}>Error!! Problem loading page. Please try again after sometime.</h1>
+                </div>
+            }
+            
         }
-        
-    }
+
+    
+    
+   
 }
 
 export default AltorRider;
